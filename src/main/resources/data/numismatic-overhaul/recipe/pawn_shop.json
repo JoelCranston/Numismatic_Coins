@@ -16,7 +16,6 @@
         }
     },
     "result": {
-        "item": "numismatic-overhaul:pawn_shop",
-        "count": 1
+        "id": "numismatic-overhaul:pawn_shop"
     }
 }

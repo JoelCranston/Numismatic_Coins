@@ -1,5 +1,5 @@
 {
-  "replace": "false",
+  "replace": false,
   "values": [
     "numismatic-overhaul:piggy_bank",
     "numismatic-overhaul:white_piggy_bank",
