@@ -56,6 +56,10 @@ MC_DECOMPILE = [
 	r"net/minecraft/world/level/block/[A-Za-z]*Ids",
 	r"net/minecraft/core/registries/Registries",
 	r"net/minecraft/client/gui/screens/inventory/(InventoryScreen|CreativeModeInventoryScreen|MerchantScreen)",
+	# Widgets: their protected render and narration hooks are not in the javap -public signatures.
+	r"net/minecraft/client/gui/components/(AbstractWidget|AbstractButton|ImageButton|Button|WidgetSprites)",
+	r"net/minecraft/client/gui/screens/inventory/AbstractContainerScreen",
+	r"net/minecraft/client/gui/GuiGraphicsExtractor",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
