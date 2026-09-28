@@ -1,31 +1,32 @@
 name: build
-on: [pull_request, push]
+on: [ push, pull_request ]
 
 jobs:
   build:
-    strategy:
-      matrix:
-        # Use these Java versions
-        java: [21] # Current Java LTS & minimum supported by Minecraft
-        # Test on both Linux and Windows
-        os: [ubuntu-24.04, windows-latest]
-    runs-on: ${{ matrix.os }}
+    name: Build Project
+    runs-on: ubuntu-latest
+
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-      - name: setup jdk ${{ matrix.java }}
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java }}
-          distribution: microsoft
-      - name: setup gradle
+          java-version: 25
+          distribution: 'microsoft'
+
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-      - name: build
-        run: ./gradlew build
-      - name: capture build artifacts
-        # Only capture artifacts from one OS (Linux)
-        if: ${{ runner.os == 'Linux' && matrix.java == '21' }} # Only upload artifacts built from latest java on one OS
+        with:
+          gradle-version: wrapper
+
+      - name: Build with Gradle
+        run: ./gradlew buildAndCollect --no-daemon --stacktrace --console=plain
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Artifacts
+          name: build-artifacts
           path: build/libs/

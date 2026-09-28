@@ -1,16 +1,57 @@
 # Numismatic Overhaul
 
-[![curseforge](https://img.shields.io/badge/-CurseForge-gray?style=for-the-badge&logo=curseforge&labelColor=orange)](https://www.curseforge.com/minecraft/mc-mods/numismatic-overhaul)
-[![modrinth](https://img.shields.io/badge/-modrinth-gray?style=for-the-badge&labelColor=green&labelWidth=15&logo=appveyor&logoColor=white)](https://modrinth.com/mod/numismatic-overhaul)
-[![release](https://img.shields.io/github/v/release/glisco03/numismatic-overhaul?logo=github&style=for-the-badge)](https://github.com/gliscowo/numismatic-overhaul/releases)
-[![discord](https://img.shields.io/discord/825828008644313089?label=wisp%20forest&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/xrwHKktV2d)
+Terraria-style currency for Minecraft: coins, a purse, shops, pawn shops and piggy banks, with
+villagers trading in coins instead of emeralds.
 
-## Overview
+This branch is a from-scratch rewrite for **Minecraft 26.1.2 and 26.2** on **Fabric** and
+**NeoForge**, built from one codebase with [Stonecutter](https://stonecutter.kikugie.dev/). It
+started from [rotgruengelb/stonecutter-mod-template](https://github.com/rotgruengelb/stonecutter-mod-template).
 
-Numismatic Overhaul adds a currency system into Minecraft, closely inspired from Terraria. You obtain money from trading with Villagers, exploring the world or killing Pillagers. You then keep this money in a purse built into your inventory and subsequently spend it on the shops other players have set up or, alternatively, even more villager trading.
+| Target | Jar |
+|---|---|
+| Fabric 26.1.2 | `26.1.2-fabric` |
+| Fabric 26.2 | `26.2-fabric` |
+| NeoForge 26.1.2 | `26.1.2-neoforge` |
 
-You can find an in-depth wiki [over on the Wisp Forest Docs site](https://docs.wispforest.io/numismatic-overhaul/home/)
+The previous Fabric 1.21.1 mod lives in [`reference/1.21.1-fabric/`](reference/1.21.1-fabric/) as
+the content spec for the rewrite. It is not part of the build.
 
-## Credits
-- **Pois1x** for making the textures and inspiring the mod
-- **Noaaan** for helping with some villager code and doing most of the ugly JSON work
+## Building
+
+Needs Java 25.
+
+```bash
+./gradlew buildAndCollect        # every target, jars in build/libs/<version>/
+./gradlew :26.2-fabric:build     # one target
+./gradlew runActiveClient        # run the active Stonecutter version
+```
+
+## Working with versions and loaders
+
+The source on disk is always in the state of the version in `.sc_active_version`
+(`26.1.2-fabric`, which is also the committed `vcsVersion`). Switch it with the Stonecutter
+IntelliJ plugin or `./gradlew "Set active project to 26.2-fabric"`, and switch back to
+`26.1.2-fabric` before committing (the pre-commit hook in `.pre-commit-config.yaml` checks this).
+
+Loader- and version-specific code uses Stonecutter comments:
+
+```java
+//? fabric {
+fabricOnlyCode();
+//?} else {
+/*neoforgeOnlyCode();*/
+//?}
+
+//? if >=26.2 {
+/*minecraft.gui.setScreen(screen);*/
+//?} else {
+minecraft.setScreen(screen);
+//?}
+```
+
+Keep these behind small helpers (`platform/`) rather than scattered through game code.
+Per-target dependency versions are in `stonecutter.properties.toml`.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Original mod by glisco, Pois1x and Noaaan.
