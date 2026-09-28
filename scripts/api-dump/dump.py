@@ -71,6 +71,12 @@ MC_DECOMPILE = [
 	r"net/minecraft/world/level/storage/loot/predicates/LocationCheck",
 	r"net/minecraft/advancements/criterion/LocationPredicate",
 	r"net/minecraft/client/gui/screens/inventory/MerchantScreen",
+	# M4: where mobs and players drop loot on death, and how loot tables and pools are built.
+	r"net/minecraft/world/entity/LivingEntity",
+	r"net/minecraft/world/entity/player/Player",
+	r"net/minecraft/world/level/storage/loot/entries/(LootPoolEntries|LootPoolSingletonContainer|NestedLootTable|LootItem)",
+	r"net/minecraft/world/level/storage/loot/(LootTable|LootPool|BuiltInLootTables)",
+	r"net/minecraft/world/level/storage/loot/parameters/LootContextParamSets",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
@@ -140,6 +146,8 @@ FABRIC_DECOMPILE = [
 	r"net/fabricmc/fabric/api/resource/v1/.*",
 	r"net/fabricmc/fabric/api/client/rendering/v1/hud/.*",
 	r"net/fabricmc/fabric/api/creativetab/.*",
+	r"net/fabricmc/fabric/api/loot/v3/.*",
+	r"net/fabricmc/fabric/api/resource/v1/reloader/.*",
 ]
 
 NEOFORGE_SIG_PACKAGES = [
@@ -157,6 +165,7 @@ NEOFORGE_SIG_PACKAGES = [
 	"net/neoforged/neoforge/event/entity/player/PlayerInteractEvent",
 	"net/neoforged/neoforge/client/event/RegisterClientTooltipComponentFactoriesEvent",
 	"net/neoforged/neoforge/event/SortedReloadListenerEvent", "net/neoforged/neoforge/common/NeoForgeRegistries",
+	"net/neoforged/neoforge/event/LootTableLoadEvent", "net/neoforged/neoforge/event/entity/living/LivingDeathEvent",
 ]
 NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/attachment/(AttachmentType|IAttachmentHolder|AttachmentHolder|IAttachmentCopyHandler|AttachmentSync|IAttachmentSyncHandler)",
@@ -164,6 +173,7 @@ NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/event/village/.*",
 	r"net/neoforged/neoforge/client/gui/(VanillaGuiLayers|IConfigScreenFactory)",
 	r".*GameRule.*",
+	r"net/neoforged/neoforge/event/LootTableLoadEvent",
 ]
 
 
@@ -279,8 +289,7 @@ def fabric_api_jars(api_version):
 	base = GRADLE / "modules-2" / "files-2.1" / "net.fabricmc.fabric-api"
 	poms = list((base / "fabric-api" / api_version).rglob("*.pom"))
 	if not poms:
-		log(f"!! no pom for fabric-api {api_version}")
-		return []
+		return fabric_api_nested_jars(base, api_version)
 	pom = poms[0].read_text()
 	jars = []
 	for artifact, version in re.findall(r"<artifactId>([^<]+)</artifactId>\s*<version>([^<]+)</version>", pom):
@@ -289,6 +298,25 @@ def fabric_api_jars(api_version):
 			jars.append(found[0])
 		else:
 			log(f"!! {artifact} {version} not in the cache")
+	return jars
+
+
+def fabric_api_nested_jars(base, api_version):
+	"""The module jars bundled inside the fabric-api jar, for a Gradle cache restored without poms."""
+	bundles = [p for p in (base / "fabric-api" / api_version).rglob("*.jar") if not p.name.endswith("-sources.jar")]
+	if not bundles:
+		log(f"!! no fabric-api {api_version} in the cache")
+		return []
+	out = WORK / f"fabric-api-{api_version}"
+	out.mkdir(parents=True, exist_ok=True)
+	jars = []
+	with zipfile.ZipFile(bundles[0]) as bundle:
+		for name in bundle.namelist():
+			if name.startswith("META-INF/jars/") and name.endswith(".jar"):
+				target = out / Path(name).name
+				target.write_bytes(bundle.read(name))
+				jars.append(target)
+	log(f"fabric-api {api_version}: {len(jars)} nested module jars")
 	return jars
 
 
