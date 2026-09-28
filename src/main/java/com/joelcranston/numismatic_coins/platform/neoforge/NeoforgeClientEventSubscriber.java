@@ -3,17 +3,19 @@ package com.joelcranston.numismatic_coins.platform.neoforge;
 //? neoforge {
 
 /*import com.joelcranston.numismatic_coins.NumismaticCoins;
+import com.joelcranston.numismatic_coins.client.NumismaticCoinsClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
-@EventBusSubscriber(modid = NumismaticCoins.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber (modid = NumismaticCoins.MOD_ID, value = Dist.CLIENT)
 public class NeoforgeClientEventSubscriber {
+
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event) {
 
-        NumismaticCoins.onInitializeClient();
+        NumismaticCoinsClient.onInitializeClient();
     }
 }
 *///?}

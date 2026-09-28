@@ -1,5 +1,7 @@
 package com.joelcranston.numismatic_coins;
 
+import com.joelcranston.numismatic_coins.command.ModCommands;
+import com.joelcranston.numismatic_coins.network.ModNetworking;
 import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
 import com.joelcranston.numismatic_coins.registry.ModDataComponents;
@@ -30,11 +32,9 @@ public class NumismaticCoins {
         ModDataComponents.register();
         ModItems.register();
         ModCreativeTabs.register();
-    }
-
-    public static void onInitializeClient() {
-
-        LOGGER.info("Initializing {} client on {}", MOD_FRIENDLY_NAME, xplat().loader());
+        xplat().purseStorage();
+        ModNetworking.register();
+        ModCommands.register();
     }
 
     public static Platform xplat() {

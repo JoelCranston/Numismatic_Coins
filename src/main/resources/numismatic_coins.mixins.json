@@ -9,5 +9,7 @@
   "mixins": [
     "BundleContentsMixin"
   ],
-  "client": []
+  "client": [
+    "client.AbstractContainerScreenAccessor"
+  ]
 }

@@ -2,6 +2,8 @@ package com.joelcranston.numismatic_coins.item;
 
 import com.joelcranston.numismatic_coins.currency.Currency;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
@@ -9,6 +11,7 @@ import net.minecraft.world.inventory.MerchantResultSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 /**
  * A bronze, silver or gold coin. Left-clicking a different coin, or a stack that would overflow,
@@ -41,6 +44,12 @@ public class CoinItem extends Item implements CurrencyItem {
     public Component getName(ItemStack stack) {
 
         return super.getName(stack).copy().withStyle(CoinText.style(this.currency));
+    }
+
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+
+        return CurrencyItem.depositInPurse(level, player, hand);
     }
 
     @Override

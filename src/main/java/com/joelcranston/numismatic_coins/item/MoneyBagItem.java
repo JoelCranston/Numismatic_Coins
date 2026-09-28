@@ -9,6 +9,8 @@ import com.joelcranston.numismatic_coins.registry.ModDataComponents;
 import com.joelcranston.numismatic_coins.registry.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
 
 /**
  * A bag holding any number of coins. Left-clicking coins or another bag onto it adds them;
@@ -72,6 +75,12 @@ public class MoneyBagItem extends Item implements CurrencyItem {
     public Component getName(ItemStack stack) {
 
         return super.getName(stack).copy().withStyle(CoinText.style(Currency.SILVER));
+    }
+
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+
+        return CurrencyItem.depositInPurse(level, player, hand);
     }
 
     @Override
