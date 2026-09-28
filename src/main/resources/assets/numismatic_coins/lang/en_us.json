@@ -98,5 +98,6 @@
   "config.numismatic_coins.client.merchantPurseX": "Purse X, villagers",
   "config.numismatic_coins.client.merchantPurseY": "Purse Y, villagers",
   "dataPack.numismatic_coins.coin_trades.name": "Coin trades",
-  "dataPack.numismatic_coins.coin_trades.description": "Villagers and wandering traders trade in coins instead of emeralds"
+  "dataPack.numismatic_coins.coin_trades.description": "Villagers and wandering traders trade in coins instead of emeralds",
+  "subtitles.numismatic_coins.piggy_bank_break": "Piggy bank shatters"
 }

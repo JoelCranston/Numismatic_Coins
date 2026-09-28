@@ -1,0 +1,7 @@
+{
+  "parent": "numismatic_coins:block/piggy_bank",
+  "textures": {
+    "0": "numismatic_coins:block/piggy_bank/purple",
+    "particle": "numismatic_coins:block/piggy_bank/purple"
+  }
+}
