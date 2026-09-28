@@ -6,17 +6,22 @@ package com.joelcranston.numismatic_coins.platform.neoforge;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import com.joelcranston.numismatic_coins.platform.ClientPlatform;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import org.jspecify.annotations.Nullable;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import org.jspecify.annotations.Nullable;
 
 public class NeoforgeClientPlatform implements ClientPlatform {
 
@@ -56,6 +61,13 @@ public class NeoforgeClientPlatform implements ClientPlatform {
 
         NeoForge.EVENT_BUS.addListener((ScreenEvent.Render.Post event) ->
                 listener.afterExtract(event.getScreen(), event.getGuiGraphics(), event.getMouseX(), event.getMouseY()));
+    }
+
+    @Override
+    public <M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> void registerMenuScreen(
+            Supplier<? extends MenuType<? extends M>> menuType, MenuScreenFactory<M, U> factory) {
+
+        NeoforgePlatform.modEventBus.addListener((RegisterMenuScreensEvent event) -> event.register(menuType.get(), factory::create));
     }
 }
 *///?}

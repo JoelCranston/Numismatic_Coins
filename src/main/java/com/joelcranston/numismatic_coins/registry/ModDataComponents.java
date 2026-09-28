@@ -4,8 +4,8 @@ import java.util.function.Supplier;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.item.MoneyBagContents;
-import net.minecraft.core.component.DataComponentType;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 
 public final class ModDataComponents {

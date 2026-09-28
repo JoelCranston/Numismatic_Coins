@@ -2,11 +2,17 @@ package com.joelcranston.numismatic_coins.platform;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import org.jspecify.annotations.Nullable;
 
 /** The client-only side of {@link Platform}. Only touched from client entry points. */
@@ -37,6 +43,16 @@ public interface ClientPlatform {
 
     /** Calls {@code listener} after every screen has drawn everything, slots and items included. */
     void onScreenExtracted(ScreenExtractListener listener);
+
+    /** Opens {@code factory}'s screen whenever the server opens a menu of {@code menuType}. */
+    <M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> void registerMenuScreen(
+            Supplier<? extends MenuType<? extends M>> menuType, MenuScreenFactory<M, U> factory);
+
+    @FunctionalInterface
+    interface MenuScreenFactory<M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> {
+
+        U create(M menu, Inventory inventory, Component title);
+    }
 
     @FunctionalInterface
     interface ScreenExtractListener {

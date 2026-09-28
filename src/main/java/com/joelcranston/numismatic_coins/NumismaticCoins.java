@@ -7,9 +7,13 @@ import com.joelcranston.numismatic_coins.drops.ModGameRules;
 import com.joelcranston.numismatic_coins.drops.ModLootEntries;
 import com.joelcranston.numismatic_coins.network.ModNetworking;
 import com.joelcranston.numismatic_coins.platform.Platform;
+import com.joelcranston.numismatic_coins.registry.ModBlockEntities;
+import com.joelcranston.numismatic_coins.registry.ModBlocks;
 import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
 import com.joelcranston.numismatic_coins.registry.ModDataComponents;
 import com.joelcranston.numismatic_coins.registry.ModItems;
+import com.joelcranston.numismatic_coins.registry.ModMenus;
+import com.joelcranston.numismatic_coins.registry.ModSounds;
 import com.joelcranston.numismatic_coins.trade.CoinTrades;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
@@ -37,6 +41,10 @@ public class NumismaticCoins {
         // In dependency order: Fabric registers each entry as its class loads.
         ModDataComponents.register();
         ModItems.register();
+        ModBlocks.register();
+        ModBlockEntities.register();
+        ModMenus.register();
+        ModSounds.register();
         ModCreativeTabs.register();
         xplat().purseStorage();
         xplat().registerFeatureCondition();

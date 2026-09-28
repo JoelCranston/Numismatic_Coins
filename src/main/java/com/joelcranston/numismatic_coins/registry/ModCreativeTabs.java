@@ -24,6 +24,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.SILVER_COIN.get());
                         output.accept(ModItems.GOLD_COIN.get());
                         output.accept(MoneyBagItem.withValue(EXAMPLE_BAG_VALUE));
+                        ModBlocks.piggyBanks().forEach(output::accept);
                     })
                     .build());
 

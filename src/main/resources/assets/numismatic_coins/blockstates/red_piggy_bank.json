@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "numismatic_coins:block/red_piggy_bank"
+    },
+    "facing=east": {
+      "model": "numismatic_coins:block/red_piggy_bank",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "numismatic_coins:block/red_piggy_bank",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "numismatic_coins:block/red_piggy_bank",
+      "y": 270
+    }
+  }
+}
