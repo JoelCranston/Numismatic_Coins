@@ -27,8 +27,10 @@ public final class NumismaticCoinsClient {
             if (Minecraft.getInstance().player != null) state.apply(Minecraft.getInstance().player);
         });
         clientXplat().registerMenuScreen(ModMenus.PIGGY_BANK, PiggyBankScreen::new);
-        clientXplat().registerMenuScreen(ModMenus.SHOP, ShopScreen::new);
+        clientXplat().registerMenuScreen(ModMenus.SHOP, ShopScreen::shop);
+        clientXplat().registerMenuScreen(ModMenus.PAWN_SHOP, ShopScreen::pawnShop);
         clientXplat().registerBlockEntityRenderer(ModBlockEntities.SHOP, ShopBlockEntityRenderer::new);
+        clientXplat().registerBlockEntityRenderer(ModBlockEntities.PAWN_SHOP, ShopBlockEntityRenderer::new);
     }
 
     public static ClientPlatform clientXplat() {

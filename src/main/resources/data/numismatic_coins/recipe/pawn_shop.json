@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "numismatic_coins:feature_enabled",
+      "feature": "pawnShops"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "numismatic_coins:feature_enabled",
+      "feature": "pawnShops"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#_#",
+    "OOO"
+  ],
+  "key": {
+    "#": "numismatic_coins:silver_coin",
+    "_": "minecraft:mud_brick_slab",
+    "O": "#minecraft:planks"
+  },
+  "result": {
+    "id": "numismatic_coins:pawn_shop"
+  }
+}
