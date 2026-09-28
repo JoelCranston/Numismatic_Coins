@@ -8,11 +8,15 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.jspecify.annotations.Nullable;
 
 /** The client-only side of {@link Platform}. Only touched from client entry points. */
@@ -47,6 +51,10 @@ public interface ClientPlatform {
     /** Opens {@code factory}'s screen whenever the server opens a menu of {@code menuType}. */
     <M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> void registerMenuScreen(
             Supplier<? extends MenuType<? extends M>> menuType, MenuScreenFactory<M, U> factory);
+
+    /** Draws every block entity of {@code type} with the renderer {@code provider} makes. */
+    <T extends BlockEntity, S extends BlockEntityRenderState> void registerBlockEntityRenderer(
+            Supplier<? extends BlockEntityType<T>> type, BlockEntityRendererProvider<T, S> provider);
 
     @FunctionalInterface
     interface MenuScreenFactory<M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> {

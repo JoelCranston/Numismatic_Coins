@@ -14,6 +14,8 @@ public final class ModNetworking {
         platform.registerServerboundPayload(RequestPurseAction.TYPE, RequestPurseAction.STREAM_CODEC, RequestPurseAction::handle);
         platform.registerClientboundPayload(SyncServerConfig.TYPE, SyncServerConfig.STREAM_CODEC);
         platform.registerClientboundPayload(PurseChanged.TYPE, PurseChanged.STREAM_CODEC);
+        platform.registerServerboundPayload(ShopAction.TYPE, ShopAction.STREAM_CODEC, ShopAction::handle);
+        platform.registerClientboundPayload(ShopScreenState.TYPE, ShopScreenState.STREAM_CODEC);
         platform.onPlayerJoin(player -> platform.sendToPlayer(player, new SyncServerConfig(Configs.server())));
     }
 }
