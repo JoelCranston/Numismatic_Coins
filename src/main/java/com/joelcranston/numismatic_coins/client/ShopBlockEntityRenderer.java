@@ -6,7 +6,6 @@ import com.joelcranston.numismatic_coins.shop.ShopBlockEntity;
 import com.joelcranston.numismatic_coins.shop.ShopOffer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -64,8 +63,6 @@ public class ShopBlockEntityRenderer implements BlockEntityRenderer<ShopBlockEnt
         this.itemModelResolver.updateForTopItem(state.item, stack, ItemDisplayContext.GROUND, level, null, (int) shop.getBlockPos().asLong());
         state.isBlock = stack.getItem() instanceof BlockItem;
         state.angle = (gameTime % TICKS_PER_TURN + partialTicks) * DEGREES_PER_TURN / TICKS_PER_TURN;
-        // The shop's own light is its top face's shadow; the air above is what the item sits in.
-        state.lightCoords = LevelRenderer.getLightCoords(level, shop.getBlockPos().above());
     }
 
     @Override
