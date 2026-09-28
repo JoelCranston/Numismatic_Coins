@@ -2,7 +2,8 @@ package com.joelcranston.numismatic_coins.platform.neoforge;
 
 //? neoforge {
 
-/*import java.util.ArrayList;
+/*import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -11,6 +12,7 @@ import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.platform.Registration;
 import com.joelcranston.numismatic_coins.purse.PurseStorage;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -20,10 +22,15 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class NeoforgePlatform implements Platform {
 
@@ -92,6 +99,41 @@ public class NeoforgePlatform implements Platform {
         // Handlers run on the server thread unless registered with executesOn(NETWORK).
         this.payloadRegistrations.add(registrar -> registrar.playToServer(type, codec,
                 (payload, context) -> handler.accept(payload, (ServerPlayer) context.player())));
+    }
+
+    @Override
+    public <T extends CustomPacketPayload> void registerClientboundPayload(CustomPacketPayload.Type<T> type,
+            StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
+
+        // The client's handler is added by RegisterClientPayloadHandlersEvent.
+        this.payloadRegistrations.add(registrar -> registrar.playToClient(type, codec));
+    }
+
+    @Override
+    public void sendToPlayer(ServerPlayer player, CustomPacketPayload payload) {
+
+        PacketDistributor.sendToPlayer(player, payload);
+    }
+
+    @Override
+    public void onPlayerJoin(Consumer<ServerPlayer> listener) {
+
+        NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) -> {
+            if (event.getEntity() instanceof ServerPlayer player) listener.accept(player);
+        });
+    }
+
+    @Override
+    public void registerFeatureCondition() {
+
+        this.registration.<MapCodec<? extends ICondition>, MapCodec<NeoforgeFeatureCondition>>register(
+                NeoForgeRegistries.Keys.CONDITION_CODECS, "feature_enabled", id -> NeoforgeFeatureCondition.CODEC);
+    }
+
+    @Override
+    public Path configDir() {
+
+        return FMLPaths.CONFIGDIR.get();
     }
 
     @Override

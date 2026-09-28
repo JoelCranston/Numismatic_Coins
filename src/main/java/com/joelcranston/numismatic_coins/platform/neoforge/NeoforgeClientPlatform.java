@@ -2,23 +2,47 @@ package com.joelcranston.numismatic_coins.platform.neoforge;
 
 //? neoforge {
 
-/*import java.util.function.BiConsumer;
+/*import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.joelcranston.numismatic_coins.platform.ClientPlatform;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import org.jspecify.annotations.Nullable;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class NeoforgeClientPlatform implements ClientPlatform {
+
+    private final List<Consumer<RegisterClientPayloadHandlersEvent>> payloadHandlers = new ArrayList<>();
+
+    public NeoforgeClientPlatform() {
+
+        NeoforgePlatform.modEventBus.addListener((RegisterClientPayloadHandlersEvent event) -> this.payloadHandlers.forEach(handler -> handler.accept(event)));
+    }
+
+    @Override
+    public void setScreen(@Nullable Screen screen) {
+
+        Minecraft.getInstance().setScreen(screen);
+    }
 
     @Override
     public void sendToServer(CustomPacketPayload payload) {
 
         ClientPacketDistributor.sendToServer(payload);
+    }
+
+    @Override
+    public <T extends CustomPacketPayload> void registerClientboundHandler(CustomPacketPayload.Type<T> type, Consumer<T> handler) {
+
+        this.payloadHandlers.add(event -> event.register(type, (payload, context) -> handler.accept(payload)));
     }
 
     @Override

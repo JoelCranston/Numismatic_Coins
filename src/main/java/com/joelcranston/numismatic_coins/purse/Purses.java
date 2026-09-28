@@ -1,20 +1,17 @@
 package com.joelcranston.numismatic_coins.purse;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
-import com.joelcranston.numismatic_coins.currency.CoinMath;
 import com.joelcranston.numismatic_coins.item.CoinStacks;
-import com.joelcranston.numismatic_coins.item.CoinText;
 import com.joelcranston.numismatic_coins.item.CurrencyItem;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import com.joelcranston.numismatic_coins.network.PurseChanged;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 /**
  * Reads and changes players' purses. Changes are made on the server only; each one the player
- * causes shows in their action bar. (NO: CurrencyComponent#modify, CurrencyHelper.)
+ * causes is reported to their client. (NO: CurrencyComponent#modify, CurrencyHelper.)
  */
 public final class Purses {
 
@@ -73,15 +70,12 @@ public final class Purses {
         return stored;
     }
 
-    /** Action bar text such as "+ [12 Silver 4 Bronze]". (NO: CurrencyComponent#modify.) */
+    // The client shows the change where its money message option says.
     private static void showChange(Player player, long rawValue, boolean isDeposit) {
 
-        MutableComponent message = Component.literal(isDeposit ? "+ " : "- ")
-                .withStyle(isDeposit ? ChatFormatting.GREEN : ChatFormatting.RED)
-                .append(Component.literal("[").withStyle(ChatFormatting.GRAY))
-                .append(CoinText.coinCounts(CoinMath.split(rawValue)))
-                .append(Component.literal("]").withStyle(ChatFormatting.GRAY));
-        player.sendOverlayMessage(message);
+        if (player instanceof ServerPlayer serverPlayer) {
+            NumismaticCoins.xplat().sendToPlayer(serverPlayer, new PurseChanged(isDeposit ? rawValue : -rawValue));
+        }
     }
 
     private static long saturatedAdd(long first, long second) {
