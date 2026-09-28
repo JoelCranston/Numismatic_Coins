@@ -1,0 +1,17 @@
+package dev.kikugie.fletching_table.transformer.accessconverter
+
+private const val UNEXPECTED_TOKEN: String = "Unmatched token %s at state %d"
+private const val INVALID_HEADER: String = "Access widener file must start with `accessWidener <version> <namespace>`"
+private const val ALREADY_TRANSITIVE: String = "Duplicate transitive modifier"
+private const val UNSUPPORTED_TRANSITIVE: String = "Modifier `transitive-` is not supported for access widener v1"
+private const val MISSING_MODIFIER: String = "Expected access modifier `accessible | extendable | mutable`"
+private const val MUTABLE_CLASS: String = "Modifier `mutable` can't be applied to `class`"
+private const val MUTABLE_METHOD: String = "Modifier `mutable` can't be applied to `method`"
+private const val EXTENDABLE_FIELD: String = "Modifier `extendable` can't be applied to `field`"
+private const val MISSING_ELEMENT: String = "Expect element type `class | method | field`"
+private const val CLASS_ELEMENT: String = "Element name cannot be specified for a class entry"
+private const val FIELD_INIT: String = "Element `<init>` can't be used with a `field` entry"
+private const val MISSING_CLASS_NAME: String = "Expected class name"
+private const val MISSING_ELEMENT_NAME: String = "Expected element name"
+private const val MISSING_ELEMENT_DESC: String = "Expected element descriptor"
+private const val MISSING_RETURN_TYPE: String = "Expected method return type"

@@ -1,0 +1,54 @@
+Compiled from "IdentifiableResourceReloadListener.java"
+public interface net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener extends net.minecraft.server.packs.resources.PreparableReloadListener {
+  public abstract net.minecraft.resources.Identifier getFabricId();
+  public default java.util.Collection<net.minecraft.resources.Identifier> getFabricDependencies();
+}
+Compiled from "ModResourcePack.java"
+public interface net.fabricmc.fabric.api.resource.ModResourcePack extends net.fabricmc.fabric.api.resource.v1.pack.ModPackResources {
+  public abstract net.fabricmc.loader.api.metadata.ModMetadata getFabricModMetadata();
+  public abstract net.fabricmc.fabric.api.resource.ModResourcePack createOverlay(java.lang.String);
+  public default net.fabricmc.fabric.api.resource.v1.pack.ModPackResources createOverlay(java.lang.String);
+}
+Compiled from "ResourceManagerHelper.java"
+public interface net.fabricmc.fabric.api.resource.ResourceManagerHelper {
+  public default void addReloadListener(net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener);
+  public abstract void registerReloadListener(net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener);
+  public abstract void registerReloadListener(net.minecraft.resources.Identifier, java.util.function.Function<net.minecraft.core.HolderLookup$Provider, net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener>);
+  public static net.fabricmc.fabric.api.resource.ResourceManagerHelper get(net.minecraft.server.packs.PackType);
+  public static boolean registerBuiltinResourcePack(net.minecraft.resources.Identifier, net.fabricmc.loader.api.ModContainer, net.fabricmc.fabric.api.resource.ResourcePackActivationType);
+  public static boolean registerBuiltinResourcePack(net.minecraft.resources.Identifier, net.fabricmc.loader.api.ModContainer, net.minecraft.network.chat.Component, net.fabricmc.fabric.api.resource.ResourcePackActivationType);
+  public static boolean registerBuiltinResourcePack(net.minecraft.resources.Identifier, net.fabricmc.loader.api.ModContainer, java.lang.String, net.fabricmc.fabric.api.resource.ResourcePackActivationType);
+  public static boolean registerBuiltinResourcePack(net.minecraft.resources.Identifier, java.lang.String, net.fabricmc.loader.api.ModContainer, boolean);
+}
+Compiled from "ResourcePackActivationType.java"
+public final class net.fabricmc.fabric.api.resource.ResourcePackActivationType extends java.lang.Enum<net.fabricmc.fabric.api.resource.ResourcePackActivationType> {
+  public static final net.fabricmc.fabric.api.resource.ResourcePackActivationType NORMAL;
+  public static final net.fabricmc.fabric.api.resource.ResourcePackActivationType DEFAULT_ENABLED;
+  public static final net.fabricmc.fabric.api.resource.ResourcePackActivationType ALWAYS_ENABLED;
+  public static net.fabricmc.fabric.api.resource.ResourcePackActivationType[] values();
+  public static net.fabricmc.fabric.api.resource.ResourcePackActivationType valueOf(java.lang.String);
+  public boolean isEnabledByDefault();
+}
+Compiled from "ResourceReloadListenerKeys.java"
+public final class net.fabricmc.fabric.api.resource.ResourceReloadListenerKeys {
+  public static final net.minecraft.resources.Identifier SOUNDS;
+  public static final net.minecraft.resources.Identifier FONTS;
+  public static final net.minecraft.resources.Identifier MODELS;
+  public static final net.minecraft.resources.Identifier LANGUAGES;
+  public static final net.minecraft.resources.Identifier TEXTURES;
+  public static final net.minecraft.resources.Identifier RECIPES;
+  public static final net.minecraft.resources.Identifier ADVANCEMENTS;
+  public static final net.minecraft.resources.Identifier FUNCTIONS;
+}
+Compiled from "SimpleResourceReloadListener.java"
+public interface net.fabricmc.fabric.api.resource.SimpleResourceReloadListener<T> extends net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener {
+  public default java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+  public abstract java.util.concurrent.CompletableFuture<T> load(net.minecraft.server.packs.resources.ResourceManager, java.util.concurrent.Executor);
+  public abstract java.util.concurrent.CompletableFuture<java.lang.Void> apply(T, net.minecraft.server.packs.resources.ResourceManager, java.util.concurrent.Executor);
+}
+Compiled from "SimpleSynchronousResourceReloadListener.java"
+public interface net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener extends net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener,net.minecraft.server.packs.resources.ResourceManagerReloadListener {
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.resource.package-info {
+}
