@@ -2,6 +2,7 @@ package com.joelcranston.numismatic_coins.platform;
 
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -9,13 +10,21 @@ import java.util.function.Function;
 import com.joelcranston.numismatic_coins.purse.PurseStorage;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 
@@ -35,6 +44,12 @@ public interface Platform {
     }
 
     Registration registration();
+
+    /** A block entity type for {@code blocks}. 26.1.2 keeps vanilla's constructor private. */
+    <T extends BlockEntity> BlockEntityType<T> blockEntityType(BlockEntityFactory<T> factory, Set<Block> blocks);
+
+    /** A menu type that opens with no extra data. Vanilla keeps its constructor private. */
+    <T extends AbstractContainerMenu> MenuType<T> menuType(MenuFactory<T> factory);
 
     /** A creative tab builder the loader places among its own tab pages. */
     CreativeModeTab.Builder creativeTabBuilder();
@@ -78,6 +93,18 @@ public interface Platform {
 
     /** Adds commands each time the server builds its command tree. */
     void registerCommands(Consumer<CommandDispatcher<CommandSourceStack>> registrar);
+
+    @FunctionalInterface
+    interface BlockEntityFactory<T extends BlockEntity> {
+
+        T create(BlockPos pos, BlockState state);
+    }
+
+    @FunctionalInterface
+    interface MenuFactory<T extends AbstractContainerMenu> {
+
+        T create(int containerId, Inventory inventory);
+    }
 
     enum ModLoader {
         FABRIC, NEOFORGE, FORGE, QUILT
