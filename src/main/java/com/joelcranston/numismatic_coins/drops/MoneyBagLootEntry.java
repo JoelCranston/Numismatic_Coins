@@ -46,7 +46,7 @@ public class MoneyBagLootEntry extends LootPoolSingletonContainer {
     protected void createItemStack(Consumer<ItemStack> output, LootContext context) {
 
         long spread = Math.max(0, this.maxValue - this.minValue);
-        long value = this.minValue + (spread == 0 ? 0 : context.getRandom().nextLong(spread + 1));
+        long value = this.minValue + (spread == 0 ? 0 : Math.floorMod(context.getRandom().nextLong(), spread + 1));
         if (value > 0) output.accept(MoneyBagItem.withValue(value));
     }
 }
