@@ -77,6 +77,20 @@ MC_DECOMPILE = [
 	r"net/minecraft/world/level/storage/loot/entries/(LootPoolEntries|LootPoolSingletonContainer|NestedLootTable|LootItem)",
 	r"net/minecraft/world/level/storage/loot/(LootTable|LootPool|BuiltInLootTables)",
 	r"net/minecraft/world/level/storage/loot/parameters/LootContextParamSets",
+	# Blocks with containers, their menus and screens, and dye recipes.
+	r"net/minecraft/world/level/block/(BaseEntityBlock|HorizontalDirectionalBlock|ShulkerBoxBlock|DecoratedPotBlock|BarrelBlock|FallingBlock|AnvilBlock|EntityBlock)",
+	r"net/minecraft/world/level/block/state/BlockBehaviour",
+	r"net/minecraft/world/level/block/entity/(BlockEntity|BaseContainerBlockEntity|RandomizableContainerBlockEntity|ShulkerBoxBlockEntity|BarrelBlockEntity|BlockEntityType)",
+	r"net/minecraft/world/(Container|SimpleContainer|ContainerHelper|Containers|RandomizableContainer|MenuProvider|SimpleMenuProvider)",
+	r"net/minecraft/world/inventory/(AbstractContainerMenu|ShulkerBoxMenu|ChestMenu|MenuType|ContainerLevelAccess|Slot)",
+	r"net/minecraft/world/item/crafting/(CustomRecipe|ShulkerBoxColoring|RecipeSerializer|CraftingRecipe|CraftingInput|DyeRecipe|TransmuteRecipe)",
+	r"net/minecraft/world/item/(BlockItem|DyeItem|DyeColor)",
+	r"net/minecraft/world/item/component/ItemContainerContents",
+	r"net/minecraft/world/entity/item/FallingBlockEntity",
+	r"net/minecraft/world/level/storage/(ValueInput|ValueOutput)",
+	r"net/minecraft/world/level/storage/loot/(LootParams|LootParams\$Builder)",
+	r"net/minecraft/client/gui/screens/inventory/(ShulkerBoxScreen|ContainerScreen)",
+	r"net/minecraft/client/gui/screens/MenuScreens",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
@@ -148,6 +162,8 @@ FABRIC_DECOMPILE = [
 	r"net/fabricmc/fabric/api/creativetab/.*",
 	r"net/fabricmc/fabric/api/loot/v3/.*",
 	r"net/fabricmc/fabric/api/resource/v1/reloader/.*",
+	r"net/fabricmc/fabric/api/menu/.*",
+	r"net/fabricmc/fabric/api/object/builder/v1/block/entity/.*",
 ]
 
 NEOFORGE_SIG_PACKAGES = [
@@ -173,6 +189,8 @@ NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/event/village/.*",
 	r"net/neoforged/neoforge/client/gui/(VanillaGuiLayers|IConfigScreenFactory)",
 	r".*GameRule.*",
+	r"net/neoforged/neoforge/client/event/RegisterMenuScreensEvent",
+	r"net/neoforged/neoforge/common/extensions/(IMenuTypeExtension|IBlockExtension)",
 	r"net/neoforged/neoforge/event/LootTableLoadEvent",
 ]
 
