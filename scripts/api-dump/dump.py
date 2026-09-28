@@ -60,7 +60,7 @@ MC_DECOMPILE = [
 
 # Vanilla classes to show as javap -public signatures only.
 MC_SIGS = [
-	r"net/minecraft/world/item/(Item|Items|Item\$Properties|CreativeModeTab|CreativeModeTab\$Builder|CreativeModeTabs|ItemStack)",
+	r"net/minecraft/world/item/(Item|Items|Item\$Properties|Item\$TooltipContext|TooltipFlag|CreativeModeTab|CreativeModeTab\$Builder|CreativeModeTabs|ItemStack)",
 	r"net/minecraft/world/level/block/(Block|Blocks)",
 	r"net/minecraft/core/component/(DataComponents|DataComponentType|DataComponentType\$Builder)",
 	r"net/minecraft/client/Minecraft",
@@ -76,6 +76,21 @@ MC_SIGS = [
 	r"net/minecraft/commands/(Commands|CommandSourceStack)",
 	r"net/minecraft/server/packs/repository/(Pack|PackSource|RepositorySource)",
 	r"net/minecraft/world/entity/npc/villager/VillagerProfession",
+	# M1/M2: items, slots, components, text, GUI widgets
+	r"net/minecraft/world/item/component/(CustomModelData|TooltipDisplay|ItemContainerContents)",
+	r"net/minecraft/world/inventory/(Slot|ResultSlot|ClickAction)",
+	r"net/minecraft/world/entity/SlotAccess",
+	r"net/minecraft/world/entity/player/(Inventory|Player)",
+	r"net/minecraft/world/InteractionResult",
+	r"net/minecraft/network/chat/(Component|Style|TextColor|MutableComponent)",
+	r"net/minecraft/client/gui/(GuiGraphicsExtractor|Font)",
+	r"net/minecraft/client/gui/components/(Button|Button\$Builder|AbstractWidget|ImageButton|WidgetSprites)",
+	r"net/minecraft/client/gui/screens/Screen",
+	r"net/minecraft/core/Registry",
+	r"net/minecraft/network/codec/(ByteBufCodecs|StreamCodec)",
+	r"net/minecraft/commands/arguments/EntityArgument",
+	r"net/minecraft/world/inventory/tooltip/(TooltipComponent|BundleTooltip)",
+	r"net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent",
 ]
 
 # Packages whose added/removed classes between the two MC versions are worth seeing.
@@ -97,13 +112,14 @@ FABRIC_SIG_PACKAGES = [
 	"net/fabricmc/fabric/api/item/v1/", "net/fabricmc/fabric/api/registry/",
 	"net/fabricmc/fabric/api/client/rendering/", "net/fabricmc/fabric/api/menu/",
 	"net/fabricmc/fabric/api/client/gui/", "net/fabricmc/fabric/api/tag/",
+	"net/fabricmc/fabric/api/creativetab/", "net/fabricmc/fabric/api/client/tooltip/",
 ]
 FABRIC_DECOMPILE = [
 	r"net/fabricmc/fabric/api/attachment/.*",
 	r"net/fabricmc/fabric/api/gamerule/.*",
 	r"net/fabricmc/fabric/api/resource/v1/.*",
 	r"net/fabricmc/fabric/api/client/rendering/v1/hud/.*",
-	r"net/fabricmc/fabric/api/itemgroup/v1/FabricItemGroup",
+	r"net/fabricmc/fabric/api/creativetab/.*",
 ]
 
 NEOFORGE_SIG_PACKAGES = [
@@ -118,6 +134,8 @@ NEOFORGE_SIG_PACKAGES = [
 	"net/neoforged/neoforge/event/BuildCreativeModeTabContentsEvent", "net/neoforged/neoforge/common/NeoForgeMod",
 	"net/neoforged/neoforge/event/entity/player/ItemEntityPickupEvent", "net/neoforged/neoforge/event/entity/living/LivingDropsEvent",
 	"net/neoforged/neoforge/event/entity/player/PlayerInteractEvent",
+	"net/neoforged/neoforge/client/event/RegisterClientTooltipComponentFactoriesEvent",
+	"net/neoforged/neoforge/event/SortedReloadListenerEvent", "net/neoforged/neoforge/common/NeoForgeRegistries",
 ]
 NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/attachment/(AttachmentType|IAttachmentHolder|AttachmentHolder|IAttachmentCopyHandler|AttachmentSync|IAttachmentSyncHandler)",
@@ -205,7 +223,7 @@ def dump_mc(version):
 	names = class_names(jar)
 	decompile(jar, matching(names, MC_DECOMPILE), out / "src", f"mc-{version}")
 	sigs = matching(names, MC_SIGS)
-	javap(str(jar), [n for n in sigs if "$" not in n or "Properties" in n or "Builder" in n], out / "sigs" / "vanilla.txt")
+	javap(str(jar), [n for n in sigs if "$" not in n or "Properties" in n or "Builder" in n or "TooltipContext" in n], out / "sigs" / "vanilla.txt")
 
 	dirs = {}
 	with zipfile.ZipFile(jar) as z:
