@@ -10,9 +10,10 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 @EventBusSubscriber(modid = NumismaticCoins.MOD_ID, value = Dist.CLIENT)
 public class NeoforgeClientEventSubscriber {
-	@SubscribeEvent
-	public static void onClientSetup(final FMLClientSetupEvent event) {
-		NumismaticCoins.onInitializeClient();
-	}
+    @SubscribeEvent
+    public static void onClientSetup(final FMLClientSetupEvent event) {
+
+        NumismaticCoins.onInitializeClient();
+    }
 }
 *///?}

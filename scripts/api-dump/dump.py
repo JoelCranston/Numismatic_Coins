@@ -15,7 +15,7 @@ into api-dump/:
   fabric-<ver>/src/...       decompiled Fabric API classes
   neoforge/sigs, neoforge/src  the same for NeoForge
 
-The output is meant for a human (or Claude) writing docs/api-notes.md; it is not committed to main.
+The output is meant for a human (or Claude) writing the project's api-notes.md; it is not committed to main.
 """
 
 import json
