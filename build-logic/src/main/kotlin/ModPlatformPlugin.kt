@@ -172,7 +172,12 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 	private fun Project.configureFletchingTable(ctx: Context) {
 		extensions.configure<FletchingTableExtension> {
-			mixins.create("main") { mixin("default", "${ctx.modId}.mixins.json") }
+			mixins.create("main") {
+				mixin("default", "${ctx.modId}.mixins.json") {
+					// Without this, fletching-table lists client mixins as common, and a dedicated server loads them.
+					env("client", "${ctx.modGroup}.${ctx.modId}.mixin.client")
+				}
+			}
 			j52j.register("main") { extension("json", "**/*.json5") }
 		}
 	}
