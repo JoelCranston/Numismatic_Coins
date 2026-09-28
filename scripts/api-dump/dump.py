@@ -60,6 +60,11 @@ MC_DECOMPILE = [
 	r"net/minecraft/client/gui/components/(AbstractWidget|AbstractButton|ImageButton|Button|WidgetSprites)",
 	r"net/minecraft/client/gui/screens/inventory/AbstractContainerScreen",
 	r"net/minecraft/client/gui/GuiGraphicsExtractor",
+	# Config screen building blocks.
+	r"net/minecraft/client/gui/components/(CycleButton|EditBox|StringWidget|Checkbox|OptionsList|AbstractSliderButton|Tooltip)",
+	r"net/minecraft/client/gui/layouts/(HeaderAndFooterLayout|LinearLayout|GridLayout)",
+	r"net/minecraft/client/gui/screens/options/OptionsSubScreen",
+	r"net/minecraft/client/OptionInstance",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
@@ -135,6 +140,7 @@ NEOFORGE_SIG_PACKAGES = [
 	"net/neoforged/neoforge/event/RegisterCommandsEvent", "net/neoforged/neoforge/event/entity/player/PlayerEvent",
 	"net/neoforged/neoforge/client/event/RegisterGuiLayersEvent", "net/neoforged/neoforge/client/event/RegisterMenuScreensEvent",
 	"net/neoforged/neoforge/client/event/ScreenEvent", "net/neoforged/neoforge/client/event/ContainerScreenEvent",
+	"net/neoforged/neoforge/common/conditions/", "net/neoforged/fml/loading/FMLPaths", "net/neoforged/fml/ModContainer",
 	"net/neoforged/neoforge/event/BuildCreativeModeTabContentsEvent", "net/neoforged/neoforge/common/NeoForgeMod",
 	"net/neoforged/neoforge/event/entity/player/ItemEntityPickupEvent", "net/neoforged/neoforge/event/entity/living/LivingDropsEvent",
 	"net/neoforged/neoforge/event/entity/player/PlayerInteractEvent",
