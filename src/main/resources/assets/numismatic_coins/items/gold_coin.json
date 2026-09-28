@@ -1,0 +1,41 @@
+{
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:count",
+    "normalize": false,
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "numismatic_coins:item/gold_coin"
+    },
+    "entries": [
+      {
+        "threshold": 9,
+        "model": {
+          "type": "minecraft:model",
+          "model": "numismatic_coins:item/gold_coin_0"
+        }
+      },
+      {
+        "threshold": 27,
+        "model": {
+          "type": "minecraft:model",
+          "model": "numismatic_coins:item/gold_coin_1"
+        }
+      },
+      {
+        "threshold": 45,
+        "model": {
+          "type": "minecraft:model",
+          "model": "numismatic_coins:item/gold_coin_2"
+        }
+      },
+      {
+        "threshold": 63,
+        "model": {
+          "type": "minecraft:model",
+          "model": "numismatic_coins:item/gold_coin_3"
+        }
+      }
+    ]
+  }
+}

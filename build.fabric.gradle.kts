@@ -66,10 +66,16 @@ configurations.all {
 }
 
 dependencies {
+	testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.4")
 	minecraft("com.mojang:minecraft:${prop("deps.minecraft")}")
 	modImplementation("net.fabricmc:fabric-loader:${prop("deps.fabric-loader")}")
 	// implementation(libs.moulberry.mixinconstraints)
 	// include(libs.moulberry.mixinconstraints)
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
+}
+
+tasks.named<Test>("test") {
+	useJUnitPlatform()
 }

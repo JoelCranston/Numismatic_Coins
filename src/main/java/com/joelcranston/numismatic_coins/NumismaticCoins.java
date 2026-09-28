@@ -1,7 +1,9 @@
 package com.joelcranston.numismatic_coins;
 
 import com.joelcranston.numismatic_coins.platform.Platform;
-
+import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
+import com.joelcranston.numismatic_coins.registry.ModDataComponents;
+import com.joelcranston.numismatic_coins.registry.ModItems;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,34 +16,43 @@ import com.joelcranston.numismatic_coins.platform.fabric.FabricPlatform;
 
 public class NumismaticCoins {
 
-	public static final String MOD_ID = /*$ mod_id*/ "numismatic_coins";
-	public static final String MOD_VERSION = /*$ mod_version*/ "0.1.0";
-	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Numismatic Coins";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final String MOD_ID = /*$ mod_id*/ "numismatic_coins";
+    public static final String MOD_VERSION = /*$ mod_version*/ "0.1.0";
+    public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Numismatic Coins";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	private static final Platform PLATFORM = createPlatformInstance();
+    private static final Platform PLATFORM = createPlatformInstance();
 
-	public static void onInitialize() {
-		LOGGER.info("Initializing {} {} on {}", MOD_FRIENDLY_NAME, MOD_VERSION, xplat().loader());
-	}
+    public static void onInitialize() {
 
-	public static void onInitializeClient() {
-		LOGGER.info("Initializing {} client on {}", MOD_FRIENDLY_NAME, xplat().loader());
-	}
+        LOGGER.info("Initializing {} {} on {}", MOD_FRIENDLY_NAME, MOD_VERSION, xplat().loader());
+        // In dependency order: Fabric registers each entry as its class loads.
+        ModDataComponents.register();
+        ModItems.register();
+        ModCreativeTabs.register();
+    }
 
-	public static Platform xplat() {
-		return PLATFORM;
-	}
+    public static void onInitializeClient() {
 
-	private static Platform createPlatformInstance() {
-		//? fabric {
-		return new FabricPlatform();
-		//?} neoforge {
-		/*return new NeoforgePlatform();
-		 *///?}
-	}
+        LOGGER.info("Initializing {} client on {}", MOD_FRIENDLY_NAME, xplat().loader());
+    }
 
-	public static Identifier id(String path) {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-	}
+    public static Platform xplat() {
+
+        return PLATFORM;
+    }
+
+    private static Platform createPlatformInstance() {
+
+        //? fabric {
+        return new FabricPlatform();
+        //?} neoforge {
+        /*return new NeoforgePlatform();
+         *///?}
+    }
+
+    public static Identifier id(String path) {
+
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    }
 }
