@@ -1,8 +1,10 @@
 package com.joelcranston.numismatic_coins.platform;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import com.joelcranston.numismatic_coins.purse.PurseStorage;
 import com.mojang.brigadier.CommandDispatcher;
@@ -11,8 +13,11 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 public interface Platform {
 
@@ -64,6 +69,12 @@ public interface Platform {
      * existing world keeps whatever its data pack list says. Called once, at start-up.
      */
     void registerBuiltinDataPack(String name, Component displayName, boolean isEnabledByDefault);
+
+    /**
+     * Adds a pool to loot tables as they load, on every data pack reload. {@code poolFor} is asked
+     * once per table and returns the pool to add, or empty to leave the table as it is.
+     */
+    void addLootPools(Function<ResourceKey<LootTable>, Optional<LootPool.Builder>> poolFor);
 
     /** Adds commands each time the server builds its command tree. */
     void registerCommands(Consumer<CommandDispatcher<CommandSourceStack>> registrar);

@@ -3,19 +3,22 @@ package com.joelcranston.numismatic_coins.platform.fabric;
 //? fabric {
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
+import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.platform.Registration;
 import com.joelcranston.numismatic_coins.purse.PurseStorage;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import com.joelcranston.numismatic_coins.NumismaticCoins;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
@@ -25,8 +28,11 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 public class FabricPlatform implements Platform {
 
@@ -121,6 +127,12 @@ public class FabricPlatform implements Platform {
         ResourceLoader.registerBuiltinPack(NumismaticCoins.id(name),
                 FabricLoader.getInstance().getModContainer(NumismaticCoins.MOD_ID).orElseThrow(), displayName,
                 isEnabledByDefault ? PackActivationType.DEFAULT_ENABLED : PackActivationType.NORMAL);
+    }
+
+    @Override
+    public void addLootPools(Function<ResourceKey<LootTable>, Optional<LootPool.Builder>> poolFor) {
+
+        LootTableEvents.MODIFY.register((table, builder, source, registries) -> poolFor.apply(table).ifPresent(builder::withPool));
     }
 
     @Override

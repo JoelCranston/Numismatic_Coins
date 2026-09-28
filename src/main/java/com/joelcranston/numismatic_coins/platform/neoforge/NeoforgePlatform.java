@@ -5,8 +5,10 @@ package com.joelcranston.numismatic_coins.platform.neoforge;
 /*import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.platform.Platform;
@@ -19,11 +21,14 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
@@ -31,6 +36,7 @@ import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -149,6 +155,13 @@ public class NeoforgePlatform implements Platform {
         PackSource source = PackSource.create(PackSource.BUILT_IN::decorate, isEnabledByDefault);
         modEventBus.addListener((AddPackFindersEvent event) -> event.addPackFinders(
                 NumismaticCoins.id("resourcepacks/" + name), PackType.SERVER_DATA, displayName, source, false, Pack.Position.TOP));
+    }
+
+    @Override
+    public void addLootPools(Function<ResourceKey<LootTable>, Optional<LootPool.Builder>> poolFor) {
+
+        NeoForge.EVENT_BUS.addListener((LootTableLoadEvent event) ->
+                poolFor.apply(event.getKey()).ifPresent(pool -> event.getTable().addPool(pool.build())));
     }
 
     @Override

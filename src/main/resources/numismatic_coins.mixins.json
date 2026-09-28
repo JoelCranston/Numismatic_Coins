@@ -8,7 +8,9 @@
   },
   "mixins": [
     "BundleContentsMixin",
+    "LivingEntityMixin",
     "MerchantMenuMixin",
+    "PlayerMixin",
     "VillagerTradeMixin"
   ],
   "client": [
