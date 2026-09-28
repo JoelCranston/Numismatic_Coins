@@ -402,11 +402,16 @@ def main():
 	neo = [j for j in find_jars("neoforge-26.1.2*.jar") if "universal" in j.name] or find_jars("neoforge-26.1.2*.jar")
 	dump_loader_jars("neoforge", neo[:1], NEOFORGE_SIG_PACKAGES, NEOFORGE_DECOMPILE)
 
+	# The build's own plugins, for how fletching-table fills the mixin config.
+	for jar in find_jars("fletching-table*.jar"):
+		names = [n for n in class_names(jar) if not re.search(r"\$\d+$", n)]
+		decompile(jar, names, OUT / "fletching-table" / "src", f"fletching-{jar.stem}")
+
 	# Where Gradle put things, in case something above missed.
 	with open(OUT / "gradle-jars.txt", "w") as f:
 		for p in sorted(GRADLE.rglob("*.jar")):
 			s = str(p)
-			if any(k in s for k in ("fabric-api", "neoforge", "minecraft", "fabric-loader")):
+			if any(k in s for k in ("fabric-api", "neoforge", "minecraft", "fabric-loader", "kikugie")):
 				f.write(s + "\n")
 	log("done")
 
