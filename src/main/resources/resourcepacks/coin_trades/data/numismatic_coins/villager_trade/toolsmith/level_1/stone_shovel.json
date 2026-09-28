@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 1
+  },
+  "gives": {
+    "id": "minecraft:stone_shovel"
+  },
+  "max_uses": 3,
+  "xp": 8,
+  "reputation_discount": 0.05
+}

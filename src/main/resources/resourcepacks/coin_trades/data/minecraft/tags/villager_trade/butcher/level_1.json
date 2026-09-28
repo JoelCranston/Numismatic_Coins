@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:butcher/level_1/chicken",
+    "numismatic_coins:butcher/level_1/rabbit",
+    "numismatic_coins:butcher/level_1/porkchop",
+    "numismatic_coins:butcher/level_1/rabbit_stew"
+  ]
+}

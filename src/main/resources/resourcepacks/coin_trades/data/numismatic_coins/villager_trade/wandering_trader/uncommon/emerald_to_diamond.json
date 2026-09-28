@@ -1,0 +1,15 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 50
+  },
+  "gives": {
+    "id": "minecraft:diamond"
+  },
+  "max_uses": 4,
+  "xp": 5,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:emerald"
+  }
+}

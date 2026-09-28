@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 55
+  },
+  "gives": {
+    "id": "minecraft:diamond_hoe"
+  },
+  "max_uses": 1,
+  "xp": 20,
+  "reputation_discount": 0.05
+}

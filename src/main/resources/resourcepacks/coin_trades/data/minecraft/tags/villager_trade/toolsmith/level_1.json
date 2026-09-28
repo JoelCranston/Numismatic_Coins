@@ -1,0 +1,10 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:toolsmith/level_1/coal",
+    "numismatic_coins:toolsmith/level_1/stone_axe",
+    "numismatic_coins:toolsmith/level_1/stone_pickaxe",
+    "numismatic_coins:toolsmith/level_1/stone_shovel",
+    "numismatic_coins:toolsmith/level_1/stone_hoe"
+  ]
+}

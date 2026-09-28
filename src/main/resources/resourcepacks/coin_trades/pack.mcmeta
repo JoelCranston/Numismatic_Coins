@@ -1,0 +1,9 @@
+{
+  "pack": {
+    "description": {
+      "translate": "dataPack.numismatic_coins.coin_trades.description"
+    },
+    "min_format": [101, 1],
+    "max_format": 107
+  }
+}

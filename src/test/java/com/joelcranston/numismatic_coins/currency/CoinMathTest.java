@@ -38,6 +38,20 @@ class CoinMathTest {
     }
 
     @Test
+    void closestCoinKeepsOnlyTheLargestCoin() {
+
+        assertEquals(new CoinMath.CoinStack(Currency.BRONZE, 0), CoinMath.closestCoin(0));
+        assertEquals(new CoinMath.CoinStack(Currency.BRONZE, 99), CoinMath.closestCoin(99));
+        assertEquals(new CoinMath.CoinStack(Currency.SILVER, 25), CoinMath.closestCoin(2_500));
+        assertEquals(new CoinMath.CoinStack(Currency.SILVER, 24), CoinMath.closestCoin(2_350));
+        assertEquals(new CoinMath.CoinStack(Currency.SILVER, 23), CoinMath.closestCoin(2_349));
+        assertEquals(new CoinMath.CoinStack(Currency.GOLD, 1), CoinMath.closestCoin(12_345));
+        assertEquals(new CoinMath.CoinStack(Currency.GOLD, 1), CoinMath.closestCoin(10_050));
+        assertEquals(new CoinMath.CoinStack(Currency.GOLD, 2), CoinMath.closestCoin(15_000));
+        assertEquals(new CoinMath.CoinStack(Currency.GOLD, 1), CoinMath.closestCoin(9_950));
+    }
+
+    @Test
     void rejectsBadInput() {
 
         assertThrows(IllegalArgumentException.class, () -> CoinMath.split(-1));

@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:gold_coin",
+    "count": 1
+  },
+  "gives": {
+    "id": "minecraft:sculk_sensor"
+  },
+  "max_uses": 2,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

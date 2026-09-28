@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:fletcher/level_1/stick",
+    "numismatic_coins:fletcher/level_1/flint",
+    "numismatic_coins:fletcher/level_1/gravel_to_flint"
+  ]
+}

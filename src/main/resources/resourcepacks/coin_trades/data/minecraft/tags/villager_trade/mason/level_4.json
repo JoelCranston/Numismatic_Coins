@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:mason/level_4/quartz",
+    "numismatic_coins:mason/level_4/random_trade_goods_terracotta",
+    "numismatic_coins:mason/level_4/random_trade_goods_concrete",
+    "numismatic_coins:mason/level_4/random_trade_goods_glazed_terracotta"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:mason/level_2/clay_ball_to_brick",
+    "numismatic_coins:mason/level_2/cobblestone_to_chiseled_stone_bricks"
+  ]
+}

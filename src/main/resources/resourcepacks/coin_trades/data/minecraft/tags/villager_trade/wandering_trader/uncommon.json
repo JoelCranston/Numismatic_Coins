@@ -1,0 +1,14 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:wandering_trader/uncommon/emerald_to_diamond",
+    "numismatic_coins:wandering_trader/uncommon/gunpowder",
+    "numismatic_coins:wandering_trader/uncommon/podzol",
+    "numismatic_coins:wandering_trader/uncommon/packed_ice",
+    "numismatic_coins:wandering_trader/uncommon/axolotl_bucket",
+    "numismatic_coins:wandering_trader/uncommon/pufferfish_bucket",
+    "numismatic_coins:wandering_trader/uncommon/tropical_fish_bucket",
+    "numismatic_coins:wandering_trader/uncommon/blue_ice",
+    "numismatic_coins:wandering_trader/uncommon/sculk_sensor"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:shepherd/level_3/red_dye",
+    "numismatic_coins:shepherd/level_3/white_dye",
+    "numismatic_coins:shepherd/level_3/light_gray_dye",
+    "numismatic_coins:shepherd/level_3/pink_dye",
+    "numismatic_coins:shepherd/level_3/yellow_dye",
+    "numismatic_coins:shepherd/level_3/orange_dye",
+    "numismatic_coins:shepherd/level_3/black_dye"
+  ]
+}

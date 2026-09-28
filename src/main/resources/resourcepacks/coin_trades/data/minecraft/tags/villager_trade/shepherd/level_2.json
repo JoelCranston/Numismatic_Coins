@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:shepherd/level_2/oak_fence",
+    "numismatic_coins:shepherd/level_2/random_trade_goods_wool",
+    "numismatic_coins:shepherd/level_2/random_trade_goods_carpets"
+  ]
+}

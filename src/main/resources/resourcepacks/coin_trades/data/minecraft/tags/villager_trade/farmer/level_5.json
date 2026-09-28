@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:farmer/level_5/golden_carrot",
+    "numismatic_coins:farmer/level_5/glistering_melon_slice"
+  ]
+}

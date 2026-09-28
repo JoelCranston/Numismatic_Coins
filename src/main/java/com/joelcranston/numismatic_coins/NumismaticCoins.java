@@ -7,6 +7,7 @@ import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
 import com.joelcranston.numismatic_coins.registry.ModDataComponents;
 import com.joelcranston.numismatic_coins.registry.ModItems;
+import com.joelcranston.numismatic_coins.trade.CoinTrades;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public class NumismaticCoins {
         xplat().registerFeatureCondition();
         ModNetworking.register();
         ModCommands.register();
+        CoinTrades.register();
     }
 
     public static Platform xplat() {

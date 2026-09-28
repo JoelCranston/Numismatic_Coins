@@ -1,0 +1,16 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:farmer/level_4/suspicious_stew_fire_resistance",
+    "numismatic_coins:farmer/level_4/suspicious_stew_blindness",
+    "numismatic_coins:farmer/level_4/suspicious_stew_saturation",
+    "numismatic_coins:farmer/level_4/suspicious_stew_saturation_2",
+    "numismatic_coins:farmer/level_4/suspicious_stew_jump_boost",
+    "numismatic_coins:farmer/level_4/suspicious_stew_poison",
+    "numismatic_coins:farmer/level_4/suspicious_stew_regeneration",
+    "numismatic_coins:farmer/level_4/suspicious_stew_night_vision",
+    "numismatic_coins:farmer/level_4/suspicious_stew_weakness",
+    "numismatic_coins:farmer/level_4/suspicious_stew_wither",
+    "numismatic_coins:farmer/level_4/cake"
+  ]
+}
