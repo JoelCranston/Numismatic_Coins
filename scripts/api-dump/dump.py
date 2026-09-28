@@ -106,6 +106,11 @@ MC_SIGS = [
 	r"net/minecraft/commands/arguments/EntityArgument",
 	r"net/minecraft/world/inventory/tooltip/(TooltipComponent|BundleTooltip)",
 	r"net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent",
+	# M3: enchantment weights and tags for the enchanted trades' prices.
+	r"net/minecraft/world/item/enchantment/(Enchantment|ItemEnchantments|Enchantment\$EnchantmentDefinition)",
+	r"net/minecraft/tags/(EnchantmentTags|ItemTags|StructureTags)",
+	r"net/minecraft/core/(HolderSet|RegistryCodecs)",
+	r"net/minecraft/world/level/storage/loot/(LootContext|LootContextUser|ValidationContext)",
 ]
 
 # Packages whose added/removed classes between the two MC versions are worth seeing.
