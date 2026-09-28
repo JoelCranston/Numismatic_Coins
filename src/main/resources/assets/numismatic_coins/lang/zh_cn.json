@@ -1,0 +1,67 @@
+{
+  "item.numismatic_coins.bronze_coin": "铜币",
+  "item.numismatic_coins.silver_coin": "银币",
+  "item.numismatic_coins.gold_coin": "金币",
+  "item.numismatic_coins.money_bag": "钱袋",
+  "block.numismatic_coins.shop": "商店",
+  "block.numismatic_coins.inexhaustible_shop": "无尽商店",
+  "block.numismatic_coins.inexhaustible_shop.tooltip": "仅限创造模式 - 取之不尽的商店",
+  "block.numismatic_coins.piggy_bank": "猪猪存钱罐",
+  "gui.numismatic_coins.shop.price": "价格",
+  "gui.numismatic_coins.shop.inventory_title": "商店库存",
+  "gui.numismatic_coins.shop.merchant_title": "商店",
+  "gui.numismatic_coins.shop.transfer_tooltip.enabled": [
+    "漏斗",
+    {
+      "text": "可以",
+      "color": "#28FFBF"
+    },
+    "向\n商店输送物品"
+  ],
+  "gui.numismatic_coins.shop.transfer_tooltip.disabled": [
+    "漏斗",
+    {
+      "text": "不能",
+      "color": "#EB1D36"
+    },
+    "向\n商店输送物品"
+  ],
+  "gui.numismatic_coins.purse_title": "钱包",
+  "numismatic_coins.empty": "空",
+  "filled_map.end_city": "末地探险家地图",
+  "currency.numismatic_coins.bronze": "铜币",
+  "currency.numismatic_coins.silver": "银币",
+  "currency.numismatic_coins.gold": "金币",
+
+  "itemGroup.numismatic_coins.main": "钱币革新",
+  "itemGroup.numismatic_coins.main.button.modrinth": "Modrinth",
+  "itemGroup.numismatic_coins.main.button.curseforge": "CurseForge",
+  "itemGroup.numismatic_coins.main.button.github": "GitHub",
+  "itemGroup.numismatic_coins.main.button.discord": "Discord",
+
+  "text.config.numismatic_coins.title": "钱币革新配置",
+  "text.config.numismatic_coins.option.enableVillagerTrading": "启用村民交易",
+  "text.config.numismatic_coins.option.enableMcaCompatibility": "启用MCA兼容",
+  "text.config.numismatic_coins.option.pursePositionX": "钱包X坐标",
+  "text.config.numismatic_coins.option.pursePositionY": "钱包Y坐标",
+  "text.config.numismatic_coins.option.generateCurrencyInChests": "在战利品箱中生成货币",
+
+  "text.config.numismatic_coins.category.lootOptions": "战利品生成",
+  "text.config.numismatic_coins.option.lootOptions.desertMinLoot": "沙漠神庙最少战利品",
+  "text.config.numismatic_coins.option.lootOptions.desertMaxLoot": "沙漠神庙最多战利品",
+  "text.config.numismatic_coins.option.lootOptions.dungeonMinLoot": "地牢最少战利品",
+  "text.config.numismatic_coins.option.lootOptions.dungeonMaxLoot": "地牢最多战利品",
+  "text.config.numismatic_coins.option.lootOptions.structureMinLoot": "结构最少战利品",
+  "text.config.numismatic_coins.option.lootOptions.structureMaxLoot": "结构最多战利品",
+  "text.config.numismatic_coins.option.lootOptions.strongholdLibraryMinLoot": "要塞图书馆最少战利品",
+  "text.config.numismatic_coins.option.lootOptions.strongholdLibraryMaxLoot": "要塞图书馆最多战利品",
+
+  "text.config.numismatic_coins.option.moneyMessageLocation": "货币通知位置",
+  "text.config.numismatic_coins.option.moneyMessageLocation.tooltip": "决定货币通知出现的位置（需要重新加入世界才能应用）",
+  "text.config.numismatic_coins.enum.moneyMessageLocation.actionbar": "动作栏",
+  "text.config.numismatic_coins.enum.moneyMessageLocation.chat": "聊天栏",
+  "text.config.numismatic_coins.enum.moneyMessageLocation.disabled": "禁用",
+
+  "gamerule.moneyDropPercentage": "货币掉落比例",
+  "gamerule.moneyDropPercentage.description": "当keepInventory为false的情况下，控制玩家死亡时会掉落多少货币"
+}

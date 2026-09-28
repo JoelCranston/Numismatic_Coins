@@ -20,5 +20,5 @@ stonecutter parameters {
 	swaps["mod_name"] = "\"${properties.get<String>("mod.name")}\";"
 	swaps["mod_group"] = "\"${properties.get<String>("mod.group")}\";"
 	swaps["minecraft"] = "\"${current.version}\";"
-	constants["release"] = properties.get<String>("mod.id") != "numismatic_overhaul_template"
+	constants["release"] = properties.get<String>("mod.id") != "numismatic_coins_template"
 }

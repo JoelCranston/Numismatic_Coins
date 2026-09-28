@@ -1,4 +1,4 @@
-package com.glisco.numismatic_overhaul.platform;
+package com.joelcranston.numismatic_coins.platform;
 
 public interface Platform {
 	boolean isModLoaded(String modId);

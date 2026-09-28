@@ -1,15 +1,15 @@
 loomx.loom_version = "1.18-SNAPSHOT"
 
 [mod]
-id = "numismatic_overhaul"
-name = "Numismatic Overhaul"
-group = "com.glisco"
-version = "0.4.0"
+id = "numismatic_coins"
+name = "Numismatic Coins"
+group = "com.joelcranston"
+version = "0.1.0"
 channel_tag = "-alpha.1"
-description = "Terraria-style currency in Minecraft"
-authors = ["glisco", "Pois1x", "Noaaan", "JoelCranston"]
-contributors = []
-inception_year = "2021"
+description = "Terraria-style currency in Minecraft, a rewrite of Numismatic Overhaul"
+authors = ["JoelCranston"]
+contributors = ["glisco", "Pois1x", "Noaaan"]
+inception_year = "2026"
 license.name = "MIT"
 license.url = "https://opensource.org/licenses/MIT"
 license.dist = "repo"

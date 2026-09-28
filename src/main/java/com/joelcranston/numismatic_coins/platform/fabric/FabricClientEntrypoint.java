@@ -1,8 +1,8 @@
-package com.glisco.numismatic_overhaul.platform.fabric;
+package com.joelcranston.numismatic_coins.platform.fabric;
 
 //? fabric {
 
-import com.glisco.numismatic_overhaul.NumismaticOverhaul;
+import com.joelcranston.numismatic_coins.NumismaticCoins;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ClientModInitializer;
 
@@ -11,7 +11,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		NumismaticOverhaul.onInitializeClient();
+		NumismaticCoins.onInitializeClient();
 	}
 
 }

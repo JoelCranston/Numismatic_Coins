@@ -1,8 +1,8 @@
-package com.glisco.numismatic_overhaul.platform.fabric;
+package com.joelcranston.numismatic_coins.platform.fabric;
 
 //? fabric {
 
-import com.glisco.numismatic_overhaul.platform.Platform;
+import com.joelcranston.numismatic_coins.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatform implements Platform {

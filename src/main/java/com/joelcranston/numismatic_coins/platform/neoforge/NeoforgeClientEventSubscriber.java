@@ -1,18 +1,18 @@
-package com.glisco.numismatic_overhaul.platform.neoforge;
+package com.joelcranston.numismatic_coins.platform.neoforge;
 
 //? neoforge {
 
-/*import com.glisco.numismatic_overhaul.NumismaticOverhaul;
+/*import com.joelcranston.numismatic_coins.NumismaticCoins;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
-@EventBusSubscriber(modid = NumismaticOverhaul.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = NumismaticCoins.MOD_ID, value = Dist.CLIENT)
 public class NeoforgeClientEventSubscriber {
 	@SubscribeEvent
 	public static void onClientSetup(final FMLClientSetupEvent event) {
-		NumismaticOverhaul.onInitializeClient();
+		NumismaticCoins.onInitializeClient();
 	}
 }
 *///?}

@@ -1,9 +1,9 @@
-# Numismatic Overhaul
+# Numismatic Coins
 
 Terraria-style currency for Minecraft: coins, a purse, shops, pawn shops and piggy banks, with
 villagers trading in coins instead of emeralds.
 
-This branch is a from-scratch rewrite for **Minecraft 26.1.2 and 26.2** on **Fabric** and
+A from-scratch rewrite of [Numismatic Overhaul](https://modrinth.com/mod/numismatic-overhaul) for **Minecraft 26.1.2 and 26.2** on **Fabric** and
 **NeoForge**, built from one codebase with [Stonecutter](https://stonecutter.kikugie.dev/). It
 started from [rotgruengelb/stonecutter-mod-template](https://github.com/rotgruengelb/stonecutter-mod-template).
 
@@ -54,4 +54,5 @@ Per-target dependency versions are in `stonecutter.properties.toml`.
 
 ## License
 
-MIT, see [LICENSE](LICENSE). Original mod by glisco, Pois1x and Noaaan.
+MIT, see [LICENSE](LICENSE). Based on Numismatic Overhaul by glisco, Pois1x and Noaaan, whose
+textures, sounds and translations it reuses.

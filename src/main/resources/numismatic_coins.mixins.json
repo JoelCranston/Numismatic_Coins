@@ -1,5 +1,5 @@
 {
-  "package": "com.glisco.numismatic_overhaul.mixin",
+  "package": "com.joelcranston.numismatic_coins.mixin",
   "required": true,
   "minVersion": "0.8",
   "compatibilityLevel": "${java}",

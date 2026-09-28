@@ -1,8 +1,8 @@
-package com.glisco.numismatic_overhaul.platform.neoforge;
+package com.joelcranston.numismatic_coins.platform.neoforge;
 
 //? neoforge {
 
-/*import com.glisco.numismatic_overhaul.platform.Platform;
+/*import com.joelcranston.numismatic_coins.platform.Platform;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.VersionInfo;

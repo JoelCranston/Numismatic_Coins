@@ -1,4 +1,4 @@
-package com.glisco.numismatic_overhaul.platform.fabric.datagen;
+package com.joelcranston.numismatic_coins.platform.fabric.datagen;
 
 //? fabric {
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;

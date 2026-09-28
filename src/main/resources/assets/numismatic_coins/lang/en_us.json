@@ -1,0 +1,140 @@
+{
+  "item.numismatic_coins.bronze_coin": "Bronze Coin",
+  "item.numismatic_coins.silver_coin": "Silver Coin",
+  "item.numismatic_coins.gold_coin": "Gold Coin",
+  "item.numismatic_coins.money_bag": "Money Bag",
+  "block.numismatic_coins.pawn_shop": "Pawn Shop",
+  "block.numismatic_coins.pawn_shop.tooltip": "Buy items from other players",
+  "block.numismatic_coins.shop": "Shop",
+  "block.numismatic_coins.shop.tooltip": "Sell items to other players",
+  "block.numismatic_coins.inexhaustible_pawn_shop": "Inexhaustible Pawn Shop",
+  "block.numismatic_coins.inexhaustible_pawn_shop.tooltip": "Creative only - never runs out of items",
+  "block.numismatic_coins.inexhaustible_shop": "Inexhaustible Shop",
+  "block.numismatic_coins.inexhaustible_shop.tooltip": "Creative only - never runs out of stock",
+  "block.numismatic_coins.piggy_bank": "Piggy Bank",
+  "block.numismatic_coins.white_piggy_bank": "White Piggy Bank",
+  "block.numismatic_coins.orange_piggy_bank": "Orange Piggy Bank",
+  "block.numismatic_coins.magenta_piggy_bank": "Magenta Piggy Bank",
+  "block.numismatic_coins.light_blue_piggy_bank": "Light Blue Piggy Bank",
+  "block.numismatic_coins.yellow_piggy_bank": "Yellow Piggy Bank",
+  "block.numismatic_coins.lime_piggy_bank": "Lime Piggy Bank",
+  "block.numismatic_coins.pink_piggy_bank": "Pink Piggy Bank",
+  "block.numismatic_coins.gray_piggy_bank": "Gray Piggy Bank",
+  "block.numismatic_coins.light_gray_piggy_bank": "Light Gray Piggy Bank",
+  "block.numismatic_coins.cyan_piggy_bank": "Cyan Piggy Bank",
+  "block.numismatic_coins.purple_piggy_bank": "Purple Piggy Bank",
+  "block.numismatic_coins.blue_piggy_bank": "Blue Piggy Bank",
+  "block.numismatic_coins.brown_piggy_bank": "Brown Piggy Bank",
+  "block.numismatic_coins.green_piggy_bank": "Green Piggy Bank",
+  "block.numismatic_coins.red_piggy_bank": "Red Piggy Bank",
+  "block.numismatic_coins.black_piggy_bank": "Black Piggy Bank",
+  "gui.numismatic_coins.shop.inventory_title": "Shop Inventory",
+  "gui.numismatic_coins.shop.merchant_title": "Shop",
+  "gui.numismatic_coins.shop.transfer_tooltip.enabled": [
+    "Hoppers",
+    {
+      "text": " can ",
+      "color": "#28FFBF"
+    },
+    "insert \nitems into this shop"
+  ],
+  "gui.numismatic_coins.shop.transfer_tooltip.disabled": [
+    "Hoppers",
+    {
+      "text": " cannot ",
+      "color": "#EB1D36"
+    },
+    "insert \nitems into this shop"
+  ],
+  "gui.numismatic_coins.pawn_shop.inventory_title": "Shop Inventory",
+  "gui.numismatic_coins.pawn_shop.merchant_title": "Pawn Shop",
+  "gui.numismatic_coins.pawn_shop.transfer_tooltip.enabled": [
+    "Hoppers",
+    {
+      "text": " can ",
+      "color": "#28FFBF"
+    },
+    "extract \nitems from this shop"
+  ],
+  "gui.numismatic_coins.pawn_shop.transfer_tooltip.disabled": [
+    "Hoppers",
+    {
+      "text": " cannot ",
+      "color": "#EB1D36"
+    },
+    "extract \nitems from this shop"
+  ],
+  "gui.numismatic_coins.purse_title": "Purse",
+  "numismatic_coins.empty": "Empty",
+  "filled_map.end_city": "End Explorer Map",
+  "currency.numismatic_coins.bronze": "Bronze",
+  "currency.numismatic_coins.silver": "Silver",
+  "currency.numismatic_coins.gold": "Gold",
+  "chat.numismatic_coins.balance": [
+    {"text": "numismatic ", "color": "#bd9838"},
+    {"text": "> balance: ", "color": "gray"},
+    {"index": 2, "color": "#bd9838"},
+    {"text": " Gold "},
+    {"index": 1, "color": "#617174"},
+    {"text": " Silver ", "color": "#617174"},
+    {"index": 0, "color": "#ae5b3c"},
+    {"text": " Bronze", "color": "#ae5b3c"}
+  ],
+  "chat.numismatic_coins.balance.player": [
+    {"text": "numismatic ", "color": "#bd9838"},
+    {"text": "> balance of ", "color": "gray"},
+    {"index": 0, "color": "gray"},
+    {"text": ": ", "color": "gray"},
+    {"index": 3, "color": "#bd9838"},
+    {"text": " Gold "},
+    {"index": 2, "color": "#617174"},
+    {"text": " Silver ", "color": "#617174"},
+    {"index": 1, "color": "#ae5b3c"},
+    {"text": " Bronze", "color": "#ae5b3c"}
+  ],
+  "itemGroup.numismatic_coins.main": "Numismatic Coins",
+  "itemGroup.numismatic_coins.main.button.modrinth": "Modrinth",
+  "itemGroup.numismatic_coins.main.button.curseforge": "CurseForge",
+  "itemGroup.numismatic_coins.main.button.github": "GitHub",
+  "itemGroup.numismatic_coins.main.button.discord": "Discord",
+
+  "text.config.numismatic_coins.title": "Numismatic Coins Configuration",
+  "text.config.numismatic_coins.option.enableVillagerTrading": "Enable Villager Trading",
+  "text.config.numismatic_coins.option.enableMcaCompatibility": "Enable MCA Compatibility",
+
+  "text.config.numismatic_coins.category.purseOffsets": "Purse offsets",
+  "text.config.numismatic_coins.option.purseOffsets.survivalX": "Survival - X",
+  "text.config.numismatic_coins.option.purseOffsets.survivalY": "Survival - Y",
+  "text.config.numismatic_coins.option.purseOffsets.creativeX": "Creative - X",
+  "text.config.numismatic_coins.option.purseOffsets.creativeY": "Creative - Y",
+  "text.config.numismatic_coins.option.purseOffsets.merchantX": "Merchants - X",
+  "text.config.numismatic_coins.option.purseOffsets.merchantY": "Merchants - Y",
+
+  "text.config.numismatic_coins.category.lootOptions": "Loot Generation",
+  "text.config.numismatic_coins.option.lootOptions.desertMinLoot": "Desert Temple Minimum Loot",
+  "text.config.numismatic_coins.option.lootOptions.desertMaxLoot": "Desert Temple Maximum Loot",
+  "text.config.numismatic_coins.option.lootOptions.dungeonMinLoot": "Dungeon Minimum Loot",
+  "text.config.numismatic_coins.option.lootOptions.dungeonMaxLoot": "Dungeon Maximum Loot",
+  "text.config.numismatic_coins.option.lootOptions.structureMinLoot": "Structure Minimum Loot",
+  "text.config.numismatic_coins.option.lootOptions.structureMaxLoot": "Structure Maximum Loot",
+  "text.config.numismatic_coins.option.lootOptions.strongholdLibraryMinLoot": "Stronghold Library Minimum Loot",
+  "text.config.numismatic_coins.option.lootOptions.strongholdLibraryMaxLoot": "Stronghold Library Maximum Loot",
+
+  "text.config.numismatic_coins.option.generateCurrencyInChests": "Generate currency in loot chests",
+  "text.config.numismatic_coins.option.moneyMessageLocation": "Money Message Location",
+  "text.config.numismatic_coins.option.moneyMessageLocation.tooltip": "Decides where the money notification appears (requires rejoining world to apply)",
+  "text.config.numismatic_coins.enum.moneyMessageLocation.actionbar": "Actionbar",
+  "text.config.numismatic_coins.enum.moneyMessageLocation.chat": "Chat",
+  "text.config.numismatic_coins.enum.moneyMessageLocation.disabled": "Disabled",
+
+  "text.config.numismatic_coins.option.scaleOnHealth": "Scale mob money drops on health",
+  "text.config.numismatic_coins.option.scaleOnHealth.tooltip": "Scales the money dropped based on the mobs max health. Money dropped this way is multiplied by '(mob max health) / (20)'",
+  "text.config.numismatic_coins.option.healthScaleReduction": "Mob Health Scale Factor",
+  "text.config.numismatic_coins.option.healthScaleReduction.tooltip": "Reduces the scaling of money drops on health by this factor. Practically divides the value by this factor.",
+
+  "gamerule.moneyMobDropVariancePercentage": "Mob money drop variance percentage",
+  "gamerule.moneyMobDropVariancePercentage.description": "Controls the variance of money dropped by mobs. By default a value of 50 means that the base value will be multiplied by 50%-150% randomly.",
+  "gamerule.moneyDropPercentage": "Money drop percentage",
+  "gamerule.moneyDropPercentage.description": "Controls how much of their money a player drops when they die, given that keepInventory is false",
+  "container.numismatic_coins.piggy_bank": "Piggy Bank"
+}

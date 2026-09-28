@@ -1,22 +1,22 @@
-package com.glisco.numismatic_overhaul;
+package com.joelcranston.numismatic_coins;
 
-import com.glisco.numismatic_overhaul.platform.Platform;
+import com.joelcranston.numismatic_coins.platform.Platform;
 
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //? fabric {
-import com.glisco.numismatic_overhaul.platform.fabric.FabricPlatform;
+import com.joelcranston.numismatic_coins.platform.fabric.FabricPlatform;
 //?} neoforge {
-/*import com.glisco.numismatic_overhaul.platform.neoforge.NeoforgePlatform;
+/*import com.joelcranston.numismatic_coins.platform.neoforge.NeoforgePlatform;
  *///?}
 
-public class NumismaticOverhaul {
+public class NumismaticCoins {
 
-	public static final String MOD_ID = /*$ mod_id*/ "numismatic_overhaul";
-	public static final String MOD_VERSION = /*$ mod_version*/ "0.4.0";
-	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Numismatic Overhaul";
+	public static final String MOD_ID = /*$ mod_id*/ "numismatic_coins";
+	public static final String MOD_VERSION = /*$ mod_version*/ "0.1.0";
+	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Numismatic Coins";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	private static final Platform PLATFORM = createPlatformInstance();
