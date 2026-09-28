@@ -10,39 +10,22 @@
   "gui.numismatic_coins.shop.price": "Цена",
   "gui.numismatic_coins.shop.inventory_title": "Инвентарь магазина",
   "gui.numismatic_coins.shop.merchant_title": "Магазин",
-  "gui.numismatic_coins.shop.transfer_tooltip.enabled": [
-    "Воронки",
-    {
-      "text": " могут ",
-      "color": "#28FFBF"
-    },
-    "перемещать \nпредметы в этот магазин"
-  ],
-  "gui.numismatic_coins.shop.transfer_tooltip.disabled": [
-    "Воронки",
-    {
-      "text": " не могут ",
-      "color": "#EB1D36"
-    },
-    "перемещать \nпредметы в этот магазин"
-  ],
+  "gui.numismatic_coins.shop.transfer_tooltip.enabled": "Воронки могут перемещать предметы в этот магазин",
+  "gui.numismatic_coins.shop.transfer_tooltip.disabled": "Воронки не могут перемещать предметы в этот магазин",
   "gui.numismatic_coins.purse_title": "Кошелёк",
   "numismatic_coins.empty": "Пусто",
   "filled_map.end_city": "Карта города Края",
   "currency.numismatic_coins.bronze": "Бронза",
   "currency.numismatic_coins.silver": "Серебро",
   "currency.numismatic_coins.gold": "Золото",
-
   "itemGroup.numismatic_coins.main": "Numismatic Coins",
   "itemGroup.numismatic_coins.main.button.modrinth": "Modrinth",
   "itemGroup.numismatic_coins.main.button.curseforge": "CurseForge",
   "itemGroup.numismatic_coins.main.button.github": "GitHub",
   "itemGroup.numismatic_coins.main.button.discord": "Discord",
-
   "text.config.numismatic_coins.title": "Настройки Numismatic Coins",
   "text.config.numismatic_coins.option.enableVillagerTrading": "Включить торговлю с жителями",
   "text.config.numismatic_coins.option.enableMcaCompatibility": "Включить совместимость с MCA",
-
   "text.config.numismatic_coins.category.purseOffsets": "Смещение кошелька",
   "text.config.numismatic_coins.option.purseOffsets.survivalX": "Выживание — X",
   "text.config.numismatic_coins.option.purseOffsets.survivalY": "Выживание — Y",
@@ -52,7 +35,6 @@
   "text.config.numismatic_coins.option.purseOffsets.merchantY": "Торговцы — Y",
   "text.config.numismatic_coins.option.purseOffsets.pawnShopX": "Ломбард - X",
   "text.config.numismatic_coins.option.purseOffsets.pawnShopY": "Ломбард - Y",
-
   "text.config.numismatic_coins.category.lootOptions": "Генерация добычи",
   "text.config.numismatic_coins.option.lootOptions.desertMinLoot": "Мин. добыча в храме пустыни",
   "text.config.numismatic_coins.option.lootOptions.desertMaxLoot": "Макс. добыча в храме пустыни",
@@ -62,25 +44,21 @@
   "text.config.numismatic_coins.option.lootOptions.structureMaxLoot": "Макс. добыча в сооружениях",
   "text.config.numismatic_coins.option.lootOptions.strongholdLibraryMinLoot": "Мин. добыча в библиотеке крепости",
   "text.config.numismatic_coins.option.lootOptions.strongholdLibraryMaxLoot": "Макс. добыча в библиотеке крепости",
-
   "text.config.numismatic_coins.option.generateCurrencyInChests": "Генерировать валюту в сундуках \nс добычей",
   "text.config.numismatic_coins.option.moneyMessageLocation": "Расположение уведомлений о деньгах",
   "text.config.numismatic_coins.option.moneyMessageLocation.tooltip": "Определяет, где показываются уведомления о деньгах (требуется перезаход в мир)",
   "text.config.numismatic_coins.enum.moneyMessageLocation.actionbar": "Панель действий",
   "text.config.numismatic_coins.enum.moneyMessageLocation.chat": "Чат",
   "text.config.numismatic_coins.enum.moneyMessageLocation.disabled": "Отключено",
-
   "text.config.numismatic_coins.option.scaleOnHealth": "Масштабировать добычу с мобов \nот здоровья",
   "text.config.numismatic_coins.option.scaleOnHealth.tooltip": "Зависимость количества денег от макс. здоровья моба. \nДеньги умножаются на '(макс. здоровье) / (20)'",
   "text.config.numismatic_coins.option.healthScaleReduction": "Коэффициент масштабирования здоровья",
   "text.config.numismatic_coins.option.healthScaleReduction.tooltip": "Уменьшает масштабирование добычи денег с учётом здоровья на этот коэффициент. \nПо сути делит значение на него.",
-
   "gamerule.moneyMobDropVariancePercentage": "Разброс добычи денег с мобов (%)",
   "gamerule.moneyMobDropVariancePercentage.description": "Управляет разбросом денег, выпадающих с мобов. По умолчанию 50 означает, что базовое значение будет случайно умножено на 50%-150%.",
   "gamerule.moneyDropPercentage": "Процент выпадения денег",
   "gamerule.moneyDropPercentage.description": "Определяет, сколько денег игрок теряет при смерти, если правило keepInventory отключено",
   "container.numismatic_coins.piggy_bank": "Копилка",
-
   "block.numismatic_coins.pawn_shop": "Ломбард",
   "block.numismatic_coins.pawn_shop.tooltip": "Покупайте товары у других игроков",
   "block.numismatic_coins.shop.tooltip": "Продавайте товары другим игрокам",

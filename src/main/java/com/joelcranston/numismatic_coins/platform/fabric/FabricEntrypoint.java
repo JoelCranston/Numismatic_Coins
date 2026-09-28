@@ -9,9 +9,10 @@ import net.fabricmc.api.ModInitializer;
 @Entrypoint("main")
 public class FabricEntrypoint implements ModInitializer {
 
-	@Override
-	public void onInitialize() {
-		NumismaticCoins.onInitialize();
-	}
+    @Override
+    public void onInitialize() {
+
+        NumismaticCoins.onInitialize();
+    }
 }
 //?}
