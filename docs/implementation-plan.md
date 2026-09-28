@@ -33,17 +33,16 @@ are introduced in the milestone that first needs them, not all up front.
 
 | Seam | Fabric | NeoForge | 26.2 note | First needed |
 |---|---|---|---|---|
-| Registration (items, blocks, BEs, menus, components, sounds, recipe serializers, loot entry types) | `Registry.register` | `DeferredRegister` | ids split out (`ItemIds`, `BlockIds`, `BlockItemIds`) *(verify)* | M1 |
-| Creative tab | `FabricItemGroup` | `DeferredRegister<CreativeModeTab>` | | M1 |
+| Registration (items, blocks, BEs, menus, components, sounds, recipe serializers, loot entry types, game rules) | `Registry.register` | `DeferredRegister` | vanilla BE types moved to `BlockEntityTypes`; no change for mod registration | M1 |
+| Creative tab | `fabric-creative-tab-api-v1` | `DeferredRegister<CreativeModeTab>` | | M1 |
 | Player data (purse) | Fabric Data Attachment API, synced | `AttachmentType`, synced | | M2 |
 | Networking | `PayloadTypeRegistry` + `ServerPlayNetworking` | `RegisterPayloadHandlersEvent` | | M2 |
 | Commands | `CommandRegistrationCallback` | `RegisterCommandsEvent` | | M2 |
-| Screen opening + HUD layer | Fabric HUD API | `RegisterGuiLayersEvent` | `minecraft.gui.setScreen(...)` | M2 |
-| Game rules | Fabric game rule API | vanilla/NeoForge registration *(verify)* | | M4 |
-| Built-in datapack | `ResourceManagerHelper.registerBuiltinResourcePack` | `AddPackFindersEvent` | | M3 |
-| Data reload listener | `ResourceManagerHelper` | `AddServerReloadListenersEvent` | | M4 |
+| Screen opening + HUD layer | `HudElementRegistry` | `RegisterGuiLayersEvent` | `minecraft.gui.setScreen(...)`, `gui.screen()` | M2 |
+| Built-in datapack | `ResourceLoader.registerBuiltinPack` | `AddPackFindersEvent` | | M3 |
+| Data reload listener | `DataResourceLoader.registerReloadListener` | `AddServerReloadListenersEvent` | | M4 |
 | Loot injection | `LootTableEvents.MODIFY` | global loot modifier | | M4 |
-| Menus with open data | `ExtendedScreenHandlerType` | `IMenuTypeExtension` | | M5 |
+| Menus with open data | `ExtendedMenuType` | `IMenuTypeExtension` | | M5 |
 | Block entity renderers, menu screens | Fabric client registries | client mod-bus events | | M5 |
 | Config screen | ModMenu | `IConfigScreenFactory` | | M8 |
 
@@ -77,9 +76,10 @@ reading decompiled sources in CI. Output: the notes file, plus any corrections t
   `money_bag` data component (codec + stream codec) holding a raw value. Clicking coins onto
   coins or a bag merges them, as NO's `CoinItem`/`MoneyBagItem` do (using them to deposit comes
   with the purse in M2).
-- Coins can't go in bundles (NO's `BundleItemMixin`), via a mixin or an item tag if 26.1 has one
-  *(verify)*.
-- Assets: item model definitions, models, lang renamed to `numismatic_coins` keys.
+- Coins can't go in bundles (NO's `BundleItemMixin`), via a mixin on
+  `BundleContents.canItemBeInBundle` (26.1 has no tag for it; see `docs/api-notes.md`).
+- Assets: item model definitions (coins `range_dispatch` on count, the bag on
+  `custom_model_data`), models, lang renamed to `numismatic_coins` keys.
 - **In game:** creative tab with coins and bags, tooltips show value, textures change with count.
 
 ### M2: The purse
