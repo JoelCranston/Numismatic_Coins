@@ -167,8 +167,8 @@ public class PiggyBankBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
 
-        ItemStack tool = params.getOptionalParameter(LootContextParams.TOOL);
-        if (params.getOptionalParameter(LootContextParams.BLOCK_ENTITY) instanceof PiggyBankBlockEntity piggyBank && isHammer(tool)) {
+        if (params.getOptionalParameter(LootContextParams.BLOCK_ENTITY) instanceof PiggyBankBlockEntity piggyBank
+                && params.getOptionalParameter(LootContextParams.TOOL) instanceof ItemStack tool && isHammer(tool)) {
             Vec3 origin = params.getParameter(LootContextParams.ORIGIN);
             smashEffects(params.getLevel(), BlockPos.containing(origin), HAMMER_FALL_DISTANCE);
             return piggyBank.getItems().stream().filter(stack -> !stack.isEmpty()).map(ItemStack::copy).toList();
@@ -176,9 +176,9 @@ public class PiggyBankBlock extends HorizontalDirectionalBlock implements Entity
         return super.getDrops(state, params);
     }
 
-    private static boolean isHammer(@Nullable ItemStack tool) {
+    private static boolean isHammer(ItemStack tool) {
 
-        Component name = tool == null ? null : tool.get(DataComponents.CUSTOM_NAME);
+        Component name = tool.get(DataComponents.CUSTOM_NAME);
         return name != null && HAMMER_NAME.equals(name.getString());
     }
 
