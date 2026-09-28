@@ -14,7 +14,9 @@ public final class ModMenus {
             .<MenuType<?>, MenuType<PiggyBankMenu>>register(Registries.MENU, "piggy_bank", id -> NumismaticCoins.xplat().menuType(PiggyBankMenu::new));
 
     public static final Supplier<MenuType<ShopMenu>> SHOP = NumismaticCoins.xplat().registration()
-            .<MenuType<?>, MenuType<ShopMenu>>register(Registries.MENU, "shop", id -> NumismaticCoins.xplat().menuType(ShopMenu::new));
+            .<MenuType<?>, MenuType<ShopMenu>>register(Registries.MENU, "shop", id -> NumismaticCoins.xplat().menuType(ShopMenu::forShop));
+    public static final Supplier<MenuType<ShopMenu>> PAWN_SHOP = NumismaticCoins.xplat().registration()
+            .<MenuType<?>, MenuType<ShopMenu>>register(Registries.MENU, "pawn_shop", id -> NumismaticCoins.xplat().menuType(ShopMenu::forPawnShop));
 
     private ModMenus() {}
 

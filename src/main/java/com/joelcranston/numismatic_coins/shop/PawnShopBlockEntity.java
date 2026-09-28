@@ -9,37 +9,37 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * A shop: it sells its stock for its offers' prices, keeping the earnings until the owner takes
- * them, and lets hoppers fill the stock. (NO: ShopBlockEntity.)
+ * A pawn shop: it buys what its offers name, paying from the money its owner puts in, and keeps
+ * what it buys in its stock, which hoppers may empty. (NO: PawnShopBlockEntity.)
  */
-public class ShopBlockEntity extends AbstractShopBlockEntity {
+public class PawnShopBlockEntity extends AbstractShopBlockEntity {
 
-    public ShopBlockEntity(BlockPos pos, BlockState state) {
+    public PawnShopBlockEntity(BlockPos pos, BlockState state) {
 
-        super(ModBlockEntities.SHOP.get(), pos, state);
+        super(ModBlockEntities.PAWN_SHOP.get(), pos, state);
     }
 
     @Override
     protected AbstractShopMerchant createMerchant() {
 
-        return new ShopMerchant(this);
+        return new PawnShopMerchant(this);
     }
 
     @Override
     protected boolean hoppersTakeStock() {
 
-        return false;
+        return true;
     }
 
     @Override
     protected Component getDefaultName() {
 
-        return Component.translatable("gui.numismatic_coins.shop.inventory_title");
+        return Component.translatable("gui.numismatic_coins.pawn_shop.inventory_title");
     }
 
     @Override
     protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
 
-        return new ShopMenu(ModMenus.SHOP.get(), containerId, inventory, this);
+        return new ShopMenu(ModMenus.PAWN_SHOP.get(), containerId, inventory, this);
     }
 }

@@ -15,11 +15,11 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.ItemCost;
-import net.minecraft.world.item.trading.MerchantOffer;
 
 /**
- * One thing a shop sells: a stack and its price in bronze. The price is asked as coins when one
- * kind of coin pays it, and as a money bag holding exactly that value otherwise. (NO: ShopOffer.)
+ * One offer of a shop or pawn shop: the stack it sells or buys, and its price in bronze. A price
+ * changes hands as coins when one kind of coin pays it, and as a money bag holding exactly that
+ * value otherwise. (NO: ShopOffer, PawnShopOffer.)
  */
 public record ShopOffer(ItemStack stack, long price) {
 
@@ -44,24 +44,24 @@ public record ShopOffer(ItemStack stack, long price) {
         stack = stack.copy();
     }
 
-    /** The trade a customer sees, with as many uses as the stock covers. */
-    public MerchantOffer toMerchantOffer(List<ItemStack> stock, boolean isInexhaustible) {
-
-        int maxUses = isInexhaustible ? Integer.MAX_VALUE : count(stock, this.stack) / this.stack.getCount();
-        return new MerchantOffer(cost(this.price), this.stack.copy(), maxUses, 0, 0);
-    }
-
-    /** What a customer hands over for {@code price}: coins of one kind, or an exact money bag. */
-    public static ItemCost cost(long price) {
+    /** The money that pays {@code price}: coins of one kind, or an exact money bag. */
+    public static ItemStack money(long price) {
 
         CoinMath.CoinStack coins = CoinMath.closestCoin(price);
         if (coins.currency().rawValue(coins.count()) == price && coins.count() <= ModItems.COIN_STACK_SIZE) {
-            return new ItemCost(ModItems.coin(coins.currency()), (int) coins.count());
+            return new ItemStack(ModItems.coin(coins.currency()), (int) coins.count());
         }
-        ItemStack bag = MoneyBagItem.withValue(price);
-        return new ItemCost(ModItems.MONEY_BAG.get()).withComponents(components -> components
-                .expect(ModDataComponents.MONEY_BAG.get(), bag.get(ModDataComponents.MONEY_BAG.get()))
-                .expect(DataComponents.CUSTOM_MODEL_DATA, bag.get(DataComponents.CUSTOM_MODEL_DATA)));
+        return MoneyBagItem.withValue(price);
+    }
+
+    /** What a customer hands over for {@code price}: {@link #money}, the bag matched exactly. */
+    public static ItemCost cost(long price) {
+
+        ItemStack money = money(price);
+        if (!(money.getItem() instanceof MoneyBagItem)) return new ItemCost(money.getItem(), money.getCount());
+        return new ItemCost(money.getItem()).withComponents(components -> components
+                .expect(ModDataComponents.MONEY_BAG.get(), money.get(ModDataComponents.MONEY_BAG.get()))
+                .expect(DataComponents.CUSTOM_MODEL_DATA, money.get(DataComponents.CUSTOM_MODEL_DATA)));
     }
 
     /** How many items in {@code stacks} match {@code target}, components included. */
@@ -84,6 +84,40 @@ public record ShopOffer(ItemStack stack, long price) {
             int removed = Math.min(toRemove, stack.getCount());
             stack.shrink(removed);
             toRemove -= removed;
+        }
+    }
+
+    /** Whether all of {@code stack} fits into {@code stacks}, onto matching stacks or empty slots. */
+    public static boolean fits(List<ItemStack> stacks, ItemStack stack) {
+
+        int room = 0;
+        for (ItemStack existing : stacks) {
+            if (existing.isEmpty()) {
+                room += stack.getMaxStackSize();
+            } else if (ItemStack.isSameItemSameComponents(existing, stack)) {
+                room += existing.getMaxStackSize() - existing.getCount();
+            }
+            if (room >= stack.getCount()) return true;
+        }
+        return false;
+    }
+
+    /** Puts {@code stack} into {@code stacks}, onto matching stacks first; what does not fit is lost. */
+    public static void add(List<ItemStack> stacks, ItemStack stack) {
+
+        int toAdd = stack.getCount();
+        for (ItemStack existing : stacks) {
+            if (toAdd <= 0) return;
+            if (existing.isEmpty() || !ItemStack.isSameItemSameComponents(existing, stack)) continue;
+            int added = Math.min(toAdd, existing.getMaxStackSize() - existing.getCount());
+            existing.grow(added);
+            toAdd -= added;
+        }
+        for (int slot = 0; slot < stacks.size() && toAdd > 0; slot++) {
+            if (!stacks.get(slot).isEmpty()) continue;
+            int added = Math.min(toAdd, stack.getMaxStackSize());
+            stacks.set(slot, stack.copyWithCount(added));
+            toAdd -= added;
         }
     }
 }
