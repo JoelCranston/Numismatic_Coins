@@ -2,6 +2,9 @@ package com.joelcranston.numismatic_coins;
 
 import com.joelcranston.numismatic_coins.command.ModCommands;
 import com.joelcranston.numismatic_coins.config.Configs;
+import com.joelcranston.numismatic_coins.drops.ChestLoot;
+import com.joelcranston.numismatic_coins.drops.ModGameRules;
+import com.joelcranston.numismatic_coins.drops.ModLootEntries;
 import com.joelcranston.numismatic_coins.network.ModNetworking;
 import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
@@ -40,6 +43,9 @@ public class NumismaticCoins {
         ModNetworking.register();
         ModCommands.register();
         CoinTrades.register();
+        ModGameRules.register();
+        ModLootEntries.register();
+        ChestLoot.register();
     }
 
     public static Platform xplat() {

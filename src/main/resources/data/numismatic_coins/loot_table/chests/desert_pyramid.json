@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.45
+        }
+      ],
+      "entries": [
+        {
+          "type": "numismatic_coins:money_bag",
+          "min": 300,
+          "max": 1200
+        }
+      ]
+    }
+  ],
+  "random_sequence": "numismatic_coins:chests/desert_pyramid"
+}

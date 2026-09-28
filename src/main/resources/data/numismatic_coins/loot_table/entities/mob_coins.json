@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "#numismatic_coins:the_bourgeoisie"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "numismatic_coins:mob_coins",
+          "base_value": 75
+        }
+      ]
+    }
+  ],
+  "random_sequence": "numismatic_coins:entities/mob_coins"
+}
