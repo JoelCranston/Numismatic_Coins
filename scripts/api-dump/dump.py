@@ -65,6 +65,12 @@ MC_DECOMPILE = [
 	r"net/minecraft/client/gui/layouts/(HeaderAndFooterLayout|LinearLayout|GridLayout)",
 	r"net/minecraft/client/gui/screens/options/OptionsSubScreen",
 	r"net/minecraft/client/OptionInstance",
+	# M3: the loot functions coin trades use, and how enchanting sets a trade's extra cost.
+	r"net/minecraft/world/level/storage/loot/functions/(LootItemFunctions|LootItemFunctionType|LootItemConditionalFunction|EnchantRandomlyFunction|EnchantWithLevelsFunction|SetStewEffectFunction|ExplorationMapFunction|SetRandomPotionFunction|SetRandomDyesFunction|FilteredFunction)",
+	r"net/minecraft/world/item/enchantment/EnchantmentHelper",
+	r"net/minecraft/world/level/storage/loot/predicates/LocationCheck",
+	r"net/minecraft/advancements/criterion/LocationPredicate",
+	r"net/minecraft/client/gui/screens/inventory/MerchantScreen",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
