@@ -1,0 +1,40 @@
+{
+  "wants": {
+    "id": "numismatic_coins:bronze_coin"
+  },
+  "gives": {
+    "id": "minecraft:diamond_boots"
+  },
+  "max_uses": 4,
+  "xp": 30,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:diamond_boots"
+  },
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:enchant_with_levels",
+      "levels": 25,
+      "options": "#minecraft:non_treasure"
+    },
+    {
+      "function": "minecraft:filtered",
+      "item_filter": {
+        "items": "minecraft:diamond_boots",
+        "predicates": {
+          "minecraft:enchantments": [
+            {}
+          ]
+        }
+      },
+      "on_fail": {
+        "function": "minecraft:discard"
+      }
+    },
+    {
+      "function": "numismatic_coins:enchantment_price",
+      "formula": "enchanted_item",
+      "base_price": 1100
+    }
+  ]
+}

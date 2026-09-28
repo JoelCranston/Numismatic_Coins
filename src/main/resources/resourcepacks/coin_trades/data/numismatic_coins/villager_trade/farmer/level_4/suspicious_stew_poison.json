@@ -1,0 +1,23 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 8
+  },
+  "gives": {
+    "id": "minecraft:suspicious_stew"
+  },
+  "max_uses": 3,
+  "xp": 10,
+  "reputation_discount": 0.05,
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:set_stew_effect",
+      "effects": [
+        {
+          "type": "minecraft:poison",
+          "duration": 12
+        }
+      ]
+    }
+  ]
+}

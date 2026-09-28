@@ -1,0 +1,40 @@
+{
+  "wants": {
+    "id": "numismatic_coins:bronze_coin"
+  },
+  "gives": {
+    "id": "minecraft:book"
+  },
+  "max_uses": 3,
+  "xp": 10,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:book"
+  },
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:enchant_with_levels",
+      "levels": 35,
+      "options": "#minecraft:tradeable"
+    },
+    {
+      "function": "minecraft:filtered",
+      "item_filter": {
+        "items": "minecraft:enchanted_book",
+        "predicates": {
+          "minecraft:stored_enchantments": [
+            {}
+          ]
+        }
+      },
+      "on_fail": {
+        "function": "minecraft:discard"
+      }
+    },
+    {
+      "function": "numismatic_coins:enchantment_price",
+      "formula": "enchanted_item",
+      "base_price": 400
+    }
+  ]
+}

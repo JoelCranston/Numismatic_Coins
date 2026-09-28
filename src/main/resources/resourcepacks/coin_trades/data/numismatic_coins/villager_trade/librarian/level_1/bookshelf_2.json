@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 8
+  },
+  "gives": {
+    "id": "minecraft:bookshelf"
+  },
+  "max_uses": 10,
+  "xp": 8,
+  "reputation_discount": 0.05
+}

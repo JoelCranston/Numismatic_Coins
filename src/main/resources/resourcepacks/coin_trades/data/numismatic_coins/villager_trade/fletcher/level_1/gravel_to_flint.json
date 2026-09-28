@@ -1,0 +1,17 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 2
+  },
+  "gives": {
+    "id": "minecraft:flint",
+    "count": 4
+  },
+  "max_uses": 10,
+  "xp": 5,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:gravel",
+    "count": 8
+  }
+}

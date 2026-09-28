@@ -1,0 +1,12 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:shepherd/level_4/green_dye",
+    "numismatic_coins:shepherd/level_4/brown_dye",
+    "numismatic_coins:shepherd/level_4/blue_dye",
+    "numismatic_coins:shepherd/level_4/purple_dye",
+    "numismatic_coins:shepherd/level_4/cyan_dye",
+    "numismatic_coins:shepherd/level_4/magenta_dye",
+    "numismatic_coins:shepherd/level_4/random_trade_goods_beds"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cartographer/level_2/glass_pane",
+    "numismatic_coins:cartographer/level_2/map_on_ocean_explorer_maps"
+  ]
+}

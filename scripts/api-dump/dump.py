@@ -65,6 +65,12 @@ MC_DECOMPILE = [
 	r"net/minecraft/client/gui/layouts/(HeaderAndFooterLayout|LinearLayout|GridLayout)",
 	r"net/minecraft/client/gui/screens/options/OptionsSubScreen",
 	r"net/minecraft/client/OptionInstance",
+	# M3: the loot functions coin trades use, and how enchanting sets a trade's extra cost.
+	r"net/minecraft/world/level/storage/loot/functions/(LootItemFunctions|LootItemFunctionType|LootItemConditionalFunction|EnchantRandomlyFunction|EnchantWithLevelsFunction|SetStewEffectFunction|ExplorationMapFunction|SetRandomPotionFunction|SetRandomDyesFunction|FilteredFunction)",
+	r"net/minecraft/world/item/enchantment/EnchantmentHelper",
+	r"net/minecraft/world/level/storage/loot/predicates/LocationCheck",
+	r"net/minecraft/advancements/criterion/LocationPredicate",
+	r"net/minecraft/client/gui/screens/inventory/MerchantScreen",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
@@ -100,6 +106,11 @@ MC_SIGS = [
 	r"net/minecraft/commands/arguments/EntityArgument",
 	r"net/minecraft/world/inventory/tooltip/(TooltipComponent|BundleTooltip)",
 	r"net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent",
+	# M3: enchantment weights and tags for the enchanted trades' prices.
+	r"net/minecraft/world/item/enchantment/(Enchantment|ItemEnchantments|Enchantment\$EnchantmentDefinition)",
+	r"net/minecraft/tags/(EnchantmentTags|ItemTags|StructureTags)",
+	r"net/minecraft/core/(HolderSet|RegistryCodecs)",
+	r"net/minecraft/world/level/storage/loot/(LootContext|LootContextUser|ValidationContext)",
 ]
 
 # Packages whose added/removed classes between the two MC versions are worth seeing.

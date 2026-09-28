@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cleric/level_1/rotten_flesh",
+    "numismatic_coins:cleric/level_1/redstone"
+  ]
+}

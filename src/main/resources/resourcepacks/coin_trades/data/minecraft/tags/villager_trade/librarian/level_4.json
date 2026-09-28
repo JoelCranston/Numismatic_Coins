@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:librarian/level_4/writable_book",
+    "numismatic_coins:librarian/level_4/compass",
+    "numismatic_coins:librarian/level_4/clock",
+    "numismatic_coins:librarian/level_4/enchanted_book_level_60"
+  ]
+}

@@ -7,7 +7,9 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "BundleContentsMixin"
+    "BundleContentsMixin",
+    "MerchantMenuMixin",
+    "VillagerTradeMixin"
   ],
   "client": [
     "client.AbstractContainerScreenAccessor"

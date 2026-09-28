@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:armorer/level_2/iron_ingot",
+    "numismatic_coins:armorer/level_2/bell",
+    "numismatic_coins:armorer/level_2/chainmail_leggings",
+    "numismatic_coins:armorer/level_2/chainmail_boots"
+  ]
+}

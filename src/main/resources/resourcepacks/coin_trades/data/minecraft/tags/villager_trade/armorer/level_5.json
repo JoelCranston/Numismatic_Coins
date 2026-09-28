@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:armorer/level_5/enchanted_diamond_helmet_level_30",
+    "numismatic_coins:armorer/level_5/enchanted_diamond_chestplate_level_30",
+    "numismatic_coins:armorer/level_5/totem_of_undying"
+  ]
+}

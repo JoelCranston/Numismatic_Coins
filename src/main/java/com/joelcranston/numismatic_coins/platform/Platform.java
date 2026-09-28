@@ -8,6 +8,7 @@ import com.joelcranston.numismatic_coins.purse.PurseStorage;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
@@ -56,6 +57,13 @@ public interface Platform {
     void registerFeatureCondition();
 
     Path configDir();
+
+    /**
+     * Offers the data pack at {@code resourcepacks/<name>} in the mod jar in the world's data pack
+     * list. {@code isEnabledByDefault} decides whether a new world starts with it turned on; an
+     * existing world keeps whatever its data pack list says. Called once, at start-up.
+     */
+    void registerBuiltinDataPack(String name, Component displayName, boolean isEnabledByDefault);
 
     /** Adds commands each time the server builds its command tree. */
     void registerCommands(Consumer<CommandDispatcher<CommandSourceStack>> registrar);

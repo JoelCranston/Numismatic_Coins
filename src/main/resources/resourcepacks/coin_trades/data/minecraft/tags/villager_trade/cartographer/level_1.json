@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cartographer/level_1/paper",
+    "numismatic_coins:cartographer/level_1/map"
+  ]
+}
