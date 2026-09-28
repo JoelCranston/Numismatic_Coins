@@ -13,9 +13,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
@@ -68,6 +73,13 @@ public class NeoforgeClientPlatform implements ClientPlatform {
             Supplier<? extends MenuType<? extends M>> menuType, MenuScreenFactory<M, U> factory) {
 
         NeoforgePlatform.modEventBus.addListener((RegisterMenuScreensEvent event) -> event.register(menuType.get(), factory::create));
+    }
+
+    @Override
+    public <T extends BlockEntity, S extends BlockEntityRenderState> void registerBlockEntityRenderer(
+            Supplier<? extends BlockEntityType<T>> type, BlockEntityRendererProvider<T, S> provider) {
+
+        NeoforgePlatform.modEventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> event.registerBlockEntityRenderer(type.get(), provider));
     }
 }
 *///?}

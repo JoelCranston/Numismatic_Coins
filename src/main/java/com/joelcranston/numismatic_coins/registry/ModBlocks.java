@@ -9,13 +9,16 @@ import java.util.function.Supplier;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.block.PiggyBankBlock;
+import com.joelcranston.numismatic_coins.item.DescribedBlockItem;
 import com.joelcranston.numismatic_coins.item.PiggyBankItem;
+import com.joelcranston.numismatic_coins.shop.ShopBlock;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -26,7 +29,11 @@ public final class ModBlocks {
     // Hardness and blast resistance. (NO: PiggyBankBlock.)
     private static final float PIGGY_BANK_HARDNESS = 1.25f;
     private static final float PIGGY_BANK_RESISTANCE = 4.2f;
+    // (NO: ShopBlock.)
+    private static final float SHOP_HARDNESS = 5.0f;
 
+    public static final Supplier<ShopBlock> SHOP = registerShop("shop", false);
+    public static final Supplier<ShopBlock> INEXHAUSTIBLE_SHOP = registerShop("inexhaustible_shop", true);
     public static final Supplier<PiggyBankBlock> PIGGY_BANK = registerPiggyBank(null);
     private static final Map<DyeColor, Supplier<PiggyBankBlock>> DYED_PIGGY_BANKS = registerDyedPiggyBanks();
 
@@ -50,6 +57,21 @@ public final class ModBlocks {
         piggyBanks.add(PIGGY_BANK.get());
         DYED_PIGGY_BANKS.values().forEach(piggyBank -> piggyBanks.add(piggyBank.get()));
         return Collections.unmodifiableList(piggyBanks);
+    }
+
+    private static Supplier<ShopBlock> registerShop(String name, boolean isInexhaustible) {
+
+        Supplier<ShopBlock> block = NumismaticCoins.xplat().registration().register(Registries.BLOCK, name,
+                id -> new ShopBlock(isInexhaustible, BlockBehaviour.Properties.of()
+                        .setId(ResourceKey.create(Registries.BLOCK, id))
+                        .destroyTime(SHOP_HARDNESS)
+                        .noOcclusion()));
+        NumismaticCoins.xplat().registration().register(Registries.ITEM, name,
+                id -> new DescribedBlockItem(block.get(), new Item.Properties()
+                        .setId(ResourceKey.create(Registries.ITEM, id))
+                        .useBlockDescriptionPrefix()
+                        .rarity(isInexhaustible ? Rarity.EPIC : Rarity.COMMON)));
+        return block;
     }
 
     private static Map<DyeColor, Supplier<PiggyBankBlock>> registerDyedPiggyBanks() {
