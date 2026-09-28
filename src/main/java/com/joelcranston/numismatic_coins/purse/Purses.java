@@ -70,16 +70,23 @@ public final class Purses {
     /** Moves every coin and money bag in the player's inventory into the purse. Returns the amount stored. */
     public static long storeAll(Player player) {
 
+        long stored = takeFromInventory(player);
+        deposit(player, stored);
+        return stored;
+    }
+
+    /** Takes every coin and money bag out of the player's inventory. Returns their value. */
+    public static long takeFromInventory(Player player) {
+
         Inventory inventory = player.getInventory();
-        long stored = 0;
+        long taken = 0;
         for (int slot = 0; slot < inventory.getContainerSize(); slot++) {
             ItemStack stack = inventory.getItem(slot);
             if (!(stack.getItem() instanceof CurrencyItem currencyItem)) continue;
-            stored = saturatedAdd(stored, currencyItem.rawValue(stack));
+            taken = saturatedAdd(taken, currencyItem.rawValue(stack));
             inventory.setItem(slot, ItemStack.EMPTY);
         }
-        deposit(player, stored);
-        return stored;
+        return taken;
     }
 
     // The client shows the change where its money message option says.

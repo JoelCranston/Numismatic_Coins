@@ -24,7 +24,8 @@ import org.jspecify.annotations.Nullable;
 
 /**
  * A shop: its owner stocks it and sets prices, and everyone else buys through the trading screen.
- * Only the owner can break it. An inexhaustible shop never runs out. (NO: ShopBlock.)
+ * Only the owner can break it. An inexhaustible shop never runs out. The pawn shop extends it.
+ * (NO: ShopBlock.)
  */
 public class ShopBlock extends BaseEntityBlock {
 
@@ -55,7 +56,7 @@ public class ShopBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected MapCodec<ShopBlock> codec() {
+    protected MapCodec<? extends ShopBlock> codec() {
 
         return CODEC;
     }
@@ -81,13 +82,13 @@ public class ShopBlock extends BaseEntityBlock {
             level.destroyBlock(pos, true);
             return;
         }
-        if (level.getBlockEntity(pos) instanceof ShopBlockEntity shop) shop.setOwner(player.getUUID());
+        if (level.getBlockEntity(pos) instanceof AbstractShopBlockEntity shop) shop.setOwner(player.getUUID());
     }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 
-        if (!(player instanceof ServerPlayer serverPlayer) || !(level.getBlockEntity(pos) instanceof ShopBlockEntity shop)) {
+        if (!(player instanceof ServerPlayer serverPlayer) || !(level.getBlockEntity(pos) instanceof AbstractShopBlockEntity shop)) {
             return InteractionResult.SUCCESS;
         }
         if (shop.isBusy()) return InteractionResult.SUCCESS;
@@ -104,7 +105,7 @@ public class ShopBlock extends BaseEntityBlock {
     @Override
     protected float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
 
-        boolean mayBreak = player.isCreative() || (level.getBlockEntity(pos) instanceof ShopBlockEntity shop && shop.isOwner(player));
+        boolean mayBreak = player.isCreative() || (level.getBlockEntity(pos) instanceof AbstractShopBlockEntity shop && shop.isOwner(player));
         return mayBreak ? super.getDestroyProgress(state, player, level, pos) : 0;
     }
 }

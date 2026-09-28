@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.block.PiggyBankBlock;
 import com.joelcranston.numismatic_coins.item.DescribedBlockItem;
 import com.joelcranston.numismatic_coins.item.PiggyBankItem;
+import com.joelcranston.numismatic_coins.shop.PawnShopBlock;
 import com.joelcranston.numismatic_coins.shop.ShopBlock;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -34,6 +36,8 @@ public final class ModBlocks {
 
     public static final Supplier<ShopBlock> SHOP = registerShop("shop", false);
     public static final Supplier<ShopBlock> INEXHAUSTIBLE_SHOP = registerShop("inexhaustible_shop", true);
+    public static final Supplier<PawnShopBlock> PAWN_SHOP = registerShop("pawn_shop", false, PawnShopBlock::new);
+    public static final Supplier<PawnShopBlock> INEXHAUSTIBLE_PAWN_SHOP = registerShop("inexhaustible_pawn_shop", true, PawnShopBlock::new);
     public static final Supplier<PiggyBankBlock> PIGGY_BANK = registerPiggyBank(null);
     private static final Map<DyeColor, Supplier<PiggyBankBlock>> DYED_PIGGY_BANKS = registerDyedPiggyBanks();
 
@@ -61,8 +65,13 @@ public final class ModBlocks {
 
     private static Supplier<ShopBlock> registerShop(String name, boolean isInexhaustible) {
 
-        Supplier<ShopBlock> block = NumismaticCoins.xplat().registration().register(Registries.BLOCK, name,
-                id -> new ShopBlock(isInexhaustible, BlockBehaviour.Properties.of()
+        return registerShop(name, isInexhaustible, ShopBlock::new);
+    }
+
+    private static <B extends ShopBlock> Supplier<B> registerShop(String name, boolean isInexhaustible, BiFunction<Boolean, BlockBehaviour.Properties, B> factory) {
+
+        Supplier<B> block = NumismaticCoins.xplat().registration().register(Registries.BLOCK, name,
+                id -> factory.apply(isInexhaustible, BlockBehaviour.Properties.of()
                         .setId(ResourceKey.create(Registries.BLOCK, id))
                         .destroyTime(SHOP_HARDNESS)
                         .noOcclusion()));

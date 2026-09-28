@@ -14,15 +14,16 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.Nullable;
 
 /**
- * The owner's view of a shop: its stock over the player's inventory, and the offers, earnings and
- * hopper switch, which the client learns from {@link ShopScreenState}. An offer is edited through
- * a buffer holding a copy of the stack to sell, set by clicking it with a stack or by picking an
- * existing offer. (NO: ShopScreenHandler.)
+ * The owner's view of a shop or pawn shop: its stock over the player's inventory, and the offers,
+ * money held and hopper switch, which the client learns from {@link ShopScreenState}. An offer is
+ * edited through a buffer holding a copy of the stack to sell or buy, set by clicking it with a
+ * stack or by picking an existing offer. (NO: ShopScreenHandler, PawnShopScreenHandler.)
  */
 public class ShopMenu extends AbstractContainerMenu {
 
@@ -38,7 +39,7 @@ public class ShopMenu extends AbstractContainerMenu {
     private final Player player;
     private final Container stock;
     // Set on the server only.
-    private final @Nullable ShopBlockEntity shop;
+    private final @Nullable AbstractShopBlockEntity shop;
 
     // The client's copy of the shop's state; the server reads the shop itself.
     private List<ShopOffer> offers = List.of();
@@ -49,28 +50,22 @@ public class ShopMenu extends AbstractContainerMenu {
     // Client only: the offers tab covers the stock, whose slots then take no clicks.
     private boolean showsStock = true;
 
-    /** The client's copy, filled by the server's slot updates and {@link ShopScreenState}. */
-    public ShopMenu(int containerId, Inventory inventory) {
+    public ShopMenu(MenuType<?> type, int containerId, Inventory inventory, AbstractShopBlockEntity shop) {
 
-        this(containerId, inventory, new SimpleContainer(ShopBlockEntity.STOCK_SLOT_COUNT), null);
+        this(type, containerId, inventory, shop, shop);
     }
 
-    public ShopMenu(int containerId, Inventory inventory, ShopBlockEntity shop) {
+    private ShopMenu(MenuType<?> type, int containerId, Inventory inventory, Container stock, @Nullable AbstractShopBlockEntity shop) {
 
-        this(containerId, inventory, shop, shop);
-    }
-
-    private ShopMenu(int containerId, Inventory inventory, Container stock, @Nullable ShopBlockEntity shop) {
-
-        super(ModMenus.SHOP.get(), containerId);
-        checkContainerSize(stock, ShopBlockEntity.STOCK_SLOT_COUNT);
+        super(type, containerId);
+        checkContainerSize(stock, AbstractShopBlockEntity.STOCK_SLOT_COUNT);
         this.player = inventory.player;
         this.stock = stock;
         this.shop = shop;
         stock.startOpen(inventory.player);
         if (shop != null) shop.setBeingEdited(true);
 
-        for (int slot = 0; slot < ShopBlockEntity.STOCK_SLOT_COUNT; slot++) {
+        for (int slot = 0; slot < AbstractShopBlockEntity.STOCK_SLOT_COUNT; slot++) {
             int x = STOCK_X + slot % STOCK_COLUMNS * SLOT_SPACING;
             int y = STOCK_Y + slot / STOCK_COLUMNS * SLOT_SPACING;
             this.addSlot(new Slot(stock, slot, x, y) {
@@ -85,8 +80,20 @@ public class ShopMenu extends AbstractContainerMenu {
         this.addStandardInventorySlots(inventory, INVENTORY_X, INVENTORY_Y);
     }
 
+    /** The client's copy of a shop's menu, filled by the server's slot updates and {@link ShopScreenState}. */
+    public static ShopMenu forShop(int containerId, Inventory inventory) {
+
+        return new ShopMenu(ModMenus.SHOP.get(), containerId, inventory, new SimpleContainer(AbstractShopBlockEntity.STOCK_SLOT_COUNT), null);
+    }
+
+    /** The client's copy of a pawn shop's menu. */
+    public static ShopMenu forPawnShop(int containerId, Inventory inventory) {
+
+        return new ShopMenu(ModMenus.PAWN_SHOP.get(), containerId, inventory, new SimpleContainer(AbstractShopBlockEntity.STOCK_SLOT_COUNT), null);
+    }
+
     /** Opens the shop's menu for its owner and sends the state the screen shows. */
-    public static void open(ServerPlayer player, ShopBlockEntity shop) {
+    public static void open(ServerPlayer player, AbstractShopBlockEntity shop) {
 
         player.openMenu(shop);
         if (player.containerMenu instanceof ShopMenu menu) menu.sendState();
@@ -150,6 +157,10 @@ public class ShopMenu extends AbstractContainerMenu {
                 this.shop.putOffer(new ShopOffer(this.buffer, value));
             }
             case DELETE_OFFER -> this.shop.removeOffer(this.buffer);
+            case INSERT_CURRENCY -> {
+                // Only a pawn shop takes money in, to pay for what it buys.
+                if (this.shop instanceof PawnShopBlockEntity) this.shop.addValue(Purses.takeFromInventory(this.player));
+            }
             case EXTRACT_CURRENCY -> Purses.deposit(this.player, this.shop.takeStoredValue());
             case TOGGLE_TRANSFER -> this.shop.toggleTransfer();
             case CLICK_BUFFER -> this.buffer = this.getCarried().copy();
@@ -172,7 +183,7 @@ public class ShopMenu extends AbstractContainerMenu {
 
         ItemStack stack = slot.getItem();
         ItemStack original = stack.copy();
-        int stockEnd = ShopBlockEntity.STOCK_SLOT_COUNT;
+        int stockEnd = AbstractShopBlockEntity.STOCK_SLOT_COUNT;
         boolean isMoved = slotIndex < stockEnd
                 ? this.moveItemStackTo(stack, stockEnd, stockEnd + PLAYER_SLOT_COUNT, true)
                 : this.moveItemStackTo(stack, 0, stockEnd, false);

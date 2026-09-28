@@ -43,6 +43,7 @@
   "gui.numismatic_coins.pawn_shop.merchant_title": "Pawn Shop",
   "gui.numismatic_coins.pawn_shop.transfer_tooltip.enabled": "Hoppers can extract items from this shop",
   "gui.numismatic_coins.pawn_shop.transfer_tooltip.disabled": "Hoppers cannot extract items from this shop",
+  "gui.numismatic_coins.pawn_shop.insert": "Put in money",
   "gui.numismatic_coins.purse_title": "Purse",
   "gui.numismatic_coins.purse.store_all": "Shift-click to put all coins in your purse",
   "gui.numismatic_coins.purse.withdraw": "Take out",
