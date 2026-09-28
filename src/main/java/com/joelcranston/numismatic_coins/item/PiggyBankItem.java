@@ -1,10 +1,12 @@
 package com.joelcranston.numismatic_coins.item;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 import com.joelcranston.numismatic_coins.currency.Currency;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -37,6 +39,14 @@ public class PiggyBankItem extends BlockItem {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> tooltip, TooltipFlag flag) {
 
-        tooltip.accept(CoinText.coinCounts(coinCounts(stack)));
+        // The coins themselves are the tooltip image; text is left only to say there are none.
+        if (!CoinTooltip.hasCoins(coinCounts(stack))) tooltip.accept(CoinText.coinCounts(coinCounts(stack)));
+    }
+
+    @Override
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+
+        long[] coinCounts = coinCounts(stack);
+        return CoinTooltip.hasCoins(coinCounts) ? Optional.of(new CoinTooltip(coinCounts)) : Optional.empty();
     }
 }
