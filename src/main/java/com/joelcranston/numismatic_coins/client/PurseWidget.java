@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.function.BooleanSupplier;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
+import com.joelcranston.numismatic_coins.config.Configs;
+import com.joelcranston.numismatic_coins.config.NumismaticConfig;
 import com.joelcranston.numismatic_coins.currency.CoinMath;
 import com.joelcranston.numismatic_coins.currency.Currency;
 import com.joelcranston.numismatic_coins.item.CoinText;
@@ -62,28 +64,22 @@ public class PurseWidget extends AbstractWidget {
     private static final int MAX_SELECTED_COINS = 99;
     private static final int SHIFT_STEP = 10;
 
-    // Where the button sits, relative to the screen's background. (NO: NumismaticOverhaulClient.)
-    private static final int INVENTORY_X = 160, INVENTORY_Y = 5;
-    private static final int CREATIVE_X = 38, CREATIVE_Y = 4;
-    private static final int MERCHANT_X = 260, MERCHANT_Y = 5;
-
     // The purse widget of the open screen, if it shows one.
     private static @Nullable PurseWidget shownWidget;
 
     private final AbstractContainerScreenAccessor screen;
-    private final int offsetX, offsetY;
+    private final Placement placement;
     private final BooleanSupplier isShown;
 
     private boolean isOpen;
     // Coins chosen to take out, in Currency order.
     private final long[] selected = new long[Currency.values().length];
 
-    public PurseWidget(AbstractContainerScreen<?> screen, int offsetX, int offsetY, BooleanSupplier isShown) {
+    public PurseWidget(AbstractContainerScreen<?> screen, Placement placement, BooleanSupplier isShown) {
 
         super(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT, Component.translatable("gui.numismatic_coins.purse_title"));
         this.screen = (AbstractContainerScreenAccessor) screen;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
+        this.placement = placement;
         this.isShown = isShown;
         followScreen();
     }
@@ -93,9 +89,9 @@ public class PurseWidget extends AbstractWidget {
 
         NumismaticCoinsClient.clientXplat().onScreenInit((screen, addWidget) -> {
             shownWidget = switch (screen) {
-                case CreativeModeInventoryScreen creative -> new PurseWidget(creative, CREATIVE_X, CREATIVE_Y, creative::isInventoryOpen);
-                case InventoryScreen inventory -> new PurseWidget(inventory, INVENTORY_X, INVENTORY_Y, () -> true);
-                case MerchantScreen merchant -> new PurseWidget(merchant, MERCHANT_X, MERCHANT_Y, () -> true);
+                case CreativeModeInventoryScreen creative -> new PurseWidget(creative, Placement.CREATIVE, creative::isInventoryOpen);
+                case InventoryScreen inventory -> new PurseWidget(inventory, Placement.INVENTORY, () -> true);
+                case MerchantScreen merchant -> new PurseWidget(merchant, Placement.MERCHANT, () -> true);
                 default -> null;
             };
             if (shownWidget != null) addWidget.accept(shownWidget);
@@ -226,8 +222,10 @@ public class PurseWidget extends AbstractWidget {
 
     private void followScreen() {
 
-        setX(this.screen.numismatic_coins$leftPos() + this.offsetX);
-        setY(this.screen.numismatic_coins$topPos() + this.offsetY);
+        // Read each frame, so moving the purse in the config screen shows at once.
+        NumismaticConfig.ClientOptions options = Configs.client();
+        setX(this.screen.numismatic_coins$leftPos() + this.placement.x(options));
+        setY(this.screen.numismatic_coins$topPos() + this.placement.y(options));
         this.visible = this.isShown.getAsBoolean();
         if (!this.visible) this.isOpen = false;
     }
@@ -268,5 +266,39 @@ public class PurseWidget extends AbstractWidget {
     protected void updateWidgetNarration(NarrationElementOutput output) {
 
         output.add(NarratedElementType.TITLE, getMessage());
+    }
+
+    /**
+     * Where the button sits on each screen, relative to its background, plus the player's offsets.
+     * (NO: NumismaticOverhaulClient.)
+     */
+    public enum Placement {
+        INVENTORY(160, 5), CREATIVE(38, 4), MERCHANT(260, 5);
+
+        private final int x, y;
+
+        Placement(int x, int y) {
+
+            this.x = x;
+            this.y = y;
+        }
+
+        int x(NumismaticConfig.ClientOptions options) {
+
+            return this.x + switch (this) {
+                case INVENTORY -> options.inventoryPurseX;
+                case CREATIVE -> options.creativePurseX;
+                case MERCHANT -> options.merchantPurseX;
+            };
+        }
+
+        int y(NumismaticConfig.ClientOptions options) {
+
+            return this.y + switch (this) {
+                case INVENTORY -> options.inventoryPurseY;
+                case CREATIVE -> options.creativePurseY;
+                case MERCHANT -> options.merchantPurseY;
+            };
+        }
     }
 }

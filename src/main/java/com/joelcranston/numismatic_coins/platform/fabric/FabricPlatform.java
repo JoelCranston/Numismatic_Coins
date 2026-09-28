@@ -2,6 +2,7 @@ package com.joelcranston.numismatic_coins.platform.fabric;
 
 //? fabric {
 
+import java.nio.file.Path;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -12,7 +13,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -75,6 +78,37 @@ public class FabricPlatform implements Platform {
 
         PayloadTypeRegistry.serverboundPlay().register(type, codec);
         ServerPlayNetworking.registerGlobalReceiver(type, (payload, context) -> handler.accept(payload, context.player()));
+    }
+
+    @Override
+    public <T extends CustomPacketPayload> void registerClientboundPayload(CustomPacketPayload.Type<T> type,
+            StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
+
+        PayloadTypeRegistry.clientboundPlay().register(type, codec);
+    }
+
+    @Override
+    public void sendToPlayer(ServerPlayer player, CustomPacketPayload payload) {
+
+        ServerPlayNetworking.send(player, payload);
+    }
+
+    @Override
+    public void onPlayerJoin(Consumer<ServerPlayer> listener) {
+
+        ServerPlayConnectionEvents.JOIN.register((packetListener, sender, server) -> listener.accept(packetListener.player));
+    }
+
+    @Override
+    public void registerFeatureCondition() {
+
+        ResourceConditions.register(FabricFeatureCondition.TYPE);
+    }
+
+    @Override
+    public Path configDir() {
+
+        return FabricLoader.getInstance().getConfigDir();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.joelcranston.numismatic_coins.platform;
 
+import java.nio.file.Path;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -38,6 +39,23 @@ public interface Platform {
     /** Registers a client-to-server payload whose handler runs on the server thread. */
     <T extends CustomPacketPayload> void registerServerboundPayload(CustomPacketPayload.Type<T> type,
             StreamCodec<? super RegistryFriendlyByteBuf, T> codec, BiConsumer<T, ServerPlayer> handler);
+
+    /** Registers a server-to-client payload; the client side gives its handler through {@link ClientPlatform}. */
+    <T extends CustomPacketPayload> void registerClientboundPayload(CustomPacketPayload.Type<T> type,
+            StreamCodec<? super RegistryFriendlyByteBuf, T> codec);
+
+    void sendToPlayer(ServerPlayer player, CustomPacketPayload payload);
+
+    /** Calls {@code listener} on the server thread when a player has joined and can be sent payloads. */
+    void onPlayerJoin(Consumer<ServerPlayer> listener);
+
+    /**
+     * Registers the {@code numismatic_coins:feature_enabled} load condition, which keeps a recipe
+     * or other data file only while the named feature is on.
+     */
+    void registerFeatureCondition();
+
+    Path configDir();
 
     /** Adds commands each time the server builds its command tree. */
     void registerCommands(Consumer<CommandDispatcher<CommandSourceStack>> registrar);

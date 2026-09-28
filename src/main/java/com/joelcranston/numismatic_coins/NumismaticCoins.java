@@ -1,6 +1,7 @@
 package com.joelcranston.numismatic_coins;
 
 import com.joelcranston.numismatic_coins.command.ModCommands;
+import com.joelcranston.numismatic_coins.config.Configs;
 import com.joelcranston.numismatic_coins.network.ModNetworking;
 import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
@@ -28,11 +29,13 @@ public class NumismaticCoins {
     public static void onInitialize() {
 
         LOGGER.info("Initializing {} {} on {}", MOD_FRIENDLY_NAME, MOD_VERSION, xplat().loader());
+        Configs.load();
         // In dependency order: Fabric registers each entry as its class loads.
         ModDataComponents.register();
         ModItems.register();
         ModCreativeTabs.register();
         xplat().purseStorage();
+        xplat().registerFeatureCondition();
         ModNetworking.register();
         ModCommands.register();
     }
