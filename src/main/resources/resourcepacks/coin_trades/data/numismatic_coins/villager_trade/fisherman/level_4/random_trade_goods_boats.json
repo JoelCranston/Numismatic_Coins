@@ -1,0 +1,18 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 4
+  },
+  "gives": {
+    "id": "minecraft:oak_boat"
+  },
+  "max_uses": 3,
+  "xp": 5,
+  "reputation_discount": 0.05,
+  "given_item_modifiers": [
+    {
+      "function": "numismatic_coins:set_random_item",
+      "options": "#numismatic_coins:trade_goods/boats"
+    }
+  ]
+}

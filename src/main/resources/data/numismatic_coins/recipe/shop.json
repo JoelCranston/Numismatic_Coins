@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "numismatic_coins:feature_enabled",
+      "feature": "shops"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "numismatic_coins:feature_enabled",
+      "feature": "shops"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#_#",
+    "OOO"
+  ],
+  "key": {
+    "#": "numismatic_coins:bronze_coin",
+    "_": "minecraft:smooth_stone_slab",
+    "O": "#minecraft:planks"
+  },
+  "result": {
+    "id": "numismatic_coins:shop"
+  }
+}

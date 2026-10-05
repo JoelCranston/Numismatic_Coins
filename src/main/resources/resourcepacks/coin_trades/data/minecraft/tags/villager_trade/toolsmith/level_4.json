@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:toolsmith/level_4/emerald",
+    "numismatic_coins:toolsmith/level_4/enchanted_diamond_shovel_level_20",
+    "numismatic_coins:toolsmith/level_4/enchanted_diamond_axe_level_24"
+  ]
+}

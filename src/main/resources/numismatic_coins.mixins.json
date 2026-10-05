@@ -7,7 +7,13 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "BundleContentsMixin"
+    "BundleContentsMixin",
+    "LivingEntityMixin",
+    "MerchantMenuMixin",
+    "PlayerMixin",
+    "VillagerTradeMixin"
   ],
-  "client": []
+  "client": [
+    "client.AbstractContainerScreenAccessor"
+  ]
 }

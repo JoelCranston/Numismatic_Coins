@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cleric/level_3/rabbit_foot",
+    "numismatic_coins:cleric/level_3/glowstone_dust",
+    "numismatic_coins:cleric/level_3/glowstone_dust_in_the_nether"
+  ]
+}

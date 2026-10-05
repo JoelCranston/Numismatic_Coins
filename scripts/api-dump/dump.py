@@ -65,6 +65,44 @@ MC_DECOMPILE = [
 	r"net/minecraft/client/gui/layouts/(HeaderAndFooterLayout|LinearLayout|GridLayout)",
 	r"net/minecraft/client/gui/screens/options/OptionsSubScreen",
 	r"net/minecraft/client/OptionInstance",
+	# M3: the loot functions coin trades use, and how enchanting sets a trade's extra cost.
+	r"net/minecraft/world/level/storage/loot/functions/(LootItemFunctions|LootItemFunctionType|LootItemConditionalFunction|EnchantRandomlyFunction|EnchantWithLevelsFunction|SetStewEffectFunction|ExplorationMapFunction|SetRandomPotionFunction|SetRandomDyesFunction|FilteredFunction)",
+	r"net/minecraft/world/item/enchantment/EnchantmentHelper",
+	r"net/minecraft/world/level/storage/loot/predicates/LocationCheck",
+	r"net/minecraft/advancements/criterion/LocationPredicate",
+	r"net/minecraft/client/gui/screens/inventory/MerchantScreen",
+	# M4: where mobs and players drop loot on death, and how loot tables and pools are built.
+	r"net/minecraft/world/entity/LivingEntity",
+	r"net/minecraft/world/entity/player/Player",
+	r"net/minecraft/world/level/storage/loot/entries/(LootPoolEntries|LootPoolSingletonContainer|NestedLootTable|LootItem)",
+	r"net/minecraft/world/level/storage/loot/(LootTable|LootPool|BuiltInLootTables)",
+	r"net/minecraft/world/level/storage/loot/parameters/LootContextParamSets",
+	# Blocks with containers, their menus and screens, and dye recipes.
+	r"net/minecraft/world/level/block/(BaseEntityBlock|HorizontalDirectionalBlock|ShulkerBoxBlock|DecoratedPotBlock|BarrelBlock|FallingBlock|AnvilBlock|EntityBlock)",
+	r"net/minecraft/world/level/block/state/BlockBehaviour",
+	r"net/minecraft/world/level/block/entity/(BlockEntity|BaseContainerBlockEntity|RandomizableContainerBlockEntity|ShulkerBoxBlockEntity|BarrelBlockEntity|BlockEntityType)",
+	r"net/minecraft/world/(Container|SimpleContainer|ContainerHelper|Containers|RandomizableContainer|MenuProvider|SimpleMenuProvider)",
+	r"net/minecraft/world/inventory/(AbstractContainerMenu|ShulkerBoxMenu|ChestMenu|MenuType|ContainerLevelAccess|Slot)",
+	r"net/minecraft/world/item/crafting/(CustomRecipe|ShulkerBoxColoring|RecipeSerializer|CraftingRecipe|CraftingInput|DyeRecipe|TransmuteRecipe)",
+	r"net/minecraft/world/item/(BlockItem|DyeItem|DyeColor)",
+	r"net/minecraft/world/item/component/ItemContainerContents",
+	r"net/minecraft/world/entity/item/FallingBlockEntity",
+	r"net/minecraft/world/level/storage/(ValueInput|ValueOutput)",
+	r"net/minecraft/world/level/storage/loot/(LootParams|LootParams\$Builder)",
+	r"net/minecraft/client/gui/screens/inventory/(ShulkerBoxScreen|ContainerScreen)",
+	r"net/minecraft/client/gui/screens/MenuScreens",
+	# Shops: block entity renderers, merchants, client sync and scrolling lists.
+	r"net/minecraft/client/renderer/blockentity/(BlockEntityRenderer|BlockEntityRenderers|BlockEntityRendererProvider|CampfireRenderer|ShelfRenderer|LecternRenderer)",
+	r"net/minecraft/client/renderer/blockentity/state/(BlockEntityRenderState|CampfireRenderState|ShelfRenderState)",
+	r"net/minecraft/client/renderer/item/(ItemModelResolver|ItemStackRenderState)",
+	r"net/minecraft/client/renderer/(SubmitNodeCollector|SubmitNodeCollection|LevelRenderer)",
+	r"net/minecraft/client/renderer/state/CameraRenderState",
+	r"net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket",
+	r"net/minecraft/world/(WorldlyContainer|WorldlyContainerHolder)",
+	r"net/minecraft/world/item/trading/Merchant",
+	r"net/minecraft/world/entity/npc/ClientSideMerchant",
+	r"net/minecraft/client/gui/components/(EditBox|AbstractScrollArea|AbstractContainerWidget|ItemDisplayWidget)",
+	r"net/minecraft/world/level/block/entity/(ShelfBlockEntity|LecternBlockEntity)",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
@@ -80,6 +118,18 @@ MC_SIGS = [
 	r"net/minecraft/world/inventory/(MenuType|AbstractContainerMenu)",
 	r"net/minecraft/client/gui/screens/inventory/AbstractContainerScreen",
 	r"net/minecraft/client/gui/screens/MenuScreens",
+	# Shops: block entity renderers, merchants, client sync and scrolling lists.
+	r"net/minecraft/client/renderer/blockentity/(BlockEntityRenderer|BlockEntityRenderers|BlockEntityRendererProvider|CampfireRenderer|ShelfRenderer|LecternRenderer)",
+	r"net/minecraft/client/renderer/blockentity/state/(BlockEntityRenderState|CampfireRenderState|ShelfRenderState)",
+	r"net/minecraft/client/renderer/item/(ItemModelResolver|ItemStackRenderState)",
+	r"net/minecraft/client/renderer/(SubmitNodeCollector|SubmitNodeCollection|LevelRenderer)",
+	r"net/minecraft/client/renderer/state/CameraRenderState",
+	r"net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket",
+	r"net/minecraft/world/(WorldlyContainer|WorldlyContainerHolder)",
+	r"net/minecraft/world/item/trading/Merchant",
+	r"net/minecraft/world/entity/npc/ClientSideMerchant",
+	r"net/minecraft/client/gui/components/(EditBox|AbstractScrollArea|AbstractContainerWidget|ItemDisplayWidget)",
+	r"net/minecraft/world/level/block/entity/(ShelfBlockEntity|LecternBlockEntity)",
 	r"net/minecraft/world/level/block/entity/BlockEntityType",
 	r"net/minecraft/network/protocol/common/custom/CustomPacketPayload",
 	r"net/minecraft/commands/(Commands|CommandSourceStack)",
@@ -100,6 +150,11 @@ MC_SIGS = [
 	r"net/minecraft/commands/arguments/EntityArgument",
 	r"net/minecraft/world/inventory/tooltip/(TooltipComponent|BundleTooltip)",
 	r"net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent",
+	# M3: enchantment weights and tags for the enchanted trades' prices.
+	r"net/minecraft/world/item/enchantment/(Enchantment|ItemEnchantments|Enchantment\$EnchantmentDefinition)",
+	r"net/minecraft/tags/(EnchantmentTags|ItemTags|StructureTags)",
+	r"net/minecraft/core/(HolderSet|RegistryCodecs)",
+	r"net/minecraft/world/level/storage/loot/(LootContext|LootContextUser|ValidationContext)",
 ]
 
 # Packages whose added/removed classes between the two MC versions are worth seeing.
@@ -129,6 +184,11 @@ FABRIC_DECOMPILE = [
 	r"net/fabricmc/fabric/api/resource/v1/.*",
 	r"net/fabricmc/fabric/api/client/rendering/v1/hud/.*",
 	r"net/fabricmc/fabric/api/creativetab/.*",
+	r"net/fabricmc/fabric/api/loot/v3/.*",
+	r"net/fabricmc/fabric/api/resource/v1/reloader/.*",
+	r"net/fabricmc/fabric/api/menu/.*",
+	r"net/fabricmc/fabric/api/object/builder/v1/block/entity/.*",
+	r"net/fabricmc/fabric/api/client/rendering/v1/BlockEntityRendererRegistry",
 ]
 
 NEOFORGE_SIG_PACKAGES = [
@@ -146,6 +206,7 @@ NEOFORGE_SIG_PACKAGES = [
 	"net/neoforged/neoforge/event/entity/player/PlayerInteractEvent",
 	"net/neoforged/neoforge/client/event/RegisterClientTooltipComponentFactoriesEvent",
 	"net/neoforged/neoforge/event/SortedReloadListenerEvent", "net/neoforged/neoforge/common/NeoForgeRegistries",
+	"net/neoforged/neoforge/event/LootTableLoadEvent", "net/neoforged/neoforge/event/entity/living/LivingDeathEvent",
 ]
 NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/attachment/(AttachmentType|IAttachmentHolder|AttachmentHolder|IAttachmentCopyHandler|AttachmentSync|IAttachmentSyncHandler)",
@@ -153,6 +214,10 @@ NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/event/village/.*",
 	r"net/neoforged/neoforge/client/gui/(VanillaGuiLayers|IConfigScreenFactory)",
 	r".*GameRule.*",
+	r"net/neoforged/neoforge/client/event/RegisterMenuScreensEvent",
+	r"net/neoforged/neoforge/client/event/EntityRenderersEvent.*",
+	r"net/neoforged/neoforge/common/extensions/(IMenuTypeExtension|IBlockExtension)",
+	r"net/neoforged/neoforge/event/LootTableLoadEvent",
 ]
 
 
@@ -268,8 +333,7 @@ def fabric_api_jars(api_version):
 	base = GRADLE / "modules-2" / "files-2.1" / "net.fabricmc.fabric-api"
 	poms = list((base / "fabric-api" / api_version).rglob("*.pom"))
 	if not poms:
-		log(f"!! no pom for fabric-api {api_version}")
-		return []
+		return fabric_api_nested_jars(base, api_version)
 	pom = poms[0].read_text()
 	jars = []
 	for artifact, version in re.findall(r"<artifactId>([^<]+)</artifactId>\s*<version>([^<]+)</version>", pom):
@@ -278,6 +342,25 @@ def fabric_api_jars(api_version):
 			jars.append(found[0])
 		else:
 			log(f"!! {artifact} {version} not in the cache")
+	return jars
+
+
+def fabric_api_nested_jars(base, api_version):
+	"""The module jars bundled inside the fabric-api jar, for a Gradle cache restored without poms."""
+	bundles = [p for p in (base / "fabric-api" / api_version).rglob("*.jar") if not p.name.endswith("-sources.jar")]
+	if not bundles:
+		log(f"!! no fabric-api {api_version} in the cache")
+		return []
+	out = WORK / f"fabric-api-{api_version}"
+	out.mkdir(parents=True, exist_ok=True)
+	jars = []
+	with zipfile.ZipFile(bundles[0]) as bundle:
+		for name in bundle.namelist():
+			if name.startswith("META-INF/jars/") and name.endswith(".jar"):
+				target = out / Path(name).name
+				target.write_bytes(bundle.read(name))
+				jars.append(target)
+	log(f"fabric-api {api_version}: {len(jars)} nested module jars")
 	return jars
 
 

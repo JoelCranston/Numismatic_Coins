@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.85
+        }
+      ],
+      "entries": [
+        {
+          "type": "numismatic_coins:money_bag",
+          "min": 2000,
+          "max": 6000
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.01
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "numismatic_coins:gold_coin"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "numismatic_coins:chests/stronghold_library"
+}

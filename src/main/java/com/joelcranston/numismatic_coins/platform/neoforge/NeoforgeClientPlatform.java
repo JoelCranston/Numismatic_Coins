@@ -1,0 +1,95 @@
+package com.joelcranston.numismatic_coins.platform.neoforge;
+
+//? neoforge {
+
+/*import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import com.joelcranston.numismatic_coins.platform.ClientPlatform;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import org.jspecify.annotations.Nullable;
+
+public class NeoforgeClientPlatform implements ClientPlatform {
+
+    private final List<Consumer<RegisterClientPayloadHandlersEvent>> payloadHandlers = new ArrayList<>();
+
+    public NeoforgeClientPlatform() {
+
+        NeoforgePlatform.modEventBus.addListener((RegisterClientPayloadHandlersEvent event) -> this.payloadHandlers.forEach(handler -> handler.accept(event)));
+    }
+
+    @Override
+    public void setScreen(@Nullable Screen screen) {
+
+        Minecraft.getInstance().setScreen(screen);
+    }
+
+    @Override
+    public void sendToServer(CustomPacketPayload payload) {
+
+        ClientPacketDistributor.sendToServer(payload);
+    }
+
+    @Override
+    public <T extends CustomPacketPayload> void registerClientboundHandler(CustomPacketPayload.Type<T> type, Consumer<T> handler) {
+
+        this.payloadHandlers.add(event -> event.register(type, (payload, context) -> handler.accept(payload)));
+    }
+
+    @Override
+    public void onScreenInit(BiConsumer<Screen, Consumer<AbstractWidget>> listener) {
+
+        NeoForge.EVENT_BUS.addListener((ScreenEvent.Init.Post event) -> listener.accept(event.getScreen(), event::addListener));
+    }
+
+    @Override
+    public void onScreenExtracted(ScreenExtractListener listener) {
+
+        NeoForge.EVENT_BUS.addListener((ScreenEvent.Render.Post event) ->
+                listener.afterExtract(event.getScreen(), event.getGuiGraphics(), event.getMouseX(), event.getMouseY()));
+    }
+
+    @Override
+    public <M extends AbstractContainerMenu, U extends Screen & MenuAccess<M>> void registerMenuScreen(
+            Supplier<? extends MenuType<? extends M>> menuType, MenuScreenFactory<M, U> factory) {
+
+        NeoforgePlatform.modEventBus.addListener((RegisterMenuScreensEvent event) -> event.register(menuType.get(), factory::create));
+    }
+
+    @Override
+    public <T extends BlockEntity, S extends BlockEntityRenderState> void registerBlockEntityRenderer(
+            Supplier<? extends BlockEntityType<T>> type, BlockEntityRendererProvider<T, S> provider) {
+
+        NeoforgePlatform.modEventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> event.registerBlockEntityRenderer(type.get(), provider));
+    }
+
+    @Override
+    public <T extends TooltipComponent> void registerTooltipComponent(Class<T> type, Function<? super T, ? extends ClientTooltipComponent> factory) {
+
+        NeoforgePlatform.modEventBus.addListener((RegisterClientTooltipComponentFactoriesEvent event) -> event.register(type, factory));
+    }
+}
+*///?}

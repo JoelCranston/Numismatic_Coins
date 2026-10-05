@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 4
+  },
+  "gives": {
+    "id": "minecraft:sea_pickle"
+  },
+  "max_uses": 5,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

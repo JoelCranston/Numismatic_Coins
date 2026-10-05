@@ -1,9 +1,20 @@
 package com.joelcranston.numismatic_coins;
 
+import com.joelcranston.numismatic_coins.command.ModCommands;
+import com.joelcranston.numismatic_coins.config.Configs;
+import com.joelcranston.numismatic_coins.drops.ChestLoot;
+import com.joelcranston.numismatic_coins.drops.ModGameRules;
+import com.joelcranston.numismatic_coins.drops.ModLootEntries;
+import com.joelcranston.numismatic_coins.network.ModNetworking;
 import com.joelcranston.numismatic_coins.platform.Platform;
+import com.joelcranston.numismatic_coins.registry.ModBlockEntities;
+import com.joelcranston.numismatic_coins.registry.ModBlocks;
 import com.joelcranston.numismatic_coins.registry.ModCreativeTabs;
 import com.joelcranston.numismatic_coins.registry.ModDataComponents;
 import com.joelcranston.numismatic_coins.registry.ModItems;
+import com.joelcranston.numismatic_coins.registry.ModMenus;
+import com.joelcranston.numismatic_coins.registry.ModSounds;
+import com.joelcranston.numismatic_coins.trade.CoinTrades;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,15 +37,23 @@ public class NumismaticCoins {
     public static void onInitialize() {
 
         LOGGER.info("Initializing {} {} on {}", MOD_FRIENDLY_NAME, MOD_VERSION, xplat().loader());
+        Configs.load();
         // In dependency order: Fabric registers each entry as its class loads.
         ModDataComponents.register();
         ModItems.register();
+        ModBlocks.register();
+        ModBlockEntities.register();
+        ModMenus.register();
+        ModSounds.register();
         ModCreativeTabs.register();
-    }
-
-    public static void onInitializeClient() {
-
-        LOGGER.info("Initializing {} client on {}", MOD_FRIENDLY_NAME, xplat().loader());
+        xplat().purseStorage();
+        xplat().registerFeatureCondition();
+        ModNetworking.register();
+        ModCommands.register();
+        CoinTrades.register();
+        ModGameRules.register();
+        ModLootEntries.register();
+        ChestLoot.register();
     }
 
     public static Platform xplat() {

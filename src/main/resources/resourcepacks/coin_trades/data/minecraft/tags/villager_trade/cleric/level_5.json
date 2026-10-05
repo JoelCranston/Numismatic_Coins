@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cleric/level_5/nether_wart",
+    "numismatic_coins:cleric/level_5/experience_bottle"
+  ]
+}

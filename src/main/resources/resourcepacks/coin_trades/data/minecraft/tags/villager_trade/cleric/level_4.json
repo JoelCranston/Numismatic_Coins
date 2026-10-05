@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cleric/level_4/turtle_scute",
+    "numismatic_coins:cleric/level_4/glass_bottle",
+    "numismatic_coins:cleric/level_4/ender_pearl"
+  ]
+}

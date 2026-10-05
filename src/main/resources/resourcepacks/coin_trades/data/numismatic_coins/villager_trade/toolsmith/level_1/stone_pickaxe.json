@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 2
+  },
+  "gives": {
+    "id": "minecraft:stone_pickaxe"
+  },
+  "max_uses": 3,
+  "xp": 8,
+  "reputation_discount": 0.05
+}

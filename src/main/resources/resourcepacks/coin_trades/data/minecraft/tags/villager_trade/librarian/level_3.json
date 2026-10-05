@@ -1,0 +1,10 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:librarian/level_3/ink_sac",
+    "numismatic_coins:librarian/level_3/glass",
+    "numismatic_coins:librarian/level_3/enchanted_book_level_25",
+    "numismatic_coins:librarian/level_3/enchanted_book_level_50",
+    "numismatic_coins:librarian/level_3/enchanted_book"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 3
+  },
+  "gives": {
+    "id": "minecraft:polished_andesite",
+    "count": 4
+  },
+  "max_uses": 12,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

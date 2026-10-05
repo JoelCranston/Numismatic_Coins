@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:butcher/level_4/dried_kelp_block",
+    "numismatic_coins:butcher/level_4/sweet_berries",
+    "numismatic_coins:butcher/level_4/mutton"
+  ]
+}

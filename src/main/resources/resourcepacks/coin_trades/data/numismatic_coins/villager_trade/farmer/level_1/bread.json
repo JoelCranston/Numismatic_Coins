@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "numismatic_coins:bronze_coin",
+    "count": 90
+  },
+  "gives": {
+    "id": "minecraft:bread",
+    "count": 5
+  },
+  "max_uses": 16,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

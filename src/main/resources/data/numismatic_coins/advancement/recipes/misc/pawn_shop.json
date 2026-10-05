@@ -1,0 +1,47 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "numismatic_coins:feature_enabled",
+      "feature": "pawnShops"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "numismatic_coins:feature_enabled",
+      "feature": "pawnShops"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_coin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "numismatic_coins:silver_coin",
+              "numismatic_coins:gold_coin"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "numismatic_coins:pawn_shop"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coin",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "numismatic_coins:pawn_shop"
+    ]
+  }
+}

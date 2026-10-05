@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:fletcher/level_2/arrow",
+    "numismatic_coins:fletcher/level_2/bow"
+  ]
+}

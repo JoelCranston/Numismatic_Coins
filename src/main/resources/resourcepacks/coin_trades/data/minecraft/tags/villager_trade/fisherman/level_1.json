@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:fisherman/level_1/string",
+    "numismatic_coins:fisherman/level_1/cod_bucket"
+  ]
+}

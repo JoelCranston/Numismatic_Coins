@@ -1,0 +1,22 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "numismatic_coins:feature_enabled",
+      "feature": "piggyBanks"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "numismatic_coins:feature_enabled",
+      "feature": "piggyBanks"
+    }
+  ],
+  "type": "minecraft:crafting_transmute",
+  "category": "misc",
+  "group": "piggy_bank_dye",
+  "input": "#numismatic_coins:piggy_banks",
+  "material": "minecraft:blue_dye",
+  "result": {
+    "id": "numismatic_coins:blue_piggy_bank"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "minecraft:stick",
+    "count": 40
+  },
+  "gives": {
+    "id": "numismatic_coins:bronze_coin",
+    "count": 40
+  },
+  "max_uses": 10,
+  "xp": 5,
+  "reputation_discount": 0.05
+}
