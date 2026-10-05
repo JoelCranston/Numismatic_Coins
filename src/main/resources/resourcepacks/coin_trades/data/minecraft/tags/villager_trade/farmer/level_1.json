@@ -1,0 +1,10 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:farmer/level_1/wheat",
+    "numismatic_coins:farmer/level_1/potato",
+    "numismatic_coins:farmer/level_1/carrot",
+    "numismatic_coins:farmer/level_1/beetroot",
+    "numismatic_coins:farmer/level_1/bread"
+  ]
+}

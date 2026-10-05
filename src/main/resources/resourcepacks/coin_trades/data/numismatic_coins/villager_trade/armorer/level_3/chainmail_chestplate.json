@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 15
+  },
+  "gives": {
+    "id": "minecraft:chainmail_chestplate"
+  },
+  "max_uses": 4,
+  "xp": 15,
+  "reputation_discount": 0.05
+}

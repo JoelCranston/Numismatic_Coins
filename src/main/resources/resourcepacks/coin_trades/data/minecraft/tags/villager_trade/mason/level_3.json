@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:mason/level_3/polished_andesite",
+    "numismatic_coins:mason/level_3/polished_diorite",
+    "numismatic_coins:mason/level_3/polished_granite",
+    "numismatic_coins:mason/level_3/dripstone_block"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:toolsmith/level_2/iron_ingot",
+    "numismatic_coins:toolsmith/level_2/bell"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 9
+  },
+  "gives": {
+    "id": "minecraft:writable_book"
+  },
+  "max_uses": 12,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

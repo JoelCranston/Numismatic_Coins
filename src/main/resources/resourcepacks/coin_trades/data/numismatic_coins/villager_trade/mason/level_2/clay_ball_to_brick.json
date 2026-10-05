@@ -1,0 +1,17 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 2
+  },
+  "gives": {
+    "id": "minecraft:brick",
+    "count": 12
+  },
+  "max_uses": 12,
+  "xp": 10,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:clay_ball",
+    "count": 16
+  }
+}

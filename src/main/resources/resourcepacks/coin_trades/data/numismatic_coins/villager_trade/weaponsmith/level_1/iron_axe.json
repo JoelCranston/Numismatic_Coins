@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 13
+  },
+  "gives": {
+    "id": "minecraft:iron_axe"
+  },
+  "max_uses": 8,
+  "xp": 10,
+  "reputation_discount": 0.05
+}

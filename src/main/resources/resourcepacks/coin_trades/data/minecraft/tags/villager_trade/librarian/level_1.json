@@ -1,0 +1,11 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:librarian/level_1/paper",
+    "numismatic_coins:librarian/level_1/bookshelf",
+    "numismatic_coins:librarian/level_1/bookshelf_2",
+    "numismatic_coins:librarian/level_1/enchanted_book_level_10",
+    "numismatic_coins:librarian/level_1/enchanted_book_level_25",
+    "numismatic_coins:librarian/level_1/enchanted_book"
+  ]
+}

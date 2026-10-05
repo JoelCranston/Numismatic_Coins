@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:leatherworker/level_1/leather",
+    "numismatic_coins:leatherworker/level_1/dyed_leather_chestplate",
+    "numismatic_coins:leatherworker/level_1/dyed_leather_boots"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:gold_coin",
+    "count": 4
+  },
+  "gives": {
+    "id": "minecraft:totem_of_undying"
+  },
+  "max_uses": 1,
+  "xp": 30,
+  "reputation_discount": 0.05
+}

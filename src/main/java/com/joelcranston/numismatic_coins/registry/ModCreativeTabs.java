@@ -24,6 +24,11 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.SILVER_COIN.get());
                         output.accept(ModItems.GOLD_COIN.get());
                         output.accept(MoneyBagItem.withValue(EXAMPLE_BAG_VALUE));
+                        output.accept(ModBlocks.SHOP.get());
+                        output.accept(ModBlocks.PAWN_SHOP.get());
+                        output.accept(ModBlocks.INEXHAUSTIBLE_SHOP.get());
+                        output.accept(ModBlocks.INEXHAUSTIBLE_PAWN_SHOP.get());
+                        ModBlocks.piggyBanks().forEach(output::accept);
                     })
                     .build());
 

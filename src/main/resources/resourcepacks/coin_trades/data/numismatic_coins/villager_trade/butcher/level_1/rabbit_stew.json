@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 5
+  },
+  "gives": {
+    "id": "minecraft:rabbit_stew"
+  },
+  "max_uses": 3,
+  "xp": 10,
+  "reputation_discount": 0.05
+}

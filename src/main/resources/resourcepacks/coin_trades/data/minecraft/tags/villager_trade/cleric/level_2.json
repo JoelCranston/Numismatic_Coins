@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cleric/level_2/gold_ingot",
+    "numismatic_coins:cleric/level_2/lapis_lazuli"
+  ]
+}

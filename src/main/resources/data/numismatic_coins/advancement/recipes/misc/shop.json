@@ -1,0 +1,48 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "numismatic_coins:feature_enabled",
+      "feature": "shops"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "numismatic_coins:feature_enabled",
+      "feature": "shops"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_coin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "numismatic_coins:bronze_coin",
+              "numismatic_coins:silver_coin",
+              "numismatic_coins:gold_coin"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "numismatic_coins:shop"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coin",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "numismatic_coins:shop"
+    ]
+  }
+}

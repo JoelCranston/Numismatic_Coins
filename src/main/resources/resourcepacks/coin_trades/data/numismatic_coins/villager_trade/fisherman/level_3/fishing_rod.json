@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 8
+  },
+  "gives": {
+    "id": "minecraft:fishing_rod"
+  },
+  "max_uses": 5,
+  "xp": 10,
+  "reputation_discount": 0.05
+}

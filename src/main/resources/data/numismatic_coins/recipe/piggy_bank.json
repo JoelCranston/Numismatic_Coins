@@ -1,0 +1,27 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "numismatic_coins:feature_enabled",
+      "feature": "piggyBanks"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "numismatic_coins:feature_enabled",
+      "feature": "piggyBanks"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#",
+    "F"
+  ],
+  "key": {
+    "#": "numismatic_coins:bronze_coin",
+    "F": "minecraft:flower_pot"
+  },
+  "result": {
+    "id": "numismatic_coins:piggy_bank"
+  }
+}

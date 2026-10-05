@@ -73,6 +73,27 @@ public final class CoinMath {
         return stacks;
     }
 
+    /**
+     * The single kind of coin a price is charged in: the largest coin in the value, with the next
+     * coin down rounded into it and anything smaller dropped, so 12,345 is 1 gold and 2,350 is 24
+     * silver, and 9,950 is 1 gold. The count is not capped at a stack. Zero is 0 bronze. (NO: CurrencyHelper#getClosest.)
+     */
+    public static CoinStack closestCoin(long rawValue) {
+
+        long[] coins = split(rawValue);
+        for (int denomination = 0; denomination < coins.length - 1; denomination++) {
+            if (coins[denomination + 1] == 0) break;
+            coins[denomination + 1] += Math.round(coins[denomination] / (float) Currency.EXCHANGE_RATE);
+            coins[denomination] = 0;
+        }
+        // Rounding up can make a hundred of one coin, which is one of the next.
+        coins = split(combine(coins));
+        for (int denomination = coins.length - 1; denomination > 0; denomination--) {
+            if (coins[denomination] > 0) return new CoinStack(Currency.values()[denomination], (int) coins[denomination]);
+        }
+        return new CoinStack(Currency.BRONZE, (int) coins[0]);
+    }
+
     /** One stack's worth of a single coin kind. */
     public record CoinStack(Currency currency, int count) {
 

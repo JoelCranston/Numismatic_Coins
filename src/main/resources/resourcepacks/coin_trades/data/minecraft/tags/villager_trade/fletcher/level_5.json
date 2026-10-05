@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:fletcher/level_5/tripwire_hook",
+    "numismatic_coins:fletcher/level_5/enchanted_crossbow_level_20",
+    "numismatic_coins:fletcher/level_5/random_tipped_arrow",
+    "numismatic_coins:fletcher/level_5/random_tipped_arrow_2"
+  ]
+}

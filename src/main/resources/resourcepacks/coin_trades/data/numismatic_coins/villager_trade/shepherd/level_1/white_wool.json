@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "minecraft:white_wool",
+    "count": 18
+  },
+  "gives": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 2
+  },
+  "max_uses": 16,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 13
+  },
+  "gives": {
+    "id": "minecraft:chainmail_leggings"
+  },
+  "max_uses": 8,
+  "xp": 15,
+  "reputation_discount": 0.05
+}

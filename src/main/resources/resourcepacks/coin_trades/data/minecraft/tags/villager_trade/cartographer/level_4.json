@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cartographer/level_4/item_frame",
+    "numismatic_coins:cartographer/level_4/glow_item_frame",
+    "numismatic_coins:cartographer/level_4/random_trade_goods_banners"
+  ]
+}
