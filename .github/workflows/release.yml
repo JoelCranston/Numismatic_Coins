@@ -49,7 +49,28 @@ jobs:
           REPO_URL="https://github.com/${{ github.repository }}"
           sed -i "s|%%%repo_url%%%|${REPO_URL}|g" cliff.toml
 
+      # A hand-written section for this version wins; CHANGELOG.md is then cut down to it,
+      # as the publish tasks send the whole file as the release notes.
+      - name: Use the hand-written changelog section
+        id: changelog
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v heading="## [${VERSION}]" '
+            index($0, heading) == 1 { found = 1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          if grep -q '[^[:space:]]' release-notes.md; then
+            mv release-notes.md CHANGELOG.md
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            echo "✓ Using the CHANGELOG.md section for ${VERSION}."
+          else
+            rm release-notes.md
+            echo "No CHANGELOG.md section for ${VERSION}; generating one with git-cliff."
+          fi
+
       - name: Generate changelog with git-cliff
+        if: steps.changelog.outputs.found != 'true'
         uses: orhun/git-cliff-action@v4
         with:
           args: --latest --strip header --output CHANGELOG.md
