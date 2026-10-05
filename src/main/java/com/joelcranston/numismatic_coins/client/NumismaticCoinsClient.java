@@ -2,6 +2,7 @@ package com.joelcranston.numismatic_coins.client;
 
 import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.config.Configs;
+import com.joelcranston.numismatic_coins.item.CoinTooltip;
 import com.joelcranston.numismatic_coins.network.PurseChanged;
 import com.joelcranston.numismatic_coins.network.ShopScreenState;
 import com.joelcranston.numismatic_coins.network.SyncServerConfig;
@@ -31,6 +32,7 @@ public final class NumismaticCoinsClient {
         clientXplat().registerMenuScreen(ModMenus.PAWN_SHOP, ShopScreen::pawnShop);
         clientXplat().registerBlockEntityRenderer(ModBlockEntities.SHOP, ShopBlockEntityRenderer::new);
         clientXplat().registerBlockEntityRenderer(ModBlockEntities.PAWN_SHOP, ShopBlockEntityRenderer::new);
+        clientXplat().registerTooltipComponent(CoinTooltip.class, ClientCoinTooltip::new);
     }
 
     public static ClientPlatform clientXplat() {

@@ -11,6 +11,7 @@ import com.joelcranston.numismatic_coins.config.NumismaticConfig;
 import com.joelcranston.numismatic_coins.currency.CoinMath;
 import com.joelcranston.numismatic_coins.currency.Currency;
 import com.joelcranston.numismatic_coins.item.CoinText;
+import com.joelcranston.numismatic_coins.item.CoinTooltip;
 import com.joelcranston.numismatic_coins.mixin.client.AbstractContainerScreenAccessor;
 import com.joelcranston.numismatic_coins.network.RequestPurseAction;
 import com.joelcranston.numismatic_coins.purse.Purses;
@@ -28,6 +29,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -118,10 +120,12 @@ public class PurseWidget extends AbstractWidget {
         graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, getX(), getY(), BUTTON_U, BUTTON_V + (isButtonHovered ? BUTTON_HEIGHT : 0),
                 BUTTON_WIDTH, BUTTON_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         if (isButtonHovered) {
-            List<Component> tooltip = List.of(
-                    getMessage().copy().withStyle(CoinText.style(Currency.GOLD)),
-                    CoinText.coinCounts(CoinMath.split(balance)));
-            graphics.setTooltipForNextFrame(Minecraft.getInstance().font, tooltip, Optional.empty(), mouseX, mouseY);
+            // The coins are drawn as an image under the title; an empty purse says so in text.
+            long[] coinCounts = CoinMath.split(balance);
+            Component title = getMessage().copy().withStyle(CoinText.style(Currency.GOLD));
+            List<Component> tooltip = CoinTooltip.hasCoins(coinCounts) ? List.of(title) : List.of(title, CoinText.coinCounts(coinCounts));
+            Optional<TooltipComponent> image = CoinTooltip.hasCoins(coinCounts) ? Optional.of(new CoinTooltip(coinCounts)) : Optional.empty();
+            graphics.setTooltipForNextFrame(Minecraft.getInstance().font, tooltip, image, mouseX, mouseY);
         }
     }
 
