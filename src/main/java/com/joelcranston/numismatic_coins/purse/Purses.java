@@ -55,6 +55,18 @@ public final class Purses {
         return taken;
     }
 
+    /**
+     * Takes {@code rawValue} out of the purse as a payment, with no coins handed over, and shows the
+     * player how much. Takes nothing and returns false when the balance is short.
+     */
+    public static boolean spend(Player player, long rawValue) {
+
+        if (rawValue <= 0 || balance(player) < rawValue) return false;
+        setBalance(player, balance(player) - rawValue);
+        showChange(player, rawValue, false);
+        return true;
+    }
+
     /** Moves every coin and money bag in the player's inventory into the purse. Returns the amount stored. */
     public static long storeAll(Player player) {
 

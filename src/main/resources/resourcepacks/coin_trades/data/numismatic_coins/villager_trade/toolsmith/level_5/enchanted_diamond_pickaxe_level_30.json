@@ -1,0 +1,40 @@
+{
+  "wants": {
+    "id": "numismatic_coins:bronze_coin"
+  },
+  "gives": {
+    "id": "minecraft:diamond_pickaxe"
+  },
+  "max_uses": 3,
+  "xp": 20,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:diamond_pickaxe"
+  },
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:enchant_with_levels",
+      "levels": 30,
+      "options": "#minecraft:tradeable"
+    },
+    {
+      "function": "minecraft:filtered",
+      "item_filter": {
+        "items": "minecraft:diamond_pickaxe",
+        "predicates": {
+          "minecraft:enchantments": [
+            {}
+          ]
+        }
+      },
+      "on_fail": {
+        "function": "minecraft:discard"
+      }
+    },
+    {
+      "function": "numismatic_coins:enchantment_price",
+      "formula": "enchanted_item",
+      "base_price": 750
+    }
+  ]
+}

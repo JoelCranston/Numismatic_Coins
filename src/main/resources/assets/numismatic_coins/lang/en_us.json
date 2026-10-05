@@ -74,7 +74,7 @@
   "config.numismatic_coins.features.shops": "Shops",
   "config.numismatic_coins.features.pawnShops": "Pawn shops",
   "config.numismatic_coins.features.villagerTrades": "Villager coin trades",
-  "config.numismatic_coins.features.villagerTrades.tooltip": "Whether new worlds turn on the Coin trades datapack. Existing worlds use /datapack.",
+  "config.numismatic_coins.features.villagerTrades.tooltip": "Whether new worlds turn on the Coin trades data pack. Applies after the game restarts. Existing worlds use /datapack.",
   "config.numismatic_coins.features.chestLoot": "Money in loot chests",
   "config.numismatic_coins.features.mobDrops": "Mobs drop coins",
   "config.numismatic_coins.features.deathPenalty": "Drop money on death",
@@ -96,5 +96,7 @@
   "config.numismatic_coins.client.creativePurseX": "Purse X, creative",
   "config.numismatic_coins.client.creativePurseY": "Purse Y, creative",
   "config.numismatic_coins.client.merchantPurseX": "Purse X, villagers",
-  "config.numismatic_coins.client.merchantPurseY": "Purse Y, villagers"
+  "config.numismatic_coins.client.merchantPurseY": "Purse Y, villagers",
+  "dataPack.numismatic_coins.coin_trades.name": "Coin trades",
+  "dataPack.numismatic_coins.coin_trades.description": "Villagers and wandering traders trade in coins instead of emeralds"
 }

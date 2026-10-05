@@ -1,0 +1,10 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:butcher/level_2/coal",
+    "numismatic_coins:butcher/level_2/mutton",
+    "numismatic_coins:butcher/level_2/cooked_rabbit",
+    "numismatic_coins:butcher/level_2/cooked_chicken",
+    "numismatic_coins:butcher/level_2/cooked_porkchop"
+  ]
+}

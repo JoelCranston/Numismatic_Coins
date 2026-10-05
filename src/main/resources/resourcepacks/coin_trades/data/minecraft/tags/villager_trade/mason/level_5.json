@@ -1,0 +1,7 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:mason/level_5/quartz_block",
+    "numismatic_coins:mason/level_5/quartz_pillar"
+  ]
+}

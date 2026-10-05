@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:shepherd/level_1/white_wool",
+    "numismatic_coins:shepherd/level_1/brown_wool",
+    "numismatic_coins:shepherd/level_1/black_wool",
+    "numismatic_coins:shepherd/level_1/shears"
+  ]
+}

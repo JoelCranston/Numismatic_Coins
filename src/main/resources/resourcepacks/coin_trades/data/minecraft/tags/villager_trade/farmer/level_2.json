@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:farmer/level_2/pumpkin",
+    "numismatic_coins:farmer/level_2/pumpkin_pie",
+    "numismatic_coins:farmer/level_2/apple"
+  ]
+}

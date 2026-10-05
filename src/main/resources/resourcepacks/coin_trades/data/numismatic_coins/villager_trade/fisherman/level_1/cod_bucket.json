@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 7
+  },
+  "gives": {
+    "id": "minecraft:cod_bucket"
+  },
+  "max_uses": 5,
+  "xp": 8,
+  "reputation_discount": 0.05
+}

@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:toolsmith/level_3/diamond_hoe",
+    "numismatic_coins:toolsmith/level_3/enchanted_iron_axe_level_15",
+    "numismatic_coins:toolsmith/level_3/enchanted_iron_pickaxe_level_15",
+    "numismatic_coins:toolsmith/level_3/enchanted_iron_shovel_level_15"
+  ]
+}

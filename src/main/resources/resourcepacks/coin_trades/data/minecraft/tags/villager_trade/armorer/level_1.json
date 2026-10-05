@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:armorer/level_1/iron_helmet",
+    "numismatic_coins:armorer/level_1/iron_chestplate",
+    "numismatic_coins:armorer/level_1/iron_leggings",
+    "numismatic_coins:armorer/level_1/iron_boots"
+  ]
+}

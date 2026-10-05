@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.platform.Platform;
 import com.joelcranston.numismatic_coins.platform.Registration;
 import com.joelcranston.numismatic_coins.purse.PurseStorage;
@@ -15,9 +16,13 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
@@ -25,6 +30,7 @@ import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -134,6 +140,15 @@ public class NeoforgePlatform implements Platform {
     public Path configDir() {
 
         return FMLPaths.CONFIGDIR.get();
+    }
+
+    @Override
+    public void registerBuiltinDataPack(String name, Component displayName, boolean isEnabledByDefault) {
+
+        // The source decides whether a new world adds the pack on its own.
+        PackSource source = PackSource.create(PackSource.BUILT_IN::decorate, isEnabledByDefault);
+        modEventBus.addListener((AddPackFindersEvent event) -> event.addPackFinders(
+                NumismaticCoins.id("resourcepacks/" + name), PackType.SERVER_DATA, displayName, source, false, Pack.Position.TOP));
     }
 
     @Override

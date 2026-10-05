@@ -22,7 +22,7 @@ public final class ConfigOptions {
             new ConfigOption<>("piggyBanks", Section.FEATURES, BOOLEAN, true, config -> config.features.piggyBanks, (config, value) -> config.features.piggyBanks = value),
             new ConfigOption<>("shops", Section.FEATURES, BOOLEAN, true, config -> config.features.shops, (config, value) -> config.features.shops = value),
             new ConfigOption<>("pawnShops", Section.FEATURES, BOOLEAN, true, config -> config.features.pawnShops, (config, value) -> config.features.pawnShops = value),
-            new ConfigOption<>("villagerTrades", Section.FEATURES, BOOLEAN, true, config -> config.features.villagerTrades, (config, value) -> config.features.villagerTrades = value),
+            new ConfigOption<>("villagerTrades", Section.FEATURES, BOOLEAN, false, config -> config.features.villagerTrades, (config, value) -> config.features.villagerTrades = value),
             new ConfigOption<>("chestLoot", Section.FEATURES, BOOLEAN, true, config -> config.features.chestLoot, (config, value) -> config.features.chestLoot = value),
             new ConfigOption<>("mobDrops", Section.FEATURES, BOOLEAN, false, config -> config.features.mobDrops, (config, value) -> config.features.mobDrops = value),
             new ConfigOption<>("deathPenalty", Section.FEATURES, BOOLEAN, false, config -> config.features.deathPenalty, (config, value) -> config.features.deathPenalty = value),

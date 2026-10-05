@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "minecraft:beef",
+    "count": 10
+  },
+  "gives": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 4
+  },
+  "max_uses": 16,
+  "xp": 8,
+  "reputation_discount": 0.05
+}

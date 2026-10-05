@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "numismatic_coins:bronze_coin",
+    "count": 80
+  },
+  "gives": {
+    "id": "minecraft:redstone",
+    "count": 4
+  },
+  "max_uses": 12,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

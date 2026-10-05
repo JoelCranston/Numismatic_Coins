@@ -15,10 +15,14 @@ import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import com.joelcranston.numismatic_coins.NumismaticCoins;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
@@ -109,6 +113,14 @@ public class FabricPlatform implements Platform {
     public Path configDir() {
 
         return FabricLoader.getInstance().getConfigDir();
+    }
+
+    @Override
+    public void registerBuiltinDataPack(String name, Component displayName, boolean isEnabledByDefault) {
+
+        ResourceLoader.registerBuiltinPack(NumismaticCoins.id(name),
+                FabricLoader.getInstance().getModContainer(NumismaticCoins.MOD_ID).orElseThrow(), displayName,
+                isEnabledByDefault ? PackActivationType.DEFAULT_ENABLED : PackActivationType.NORMAL);
     }
 
     @Override

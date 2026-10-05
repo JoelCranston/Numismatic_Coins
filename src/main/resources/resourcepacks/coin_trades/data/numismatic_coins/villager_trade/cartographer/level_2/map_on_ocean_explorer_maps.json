@@ -1,0 +1,42 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 30
+  },
+  "gives": {
+    "id": "minecraft:map"
+  },
+  "max_uses": 2,
+  "xp": 15,
+  "reputation_discount": 0.05,
+  "additional_wants": {
+    "id": "minecraft:map"
+  },
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:exploration_map",
+      "destination": "minecraft:on_ocean_explorer_maps",
+      "search_radius": 100,
+      "decoration": "minecraft:monument"
+    },
+    {
+      "function": "minecraft:set_name",
+      "name": {
+        "translate": "filled_map.monument"
+      },
+      "target": "item_name"
+    },
+    {
+      "function": "minecraft:filtered",
+      "item_filter": {
+        "items": "minecraft:filled_map",
+        "predicates": {
+          "minecraft:map_id": {}
+        }
+      },
+      "on_fail": {
+        "function": "minecraft:discard"
+      }
+    }
+  ]
+}

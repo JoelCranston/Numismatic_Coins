@@ -1,0 +1,8 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:cartographer/level_5/flower_banner_pattern",
+    "numismatic_coins:cartographer/level_5/globe_banner_pattern",
+    "numismatic_coins:cartographer/level_5/mojang_banner_pattern"
+  ]
+}

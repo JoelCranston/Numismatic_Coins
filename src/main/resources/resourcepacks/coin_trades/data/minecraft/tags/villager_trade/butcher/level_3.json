@@ -1,0 +1,9 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:butcher/level_3/beef",
+    "numismatic_coins:butcher/level_3/campfire",
+    "numismatic_coins:butcher/level_3/cooked_beef",
+    "numismatic_coins:butcher/level_3/cooked_mutton"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 7
+  },
+  "gives": {
+    "id": "minecraft:leather_boots"
+  },
+  "max_uses": 10,
+  "xp": 10,
+  "reputation_discount": 0.05,
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:set_random_dyes",
+      "number_of_dyes": {
+        "type": "minecraft:sum",
+        "summands": [
+          1,
+          {
+            "type": "minecraft:binomial",
+            "n": 1,
+            "p": 0.3
+          },
+          {
+            "type": "minecraft:binomial",
+            "n": 1,
+            "p": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "function": "minecraft:filtered",
+      "item_filter": {
+        "items": "minecraft:leather_boots",
+        "predicates": {
+          "minecraft:dyed_color": {}
+        }
+      },
+      "on_fail": {
+        "function": "minecraft:discard"
+      }
+    }
+  ]
+}

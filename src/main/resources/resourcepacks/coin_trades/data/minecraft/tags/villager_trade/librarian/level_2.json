@@ -1,0 +1,10 @@
+{
+  "replace": true,
+  "values": [
+    "numismatic_coins:librarian/level_2/book",
+    "numismatic_coins:librarian/level_2/lantern",
+    "numismatic_coins:librarian/level_2/enchanted_book_level_15",
+    "numismatic_coins:librarian/level_2/enchanted_book_level_35",
+    "numismatic_coins:librarian/level_2/enchanted_book"
+  ]
+}

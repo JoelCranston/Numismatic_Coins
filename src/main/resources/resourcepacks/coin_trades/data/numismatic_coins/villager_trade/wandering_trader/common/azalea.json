@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 20
+  },
+  "gives": {
+    "id": "minecraft:azalea"
+  },
+  "max_uses": 9,
+  "xp": 5,
+  "reputation_discount": 0.05
+}

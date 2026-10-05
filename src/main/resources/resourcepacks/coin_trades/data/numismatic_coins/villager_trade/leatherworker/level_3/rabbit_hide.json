@@ -1,0 +1,13 @@
+{
+  "wants": {
+    "id": "minecraft:rabbit_hide",
+    "count": 4
+  },
+  "gives": {
+    "id": "numismatic_coins:silver_coin",
+    "count": 5
+  },
+  "max_uses": 12,
+  "xp": 5,
+  "reputation_discount": 0.05
+}
