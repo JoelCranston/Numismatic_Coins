@@ -2,7 +2,7 @@ package com.joelcranston.numismatic_coins.client;
 
 import java.util.List;
 
-import com.joelcranston.numismatic_coins.shop.ShopBlockEntity;
+import com.joelcranston.numismatic_coins.shop.AbstractShopBlockEntity;
 import com.joelcranston.numismatic_coins.shop.ShopOffer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -23,10 +23,11 @@ import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 /**
- * Turns one of a shop's offers above it, a new one every three seconds. Blocks sit lower and
- * larger than items, so both fill the counter. (NO: ShopBlockEntityRender.)
+ * Turns one of a shop's or pawn shop's offers above it, a new one every three seconds. Blocks sit
+ * lower and larger than items, so both fill the counter. (NO: ShopBlockEntityRender,
+ * PawnShopBlockEntityRender.)
  */
-public class ShopBlockEntityRenderer implements BlockEntityRenderer<ShopBlockEntity, ShopBlockEntityRenderer.State> {
+public class ShopBlockEntityRenderer<T extends AbstractShopBlockEntity> implements BlockEntityRenderer<T, ShopBlockEntityRenderer.State> {
 
     private static final int TICKS_PER_OFFER = 60;
     // One turn every 7.2 seconds.
@@ -50,7 +51,7 @@ public class ShopBlockEntityRenderer implements BlockEntityRenderer<ShopBlockEnt
     }
 
     @Override
-    public void extractRenderState(ShopBlockEntity shop, State state, float partialTicks, Vec3 cameraPosition, @Nullable CrumblingOverlay breakProgress) {
+    public void extractRenderState(T shop, State state, float partialTicks, Vec3 cameraPosition, @Nullable CrumblingOverlay breakProgress) {
 
         BlockEntityRenderer.super.extractRenderState(shop, state, partialTicks, cameraPosition, breakProgress);
         state.item.clear();

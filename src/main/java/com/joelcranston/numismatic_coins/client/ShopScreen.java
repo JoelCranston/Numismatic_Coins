@@ -6,7 +6,7 @@ import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.currency.CoinMath;
 import com.joelcranston.numismatic_coins.currency.Currency;
 import com.joelcranston.numismatic_coins.network.ShopAction;
-import com.joelcranston.numismatic_coins.shop.ShopBlockEntity;
+import com.joelcranston.numismatic_coins.shop.AbstractShopBlockEntity;
 import com.joelcranston.numismatic_coins.shop.ShopMenu;
 import com.joelcranston.numismatic_coins.shop.ShopOffer;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -24,17 +24,17 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.jspecify.annotations.Nullable;
 
 /**
- * The owner's shop screen. The stock tab shows the stock slots; the offers tab covers them with
- * the shop's offers, and adds the editor for one offer: a slot to click with the stack to sell, a
- * price in bronze, and buttons to submit or delete it. Both tabs show the earnings, which the
- * owner takes into their purse, and the switch that lets hoppers fill the stock.
- * (NO: ShopScreen.)
+ * The owner's shop or pawn shop screen. The stock tab shows the stock slots; the offers tab covers
+ * them with the offers, and adds the editor for one offer: a slot to click with the stack to sell
+ * or buy, a price in bronze, and buttons to submit or delete it. Both tabs show the money held,
+ * which the owner takes into their purse (and puts in from their inventory, at a pawn shop), and
+ * the hopper switch. (NO: ShopScreen, PawnShopScreen, pawn_shop.xml.)
  */
 public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
 
-    private static final Identifier TEXTURE = NumismaticCoins.id("textures/gui/shop_gui.png");
     private static final Identifier OFFERS_TEXTURE = NumismaticCoins.id("textures/gui/shop_gui_trades.png");
     private static final int TEXTURE_SIZE = 256;
     private static final int IMAGE_WIDTH = 176, IMAGE_HEIGHT = 168;
@@ -50,10 +50,10 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
 
     // The column right of the background: the earnings over the hopper switch, with the offer editor above both on the offers tab.
     private static final int COLUMN_X = 178, COLUMN_GAP = 3;
-    private static final int EARNINGS_U = 146, EARNINGS_V = 169, EARNINGS_WIDTH = 34, EARNINGS_HEIGHT = 54;
+    private static final int EARNINGS_U = 146, EARNINGS_V = 169, EARNINGS_WIDTH = 34;
     // One count per coin, gold at the top.
     private static final int EARNINGS_COUNT_X = 5, EARNINGS_COUNT_Y = 7, EARNINGS_ROW_HEIGHT = 12;
-    private static final int EXTRACT_X = 4, EXTRACT_Y = 41, EXTRACT_WIDTH = 26, EXTRACT_HEIGHT = 8, EXTRACT_U = 146, EXTRACT_V = 224;
+    private static final int MONEY_BUTTON_X = 4, MONEY_BUTTON_WIDTH = 26, MONEY_BUTTON_HEIGHT = 8;
     private static final int TRANSFER_SIZE = 28, TRANSFER_ICON_OFFSET = 6, TRANSFER_MARK_OFFSET = 15;
     private static final int TRANSFER_ON_COLOR = 0xFF28FFBF, TRANSFER_OFF_COLOR = 0xFFEB1D36;
     // The hopper switch's panel, in the colours of a vanilla container background.
@@ -80,9 +80,11 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
     private static final Identifier OFFER_SPRITE = Identifier.withDefaultNamespace("widget/button");
     private static final Identifier OFFER_HOVERED_SPRITE = Identifier.withDefaultNamespace("widget/button_highlighted");
 
+    private final Layout layout;
     private TextureButton stockTab;
     private TextureButton offersTab;
     private TextureButton extractButton;
+    private @Nullable TextureButton insertButton;
     private TransferButton transferButton;
     private EditBox priceField;
     private TextureButton submitButton;
@@ -91,10 +93,21 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
     private int scrollRow;
     private int shownOfferCount;
 
-    public ShopScreen(ShopMenu menu, Inventory inventory, Component title) {
+    private ShopScreen(ShopMenu menu, Inventory inventory, Component title, Layout layout) {
 
         super(menu, inventory, title, IMAGE_WIDTH, IMAGE_HEIGHT);
+        this.layout = layout;
         this.inventoryLabelY = INVENTORY_LABEL_Y;
+    }
+
+    public static ShopScreen shop(ShopMenu menu, Inventory inventory, Component title) {
+
+        return new ShopScreen(menu, inventory, title, Layout.SHOP);
+    }
+
+    public static ShopScreen pawnShop(ShopMenu menu, Inventory inventory, Component title) {
+
+        return new ShopScreen(menu, inventory, title, Layout.PAWN_SHOP);
     }
 
     @Override
@@ -102,12 +115,18 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
 
         super.init();
         int tabX = this.leftPos + TAB_X, tabY = this.topPos + TAB_Y;
-        this.stockTab = this.addRenderableWidget(new TextureButton(tabX, tabY, TAB_WIDTH, TAB_HEIGHT, TEXTURE, TAB_U, TAB_V,
+        this.stockTab = this.addRenderableWidget(new TextureButton(tabX, tabY, TAB_WIDTH, TAB_HEIGHT, this.layout.texture(), TAB_U, TAB_V,
                 Component.translatable("gui.numismatic_coins.shop.tab.stock"), () -> this.selectTab(false)));
-        this.offersTab = this.addRenderableWidget(new TextureButton(tabX, tabY + TAB_SPACING, TAB_WIDTH, TAB_HEIGHT, TEXTURE, TAB_U, TAB_V,
+        this.offersTab = this.addRenderableWidget(new TextureButton(tabX, tabY + TAB_SPACING, TAB_WIDTH, TAB_HEIGHT, this.layout.texture(), TAB_U, TAB_V,
                 Component.translatable("gui.numismatic_coins.shop.tab.offers"), () -> this.selectTab(true)));
-        this.extractButton = this.addRenderableWidget(new TextureButton(0, 0, EXTRACT_WIDTH, EXTRACT_HEIGHT, TEXTURE, EXTRACT_U, EXTRACT_V,
+        MoneyButton extract = this.layout.extract();
+        this.extractButton = this.addRenderableWidget(new TextureButton(0, 0, MONEY_BUTTON_WIDTH, MONEY_BUTTON_HEIGHT, this.layout.texture(), extract.u(), extract.v(),
                 Component.translatable("gui.numismatic_coins.shop.extract"), () -> this.send(ShopAction.Action.EXTRACT_CURRENCY, 0)));
+        MoneyButton insert = this.layout.insert();
+        if (insert != null) {
+            this.insertButton = this.addRenderableWidget(new TextureButton(0, 0, MONEY_BUTTON_WIDTH, MONEY_BUTTON_HEIGHT, this.layout.texture(), insert.u(), insert.v(),
+                    Component.translatable("gui.numismatic_coins.pawn_shop.insert"), () -> this.send(ShopAction.Action.INSERT_CURRENCY, 0)));
+        }
         this.transferButton = this.addRenderableWidget(new TransferButton());
 
         this.priceField = new EditBox(this.font, PRICE_WIDTH, PRICE_HEIGHT, Component.translatable("gui.numismatic_coins.shop.price"));
@@ -115,9 +134,9 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
         this.priceField.setBordered(false);
         this.priceField.setResponder(this::onPriceChanged);
         this.addRenderableWidget(this.priceField);
-        this.submitButton = this.addRenderableWidget(new TextureButton(0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_HEIGHT, TEXTURE, SUBMIT_U, EDIT_BUTTON_V,
+        this.submitButton = this.addRenderableWidget(new TextureButton(0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_HEIGHT, this.layout.texture(), SUBMIT_U, EDIT_BUTTON_V,
                 Component.translatable("gui.numismatic_coins.shop.submit_offer"), this::submitOffer));
-        this.deleteButton = this.addRenderableWidget(new TextureButton(0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_HEIGHT, TEXTURE, DELETE_U, EDIT_BUTTON_V,
+        this.deleteButton = this.addRenderableWidget(new TextureButton(0, 0, EDIT_BUTTON_WIDTH, EDIT_BUTTON_HEIGHT, this.layout.texture(), DELETE_U, EDIT_BUTTON_V,
                 Component.translatable("gui.numismatic_coins.shop.delete_offer"), () -> this.send(ShopAction.Action.DELETE_OFFER, 0)));
 
         this.selectTab(this.isOffersTab);
@@ -140,8 +159,9 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
         this.priceField.setPosition(editorX + PRICE_X, editorY + PRICE_Y);
         this.submitButton.setPosition(editorX + SUBMIT_X, editorY + EDIT_BUTTON_Y);
         this.deleteButton.setPosition(editorX + DELETE_X, editorY + EDIT_BUTTON_Y);
-        this.extractButton.setPosition(this.columnX() + EXTRACT_X, this.earningsY() + EXTRACT_Y);
-        this.transferButton.setPosition(this.columnX(), this.earningsY() + EARNINGS_HEIGHT + COLUMN_GAP);
+        this.extractButton.setPosition(this.columnX() + MONEY_BUTTON_X, this.earningsY() + this.layout.extract().y());
+        if (this.insertButton != null) this.insertButton.setPosition(this.columnX() + MONEY_BUTTON_X, this.earningsY() + this.layout.insert().y());
+        this.transferButton.setPosition(this.columnX(), this.earningsY() + this.layout.earningsHeight() + COLUMN_GAP);
     }
 
     @Override
@@ -155,18 +175,18 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
         this.scrollRow = Math.clamp(this.scrollRow, 0, this.maxScrollRow());
 
         boolean hasOffer = this.menu.hasOfferForBuffer();
-        this.submitButton.active = this.price() > 0 && !this.menu.buffer().isEmpty() && (offers.size() < ShopBlockEntity.MAX_OFFERS || hasOffer);
+        this.submitButton.active = this.price() > 0 && !this.menu.buffer().isEmpty() && (offers.size() < AbstractShopBlockEntity.MAX_OFFERS || hasOffer);
         this.deleteButton.active = hasOffer;
         this.transferButton.setTooltip(Tooltip.create(Component.translatable(this.menu.allowsTransfer()
-                ? "gui.numismatic_coins.shop.transfer_tooltip.enabled"
-                : "gui.numismatic_coins.shop.transfer_tooltip.disabled")));
+                ? this.layout.langPrefix() + ".transfer_tooltip.enabled"
+                : this.layout.langPrefix() + ".transfer_tooltip.disabled")));
     }
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
 
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        graphics.blit(RenderPipelines.GUI_TEXTURED, this.isOffersTab ? OFFERS_TEXTURE : TEXTURE, this.leftPos, this.topPos,
+        graphics.blit(RenderPipelines.GUI_TEXTURED, this.isOffersTab ? OFFERS_TEXTURE : this.layout.texture(), this.leftPos, this.topPos,
                 0, 0, this.imageWidth, this.imageHeight, TEXTURE_SIZE, TEXTURE_SIZE);
         this.extractEarnings(graphics);
         if (!this.isOffersTab) return;
@@ -186,7 +206,7 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
     private void extractEarnings(GuiGraphicsExtractor graphics) {
 
         int x = this.columnX(), y = this.earningsY();
-        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, EARNINGS_U, EARNINGS_V, EARNINGS_WIDTH, EARNINGS_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, this.layout.texture(), x, y, EARNINGS_U, EARNINGS_V, EARNINGS_WIDTH, this.layout.earningsHeight(), TEXTURE_SIZE, TEXTURE_SIZE);
         long[] coins = CoinMath.split(this.menu.storedValue());
         Currency[] currencies = Currency.values();
         for (int row = 0; row < currencies.length; row++) {
@@ -198,7 +218,7 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
     private void extractEditor(GuiGraphicsExtractor graphics) {
 
         int x = this.columnX(), y = this.topPos;
-        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, EDITOR_U, EDITOR_V, EDITOR_WIDTH, EDITOR_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, this.layout.texture(), x, y, EDITOR_U, EDITOR_V, EDITOR_WIDTH, EDITOR_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
         long[] coins = CoinMath.split(this.price());
         for (Currency currency : Currency.values()) {
             graphics.text(this.font, Long.toString(coins[currency.ordinal()]), x + PRICE_COINS_X + PRICE_COIN_OFFSETS[currency.ordinal()],
@@ -223,7 +243,7 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
             graphics.blitSprite(RenderPipelines.GUI_TEXTURED, index == hovered ? OFFER_HOVERED_SPRITE : OFFER_SPRITE, x, y, OFFER_WIDTH, OFFER_HEIGHT);
             graphics.item(offer.stack(), x + OFFER_ITEM_X, y + OFFER_ITEM_Y);
             graphics.itemDecorations(this.font, offer.stack(), x + OFFER_ITEM_X, y + OFFER_ITEM_Y);
-            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x + CENT_X, y + CENT_Y, CENT_U, CENT_V, CENT_WIDTH, CENT_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, this.layout.texture(), x + CENT_X, y + CENT_Y, CENT_U, CENT_V, CENT_WIDTH, CENT_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
             graphics.text(this.font, Long.toString(offer.price()), x + OFFER_PRICE_X, y + OFFER_PRICE_Y, TEXT_COLOR, true);
         }
         graphics.disableScissor();
@@ -284,7 +304,7 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
     protected boolean hasClickedOutside(double mouseX, double mouseY, int left, int top) {
 
         if (isOver(mouseX, mouseY, left + TAB_X, top + TAB_Y, TAB_WIDTH, TAB_SPACING + TAB_HEIGHT)) return false;
-        int columnHeight = this.earningsY() - top + EARNINGS_HEIGHT + COLUMN_GAP + TRANSFER_SIZE;
+        int columnHeight = this.earningsY() - top + this.layout.earningsHeight() + COLUMN_GAP + TRANSFER_SIZE;
         if (isOver(mouseX, mouseY, left + COLUMN_X, top, EDITOR_WIDTH, columnHeight)) return false;
         return super.hasClickedOutside(mouseX, mouseY, left, top);
     }
@@ -399,5 +419,20 @@ public class ShopScreen extends AbstractContainerScreen<ShopMenu> {
 
             this.defaultButtonNarrationText(output);
         }
+    }
+
+    /** Where a money button sits in the money panel, and its look on the texture. */
+    private record MoneyButton(int y, int u, int v) {}
+
+    /**
+     * What differs between the shop's screen and the pawn shop's: the texture, and the pawn shop's
+     * taller money panel, with a button to put money in above the one to take it out.
+     */
+    private record Layout(Identifier texture, String langPrefix, int earningsHeight, @Nullable MoneyButton insert, MoneyButton extract) {
+
+        static final Layout SHOP = new Layout(NumismaticCoins.id("textures/gui/shop_gui.png"), "gui.numismatic_coins.shop",
+                54, null, new MoneyButton(41, 146, 224));
+        static final Layout PAWN_SHOP = new Layout(NumismaticCoins.id("textures/gui/pawn_shop_gui.png"), "gui.numismatic_coins.pawn_shop",
+                62, new MoneyButton(41, 172, 240), new MoneyButton(52, 146, 240));
     }
 }

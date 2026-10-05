@@ -10,8 +10,9 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 
 /**
- * A button press on the owner's shop screen. It acts only on the shop menu the player has open,
- * which checks the value itself. (NO: ShopScreenHandlerRequestC2SPacket.)
+ * A button press on the owner's shop or pawn shop screen. It acts only on the shop menu the player has open,
+ * which checks the value itself. (NO: ShopScreenHandlerRequestC2SPacket,
+ * PawnShopScreenHandlerRequestC2SPacket.)
  *
  * @param value the offer's index for {@link Action#LOAD_OFFER}, the price for {@link Action#CREATE_OFFER}
  */
@@ -43,7 +44,7 @@ public record ShopAction(Action action, long value) implements CustomPacketPaylo
     }
 
     public enum Action {
-        LOAD_OFFER, CREATE_OFFER, DELETE_OFFER, EXTRACT_CURRENCY, TOGGLE_TRANSFER, CLICK_BUFFER;
+        LOAD_OFFER, CREATE_OFFER, DELETE_OFFER, INSERT_CURRENCY, EXTRACT_CURRENCY, TOGGLE_TRANSFER, CLICK_BUFFER;
 
         // An unknown id fails decoding, which disconnects the client that sent it.
         static final StreamCodec<ByteBuf, Action> STREAM_CODEC = ByteBufCodecs.VAR_INT.map(Action::byId, Action::ordinal);
