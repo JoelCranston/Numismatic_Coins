@@ -35,7 +35,9 @@ worlds or purses from Numismatic Overhaul.
   "+ [12 Silver 4 Bronze]" in the action bar or chat, or not at all.
 - **Villagers trade in coins.** The built-in *Coin trades* data pack replaces every emerald
   trade of villagers and the wandering trader with a coin price. Purchases are paid from your
-  inventory, your purse, or both. Turn it off for a world with `/datapack disable`.
+  inventory, your purse, or both. While it is on, mobs that would drop emeralds (vindicators,
+  evokers, modded illagers) drop their worth in coins instead, 10 silver each. Turn it off for a
+  world with `/datapack disable`.
 - **Money in the world.** Structure chests (desert pyramids, dungeons, mineshafts, bastions,
   strongholds, pillager outposts, buried treasure) hold money and pillagers killed by a player
   drop coins. Amounts are data pack loot tables and the `numismatic_coins:the_bourgeoisie`
