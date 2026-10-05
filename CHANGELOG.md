@@ -14,7 +14,8 @@ First alpha of Numismatic Coins, a from-scratch rewrite of Numismatic Overhaul f
 - The purse: a per-player balance with a button on the inventory, creative and villager screens,
   and money messages in the action bar or chat.
 - Villager and wandering trader trades in coins, as the built-in "Coin trades" data pack. Trades
-  are paid from the inventory, the purse or both.
+  are paid from the inventory, the purse or both. While the pack is on, emeralds that mobs drop
+  from their loot tables, modded mobs included, come out as coins.
 - Money bags in structure chests, coins from pillagers, and a death penalty set by the
   `money_drop_percentage` game rule.
 - Piggy banks in seventeen colours.
