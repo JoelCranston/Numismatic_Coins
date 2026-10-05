@@ -91,6 +91,18 @@ MC_DECOMPILE = [
 	r"net/minecraft/world/level/storage/loot/(LootParams|LootParams\$Builder)",
 	r"net/minecraft/client/gui/screens/inventory/(ShulkerBoxScreen|ContainerScreen)",
 	r"net/minecraft/client/gui/screens/MenuScreens",
+	# Shops: block entity renderers, merchants, client sync and scrolling lists.
+	r"net/minecraft/client/renderer/blockentity/(BlockEntityRenderer|BlockEntityRenderers|BlockEntityRendererProvider|CampfireRenderer|ShelfRenderer|LecternRenderer)",
+	r"net/minecraft/client/renderer/blockentity/state/(BlockEntityRenderState|CampfireRenderState|ShelfRenderState)",
+	r"net/minecraft/client/renderer/item/(ItemModelResolver|ItemStackRenderState)",
+	r"net/minecraft/client/renderer/(SubmitNodeCollector|SubmitNodeCollection|LevelRenderer)",
+	r"net/minecraft/client/renderer/state/CameraRenderState",
+	r"net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket",
+	r"net/minecraft/world/(WorldlyContainer|WorldlyContainerHolder)",
+	r"net/minecraft/world/item/trading/Merchant",
+	r"net/minecraft/world/entity/npc/ClientSideMerchant",
+	r"net/minecraft/client/gui/components/(EditBox|AbstractScrollArea|AbstractContainerWidget|ItemDisplayWidget)",
+	r"net/minecraft/world/level/block/entity/(ShelfBlockEntity|LecternBlockEntity)",
 ]
 
 # Vanilla classes to show as javap -public signatures only.
@@ -106,6 +118,18 @@ MC_SIGS = [
 	r"net/minecraft/world/inventory/(MenuType|AbstractContainerMenu)",
 	r"net/minecraft/client/gui/screens/inventory/AbstractContainerScreen",
 	r"net/minecraft/client/gui/screens/MenuScreens",
+	# Shops: block entity renderers, merchants, client sync and scrolling lists.
+	r"net/minecraft/client/renderer/blockentity/(BlockEntityRenderer|BlockEntityRenderers|BlockEntityRendererProvider|CampfireRenderer|ShelfRenderer|LecternRenderer)",
+	r"net/minecraft/client/renderer/blockentity/state/(BlockEntityRenderState|CampfireRenderState|ShelfRenderState)",
+	r"net/minecraft/client/renderer/item/(ItemModelResolver|ItemStackRenderState)",
+	r"net/minecraft/client/renderer/(SubmitNodeCollector|SubmitNodeCollection|LevelRenderer)",
+	r"net/minecraft/client/renderer/state/CameraRenderState",
+	r"net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket",
+	r"net/minecraft/world/(WorldlyContainer|WorldlyContainerHolder)",
+	r"net/minecraft/world/item/trading/Merchant",
+	r"net/minecraft/world/entity/npc/ClientSideMerchant",
+	r"net/minecraft/client/gui/components/(EditBox|AbstractScrollArea|AbstractContainerWidget|ItemDisplayWidget)",
+	r"net/minecraft/world/level/block/entity/(ShelfBlockEntity|LecternBlockEntity)",
 	r"net/minecraft/world/level/block/entity/BlockEntityType",
 	r"net/minecraft/network/protocol/common/custom/CustomPacketPayload",
 	r"net/minecraft/commands/(Commands|CommandSourceStack)",
@@ -164,6 +188,7 @@ FABRIC_DECOMPILE = [
 	r"net/fabricmc/fabric/api/resource/v1/reloader/.*",
 	r"net/fabricmc/fabric/api/menu/.*",
 	r"net/fabricmc/fabric/api/object/builder/v1/block/entity/.*",
+	r"net/fabricmc/fabric/api/client/rendering/v1/BlockEntityRendererRegistry",
 ]
 
 NEOFORGE_SIG_PACKAGES = [
@@ -190,6 +215,7 @@ NEOFORGE_DECOMPILE = [
 	r"net/neoforged/neoforge/client/gui/(VanillaGuiLayers|IConfigScreenFactory)",
 	r".*GameRule.*",
 	r"net/neoforged/neoforge/client/event/RegisterMenuScreensEvent",
+	r"net/neoforged/neoforge/client/event/EntityRenderersEvent.*",
 	r"net/neoforged/neoforge/common/extensions/(IMenuTypeExtension|IBlockExtension)",
 	r"net/neoforged/neoforge/event/LootTableLoadEvent",
 ]

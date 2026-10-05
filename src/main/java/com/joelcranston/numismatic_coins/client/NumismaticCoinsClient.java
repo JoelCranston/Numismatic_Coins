@@ -3,9 +3,12 @@ package com.joelcranston.numismatic_coins.client;
 import com.joelcranston.numismatic_coins.NumismaticCoins;
 import com.joelcranston.numismatic_coins.config.Configs;
 import com.joelcranston.numismatic_coins.network.PurseChanged;
+import com.joelcranston.numismatic_coins.network.ShopScreenState;
 import com.joelcranston.numismatic_coins.network.SyncServerConfig;
 import com.joelcranston.numismatic_coins.platform.ClientPlatform;
+import com.joelcranston.numismatic_coins.registry.ModBlockEntities;
 import com.joelcranston.numismatic_coins.registry.ModMenus;
+import net.minecraft.client.Minecraft;
 
 /** Client-only setup. Nothing here may be loaded on a dedicated server. */
 public final class NumismaticCoinsClient {
@@ -20,7 +23,12 @@ public final class NumismaticCoinsClient {
         clientXplat().registerClientboundHandler(SyncServerConfig.TYPE, payload -> Configs.receiveFromServer(payload.settings()));
         clientXplat().registerClientboundHandler(PurseChanged.TYPE, MoneyMessages::show);
         PurseWidget.register();
+        clientXplat().registerClientboundHandler(ShopScreenState.TYPE, state -> {
+            if (Minecraft.getInstance().player != null) state.apply(Minecraft.getInstance().player);
+        });
         clientXplat().registerMenuScreen(ModMenus.PIGGY_BANK, PiggyBankScreen::new);
+        clientXplat().registerMenuScreen(ModMenus.SHOP, ShopScreen::new);
+        clientXplat().registerBlockEntityRenderer(ModBlockEntities.SHOP, ShopBlockEntityRenderer::new);
     }
 
     public static ClientPlatform clientXplat() {

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "numismatic_coins:block/inexhaustible_shop"
+    }
+  }
+}
