@@ -147,6 +147,17 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 				expand("java" to javaVersionValue)
 			}
 			exclude(excluded)
+
+			// A file under src/main/resources-overrides/<mc version>/ replaces the shared resource at
+			// the same path for that version only, for data whose format changed between versions.
+			val overrideDir = rootProject.file("src/main/resources-overrides/${ctx.currentMcVersion}")
+			if (overrideDir.isDirectory) {
+				val overrideRoot = overrideDir.absolutePath
+				val overridden = overrideDir.walkTopDown().filter { it.isFile }
+					.map { it.relativeTo(overrideDir).invariantSeparatorsPath }.toSet()
+				from(overrideDir)
+				eachFile { if (path in overridden && !file.absolutePath.startsWith(overrideRoot)) exclude() }
+			}
 		}
 	}
 
