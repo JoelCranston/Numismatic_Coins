@@ -3,7 +3,7 @@
 
 Reads NO's per-profession trade files (reference/1.21.1-fabric/.../villager_trades/*.json) and
 writes vanilla 26.1 `villager_trade` files priced in coins, plus the trade tags that replace
-vanilla's emerald pools. Owns everything under src/main/resources/resourcepacks/coin_trades/data/
+vanilla's emerald pools and the item tag that makes mobs drop coins in place of emeralds. Owns everything under src/main/resources/resourcepacks/coin_trades/data/
 and rewrites it on every run, so edit this script and rerun it rather than editing the output:
 
     python3 scripts/convert_trades.py
@@ -380,6 +380,9 @@ def main():
     for no_tag in sorted(NO_ITEM_TAGS.glob("*.json")):
         values = read_json(no_tag)["values"]
         write_json(PACK_DATA / MOD_ID / "tags/item/trade_goods" / no_tag.name, {"values": values})
+
+    # Read by MobDrops#payingTaggedDropsInCoins: villagers here take coins, not emeralds.
+    write_json(PACK_DATA / MOD_ID / "tags/item/dropped_as_coins.json", {"values": ["minecraft:emerald"]})
 
     print(f"Wrote {trade_count} trades to {PACK_DATA.relative_to(ROOT)}")
 

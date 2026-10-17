@@ -111,7 +111,7 @@ sealed class Loader(val id: String) {
 						logoFile = "assets/icon.png",
 						iconFile = "assets/icon.png", // NeoForge 26.2 +
 						authors = ctx.authors.joinToString(", "),
-						credits = "${ctx.authors.joinToString(", ")} Contributors: ${ctx.contributors.joinToString(", ")}",
+						credits = "Contributors: ${ctx.contributors.joinToString(", ")}",
 						description = ctx.description
 					)
 				),
