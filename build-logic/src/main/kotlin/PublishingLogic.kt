@@ -66,7 +66,8 @@ fun Project.configureModPublishing(ctx: Context) {
 		val curseforgeAccessToken = env("PUB_CURSEFORGE_TOKEN")
 
 		val githubEnabled = envTrue("PUB_GITHUB_ENABLE")
-		if (envTrue("PUB_DRY_RUN") || !envTrue("PUB_MODS_ENABLE")) {
+		// PUB_MODS_ENABLE only gates Modrinth and CurseForge below; dryRun covers the GitHub upload too.
+		if (envTrue("PUB_DRY_RUN")) {
 			dryRun = true
 		}
 
@@ -97,8 +98,10 @@ fun Project.configureModPublishing(ctx: Context) {
 			}
 		}
 
-		modrinth(ctx, ctx.publishAdditionalVersions, mrStaging, modrinthAccessToken)
-		if (!mrStaging) curseforge(ctx, ctx.publishAdditionalVersions, curseforgeAccessToken)
+		if (envTrue("PUB_MODS_ENABLE")) {
+			modrinth(ctx, ctx.publishAdditionalVersions, mrStaging, modrinthAccessToken)
+			if (!mrStaging) curseforge(ctx, ctx.publishAdditionalVersions, curseforgeAccessToken)
+		}
 	}
 }
 
