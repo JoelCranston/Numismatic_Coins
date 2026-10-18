@@ -10,6 +10,7 @@ class ModRootPlugin : Plugin<Project> {
 		with(project) {
 			val stonecutter = extensions.getByType<StonecutterControllerExtension>()
 			val properties = stonecutter.properties
+			val modName = properties.get<String>("mod.name")
 			val modVersion = properties.get<String>("mod.version")
 			val channelTag = properties.get<String>("mod.channel_tag")
 			val changelogText = file("CHANGELOG.md").takeIf { it.exists() }?.readText() ?: ""
@@ -18,6 +19,7 @@ class ModRootPlugin : Plugin<Project> {
 			extensions.configure<ModPublishExtension>("publishMods") {
 				dryRun = envTrue("PUB_DRY_RUN") || !envTrue("PUB_GITHUB_ENABLE")
 				version = modVersion
+				displayName = "$modName $modVersion$channelTag"
 				changelog.set(changelogText)
 				type = releaseTypeFromChannelTag(channelTag)
 				if (envTrue("PUB_GITHUB_ENABLE")) {
