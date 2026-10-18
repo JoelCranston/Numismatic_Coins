@@ -1,0 +1,214 @@
+Compiled from "FabricBlockEntityType.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityType {
+  public default void addValidBlock(net.minecraft.world.level.block.Block);
+}
+Compiled from "FabricBlockEntityTypeBuilder.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder$Factory<T extends net.minecraft.world.level.block.entity.BlockEntity> {
+  public abstract T create(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "FabricBlockEntityTypeBuilder.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder<T extends net.minecraft.world.level.block.entity.BlockEntity> {
+  public static <T extends net.minecraft.world.level.block.entity.BlockEntity> net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder<T> create(net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder$Factory<? extends T>, net.minecraft.world.level.block.Block...);
+  public net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder<T> addBlock(net.minecraft.world.level.block.Block);
+  public net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder<T> addBlocks(net.minecraft.world.level.block.Block...);
+  public net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder<T> addBlocks(java.util.Collection<? extends net.minecraft.world.level.block.Block>);
+  public net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder<T> canPotentiallyExecuteCommands(boolean);
+  public net.minecraft.world.level.block.entity.BlockEntityType<T> build();
+  public net.minecraft.world.level.block.entity.BlockEntityType<T> build(com.mojang.datafixers.types.Type<?>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.object.builder.v1.block.entity.package-info {
+}
+Compiled from "BlockSetTypeBuilder.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder {
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder();
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder openableByHand(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder openableByWindCharge(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder buttonActivatedByArrows(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder pressurePlateActivationRule(net.minecraft.world.level.block.state.properties.BlockSetType$PressurePlateSensitivity);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder soundType(net.minecraft.world.level.block.SoundType);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder doorCloseSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder doorOpenSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder trapdoorCloseSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder trapdoorOpenSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder pressurePlateClickOffSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder pressurePlateClickOnSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder buttonClickOffSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder buttonClickOnSound(net.minecraft.sounds.SoundEvent);
+  public static net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder copyOf(net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder);
+  public static net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder copyOf(net.minecraft.world.level.block.state.properties.BlockSetType);
+  public net.minecraft.world.level.block.state.properties.BlockSetType register(net.minecraft.resources.Identifier);
+  public net.minecraft.world.level.block.state.properties.BlockSetType build(net.minecraft.resources.Identifier);
+}
+Compiled from "WoodTypeBuilder.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder {
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder();
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder soundType(net.minecraft.world.level.block.SoundType);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder hangingSignSoundType(net.minecraft.world.level.block.SoundType);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder fenceGateCloseSound(net.minecraft.sounds.SoundEvent);
+  public net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder fenceGateOpenSound(net.minecraft.sounds.SoundEvent);
+  public static net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder copyOf(net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder);
+  public static net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder copyOf(net.minecraft.world.level.block.state.properties.WoodType);
+  public net.minecraft.world.level.block.state.properties.WoodType register(net.minecraft.resources.Identifier, net.minecraft.world.level.block.state.properties.BlockSetType);
+  public net.minecraft.world.level.block.state.properties.WoodType build(net.minecraft.resources.Identifier, net.minecraft.world.level.block.state.properties.BlockSetType);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.object.builder.v1.block.type.package-info {
+}
+Compiled from "FabricDefaultAttributeRegistry.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry {
+  public static void register(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LivingEntity>, net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder);
+  public static void register(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LivingEntity>, net.minecraft.world.entity.ai.attributes.AttributeSupplier);
+}
+Compiled from "FabricEntityDataRegistry.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityDataRegistry {
+  public static void register(net.minecraft.resources.Identifier, net.minecraft.network.syncher.EntityDataSerializer<?>);
+  public static net.minecraft.network.syncher.EntityDataSerializer<?> get(net.minecraft.resources.Identifier);
+  public static net.minecraft.resources.Identifier getId(net.minecraft.network.syncher.EntityDataSerializer<?>);
+}
+Compiled from "FabricEntityType.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Living<T extends net.minecraft.world.entity.LivingEntity> {
+  public abstract net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Living<T> defaultAttributes(java.util.function.Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder>);
+}
+Compiled from "FabricEntityType.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Mob<T extends net.minecraft.world.entity.Mob> extends net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Living<T> {
+  public abstract net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Mob<T> spawnPlacement(net.minecraft.world.entity.SpawnPlacementType, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.entity.SpawnPlacements$SpawnPredicate<T>);
+  public abstract net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Mob<T> defaultAttributes(java.util.function.Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder>);
+  public default net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Living defaultAttributes(java.util.function.Supplier);
+}
+Compiled from "FabricEntityType.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder<T extends net.minecraft.world.entity.Entity> {
+  public default net.minecraft.world.entity.EntityType$Builder<T> alwaysUpdateVelocity(boolean);
+  public default net.minecraft.world.entity.EntityType$Builder<T> canPotentiallyExecuteCommands(boolean);
+  public static <T extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.EntityType$Builder<T> createLiving(net.minecraft.world.entity.EntityType$EntityFactory<T>, net.minecraft.world.entity.MobCategory, java.util.function.UnaryOperator<net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Living<T>>);
+  public static <T extends net.minecraft.world.entity.Mob> net.minecraft.world.entity.EntityType$Builder<T> createMob(net.minecraft.world.entity.EntityType$EntityFactory<T>, net.minecraft.world.entity.MobCategory, java.util.function.UnaryOperator<net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType$Builder$Mob<T>>);
+}
+Compiled from "FabricEntityType.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType {
+}
+Compiled from "FabricEntityTypeBuilder.java"
+public class net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T extends net.minecraft.world.entity.LivingEntity> extends net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> {
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> mobCategory(net.minecraft.world.entity.MobCategory);
+  public <N extends T> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<N> entityFactory(net.minecraft.world.entity.EntityType$EntityFactory<N>);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> disableSummon();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> disableSaving();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> fireImmune();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> spawnableFarFromPlayer();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> dimensions(net.minecraft.world.entity.EntityDimensions);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> trackable(int, int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> trackable(int, int, boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> trackRangeChunks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> trackRangeBlocks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> trackedUpdateRate(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> forceTrackedVelocityUpdates(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> specificSpawnBlocks(net.minecraft.world.level.block.Block...);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> defaultAttributes(java.util.function.Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder>);
+  public net.minecraft.world.entity.EntityType<T> build(net.minecraft.resources.ResourceKey<net.minecraft.world.entity.EntityType<?>>);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder specificSpawnBlocks(net.minecraft.world.level.block.Block[]);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder forceTrackedVelocityUpdates(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackedUpdateRate(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackRangeBlocks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackRangeChunks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackable(int, int, boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackable(int, int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder dimensions(net.minecraft.world.entity.EntityDimensions);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder spawnableFarFromPlayer();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder fireImmune();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder disableSaving();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder disableSummon();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder entityFactory(net.minecraft.world.entity.EntityType$EntityFactory);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder mobCategory(net.minecraft.world.entity.MobCategory);
+}
+Compiled from "FabricEntityTypeBuilder.java"
+public class net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T extends net.minecraft.world.entity.Mob> extends net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> {
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> mobCategory(net.minecraft.world.entity.MobCategory);
+  public <N extends T> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<N> entityFactory(net.minecraft.world.entity.EntityType$EntityFactory<N>);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> disableSummon();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> disableSaving();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> fireImmune();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> spawnableFarFromPlayer();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> dimensions(net.minecraft.world.entity.EntityDimensions);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> trackable(int, int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> trackable(int, int, boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> trackRangeChunks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> trackRangeBlocks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> trackedUpdateRate(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> forceTrackedVelocityUpdates(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> specificSpawnBlocks(net.minecraft.world.level.block.Block...);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> defaultAttributes(java.util.function.Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder>);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> spawnPlacement(net.minecraft.world.entity.SpawnPlacementType, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.entity.SpawnPlacements$SpawnPredicate<T>);
+  public net.minecraft.world.entity.EntityType<T> build(net.minecraft.resources.ResourceKey<net.minecraft.world.entity.EntityType<?>>);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living defaultAttributes(java.util.function.Supplier);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living specificSpawnBlocks(net.minecraft.world.level.block.Block[]);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living forceTrackedVelocityUpdates(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living trackedUpdateRate(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living trackRangeBlocks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living trackRangeChunks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living trackable(int, int, boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living trackable(int, int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living dimensions(net.minecraft.world.entity.EntityDimensions);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living spawnableFarFromPlayer();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living fireImmune();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living disableSaving();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living disableSummon();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living entityFactory(net.minecraft.world.entity.EntityType$EntityFactory);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living mobCategory(net.minecraft.world.entity.MobCategory);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder specificSpawnBlocks(net.minecraft.world.level.block.Block[]);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder forceTrackedVelocityUpdates(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackedUpdateRate(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackRangeBlocks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackRangeChunks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackable(int, int, boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder trackable(int, int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder dimensions(net.minecraft.world.entity.EntityDimensions);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder spawnableFarFromPlayer();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder fireImmune();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder disableSaving();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder disableSummon();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder entityFactory(net.minecraft.world.entity.EntityType$EntityFactory);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder mobCategory(net.minecraft.world.entity.MobCategory);
+}
+Compiled from "FabricEntityTypeBuilder.java"
+public class net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T extends net.minecraft.world.entity.Entity> {
+  public static <T extends net.minecraft.world.entity.Entity> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> create();
+  public static <T extends net.minecraft.world.entity.Entity> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> create(net.minecraft.world.entity.MobCategory);
+  public static <T extends net.minecraft.world.entity.Entity> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> create(net.minecraft.world.entity.MobCategory, net.minecraft.world.entity.EntityType$EntityFactory<T>);
+  public static <T extends net.minecraft.world.entity.LivingEntity> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Living<T> createLiving();
+  public static <T extends net.minecraft.world.entity.Mob> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder$Mob<T> createMob();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> mobCategory(net.minecraft.world.entity.MobCategory);
+  public <N extends T> net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<N> entityFactory(net.minecraft.world.entity.EntityType$EntityFactory<N>);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> disableSummon();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> disableSaving();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> fireImmune();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> spawnableFarFromPlayer();
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> dimensions(net.minecraft.world.entity.EntityDimensions);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> trackable(int, int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> trackable(int, int, boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> trackRangeChunks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> trackRangeBlocks(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> trackedUpdateRate(int);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> forceTrackedVelocityUpdates(boolean);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> specificSpawnBlocks(net.minecraft.world.level.block.Block...);
+  public net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder<T> requires(net.minecraft.world.flag.FeatureFlag...);
+  public net.minecraft.world.entity.EntityType<T> build(net.minecraft.resources.ResourceKey<net.minecraft.world.entity.EntityType<?>>);
+}
+Compiled from "MinecartComparatorLogic.java"
+public interface net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogic<T extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart> {
+  public abstract int getComparatorValue(T, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+}
+Compiled from "MinecartComparatorLogicRegistry.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogicRegistry {
+  public static net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogic<net.minecraft.world.entity.vehicle.minecart.AbstractMinecart> getCustomComparatorLogic(net.minecraft.world.entity.EntityType<?>);
+  public static <T extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart> void register(net.minecraft.world.entity.EntityType<T>, net.fabricmc.fabric.api.object.builder.v1.entity.MinecartComparatorLogic<? super T>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.object.builder.v1.entity.package-info {
+}
+Compiled from "PoiHelper.java"
+public final class net.fabricmc.fabric.api.object.builder.v1.world.poi.PoiHelper {
+  public static net.minecraft.world.entity.ai.village.poi.PoiType register(net.minecraft.resources.Identifier, int, int, net.minecraft.world.level.block.Block...);
+  public static net.minecraft.world.entity.ai.village.poi.PoiType register(net.minecraft.resources.Identifier, int, int, java.lang.Iterable<net.minecraft.world.level.block.state.BlockState>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.object.builder.v1.world.poi.package-info {
+}

@@ -1,0 +1,114 @@
+Compiled from "CompostableRegistry.java"
+public interface net.fabricmc.fabric.api.registry.CompostableRegistry extends net.fabricmc.fabric.api.util.Item2ObjectMap<java.lang.Float> {
+  public static final net.fabricmc.fabric.api.registry.CompostableRegistry INSTANCE;
+}
+Compiled from "FabricPotionBrewingBuilder.java"
+public interface net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder$BuildCallback {
+  public abstract void build(net.minecraft.world.item.alchemy.PotionBrewing$Builder);
+}
+Compiled from "FabricPotionBrewingBuilder.java"
+public interface net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder$BuildCallback> BUILD;
+  public default void registerItemRecipe(net.minecraft.world.item.Item, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.Item);
+  public default void registerPotionRecipe(net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>, net.minecraft.world.item.crafting.Ingredient, net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>);
+  public default void registerRecipes(net.minecraft.world.item.crafting.Ingredient, net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>);
+  public default net.minecraft.world.flag.FeatureFlagSet getEnabledFeatures();
+}
+Compiled from "FlammableBlockRegistry.java"
+public final class net.fabricmc.fabric.api.registry.FlammableBlockRegistry$Entry {
+  public net.fabricmc.fabric.api.registry.FlammableBlockRegistry$Entry(int, int);
+  public int getIgniteOdds();
+  public int getBurnOdds();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "FlammableBlockRegistry.java"
+public interface net.fabricmc.fabric.api.registry.FlammableBlockRegistry extends net.fabricmc.fabric.api.util.Block2ObjectMap<net.fabricmc.fabric.api.registry.FlammableBlockRegistry$Entry> {
+  public static net.fabricmc.fabric.api.registry.FlammableBlockRegistry getDefaultInstance();
+  public static net.fabricmc.fabric.api.registry.FlammableBlockRegistry getInstance(net.minecraft.world.level.block.Block);
+  public default void add(net.minecraft.world.level.block.Block, int, int);
+  public default void add(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>, int, int);
+}
+Compiled from "FlattenableBlockRegistry.java"
+public final class net.fabricmc.fabric.api.registry.FlattenableBlockRegistry {
+  public static void register(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "FuelValueEvents.java"
+public interface net.fabricmc.fabric.api.registry.FuelValueEvents$BuildCallback {
+  public abstract void build(net.minecraft.world.level.block.entity.FuelValues$Builder, net.fabricmc.fabric.api.registry.FuelValueEvents$Context);
+}
+Compiled from "FuelValueEvents.java"
+public interface net.fabricmc.fabric.api.registry.FuelValueEvents$Context {
+  public abstract int baseSmeltTime();
+  public abstract net.minecraft.core.HolderLookup$Provider registries();
+  public abstract net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+}
+Compiled from "FuelValueEvents.java"
+public interface net.fabricmc.fabric.api.registry.FuelValueEvents$ExclusionsCallback {
+  public abstract void buildExclusions(net.minecraft.world.level.block.entity.FuelValues$Builder, net.fabricmc.fabric.api.registry.FuelValueEvents$Context);
+}
+Compiled from "FuelValueEvents.java"
+public interface net.fabricmc.fabric.api.registry.FuelValueEvents {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.registry.FuelValueEvents$BuildCallback> BUILD;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.registry.FuelValueEvents$ExclusionsCallback> EXCLUSIONS;
+}
+Compiled from "LandPathTypeRegistry.java"
+public interface net.fabricmc.fabric.api.registry.LandPathTypeRegistry$DynamicPathTypeProvider extends net.fabricmc.fabric.api.registry.LandPathTypeRegistry$PathTypeProvider {
+  public abstract net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, boolean);
+}
+Compiled from "LandPathTypeRegistry.java"
+public interface net.fabricmc.fabric.api.registry.LandPathTypeRegistry$PathTypeProvider {
+}
+Compiled from "LandPathTypeRegistry.java"
+public interface net.fabricmc.fabric.api.registry.LandPathTypeRegistry$StaticPathTypeProvider extends net.fabricmc.fabric.api.registry.LandPathTypeRegistry$PathTypeProvider {
+  public abstract net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.block.state.BlockState, boolean);
+}
+Compiled from "LandPathTypeRegistry.java"
+public final class net.fabricmc.fabric.api.registry.LandPathTypeRegistry {
+  public static void register(net.minecraft.world.level.block.Block, net.minecraft.world.level.pathfinder.PathType, net.minecraft.world.level.pathfinder.PathType);
+  public static void register(net.minecraft.world.level.block.Block, net.fabricmc.fabric.api.registry.LandPathTypeRegistry$StaticPathTypeProvider);
+  public static void registerDynamic(net.minecraft.world.level.block.Block, net.fabricmc.fabric.api.registry.LandPathTypeRegistry$DynamicPathTypeProvider);
+  public static net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, boolean);
+  public static net.fabricmc.fabric.api.registry.LandPathTypeRegistry$PathTypeProvider getPathTypeProvider(net.minecraft.world.level.block.Block);
+}
+Compiled from "OxidizableBlocksRegistry.java"
+public final class net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry {
+  public static void registerNextStage(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public static void registerWaxable(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public static void registerWeatheringCopperBlocks(net.minecraft.world.level.block.WeatheringCopperBlocks);
+}
+Compiled from "StrippableBlockRegistry.java"
+public interface net.fabricmc.fabric.api.registry.StrippableBlockRegistry$StrippingTransformer {
+  public static final net.fabricmc.fabric.api.registry.StrippableBlockRegistry$StrippingTransformer DEFAULT_STATE;
+  public static final net.fabricmc.fabric.api.registry.StrippableBlockRegistry$StrippingTransformer VANILLA;
+  public static final net.fabricmc.fabric.api.registry.StrippableBlockRegistry$StrippingTransformer COPY;
+  public abstract net.minecraft.world.level.block.state.BlockState getStrippedBlockState(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState);
+  public static net.fabricmc.fabric.api.registry.StrippableBlockRegistry$StrippingTransformer copyOf(net.minecraft.world.level.block.state.properties.Property<?>...);
+}
+Compiled from "StrippableBlockRegistry.java"
+public final class net.fabricmc.fabric.api.registry.StrippableBlockRegistry {
+  public static void register(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public static void registerCopyState(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public static void register(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.fabricmc.fabric.api.registry.StrippableBlockRegistry$StrippingTransformer);
+  public static net.minecraft.world.level.block.state.BlockState getStrippedBlockState(net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "TillableBlockRegistry.java"
+public final class net.fabricmc.fabric.api.registry.TillableBlockRegistry {
+  public static void register(net.minecraft.world.level.block.Block, java.util.function.Predicate<net.minecraft.world.item.context.UseOnContext>, java.util.function.Consumer<net.minecraft.world.item.context.UseOnContext>);
+  public static void register(net.minecraft.world.level.block.Block, java.util.function.Predicate<net.minecraft.world.item.context.UseOnContext>, net.minecraft.world.level.block.state.BlockState);
+  public static void register(net.minecraft.world.level.block.Block, java.util.function.Predicate<net.minecraft.world.item.context.UseOnContext>, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.ItemLike);
+}
+Compiled from "VibrationFrequencyRegistry.java"
+public final class net.fabricmc.fabric.api.registry.VibrationFrequencyRegistry {
+  public static void register(net.minecraft.resources.ResourceKey<net.minecraft.world.level.gameevent.GameEvent>, int);
+}
+Compiled from "VillagerInteractionRegistries.java"
+public final class net.fabricmc.fabric.api.registry.VillagerInteractionRegistries {
+  public static void registerGatherableItem(net.minecraft.world.level.ItemLike);
+  public static void registerCompostable(net.minecraft.world.level.ItemLike);
+  public static void registerFood(net.minecraft.world.level.ItemLike, int);
+  public static void registerGiftLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.registry.package-info {
+}

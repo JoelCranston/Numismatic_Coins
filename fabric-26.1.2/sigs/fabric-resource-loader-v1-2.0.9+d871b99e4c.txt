@@ -1,0 +1,93 @@
+Compiled from "DataResourceLoader.java"
+public interface net.fabricmc.fabric.api.resource.v1.DataResourceLoader extends net.fabricmc.fabric.api.resource.v1.ResourceLoader {
+  public static final net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<net.minecraft.world.item.crafting.RecipeManager> RECIPE_MANAGER_KEY;
+  public static final net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<net.minecraft.server.ServerAdvancementManager> ADVANCEMENT_LOADER_KEY;
+  public static final net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<net.fabricmc.fabric.api.resource.v1.DataResourceStore$Mutable> DATA_RESOURCE_STORE_KEY;
+  public static net.fabricmc.fabric.api.resource.v1.DataResourceLoader get();
+  public abstract void registerReloadListener(net.minecraft.resources.Identifier, java.util.function.Function<net.minecraft.core.HolderLookup$Provider, net.minecraft.server.packs.resources.PreparableReloadListener>);
+}
+Compiled from "DataResourceStore.java"
+public final class net.fabricmc.fabric.api.resource.v1.DataResourceStore$Key<T> {
+  public net.fabricmc.fabric.api.resource.v1.DataResourceStore$Key();
+}
+Compiled from "DataResourceStore.java"
+public interface net.fabricmc.fabric.api.resource.v1.DataResourceStore$Mutable extends net.fabricmc.fabric.api.resource.v1.DataResourceStore {
+  public abstract <T> void put(net.fabricmc.fabric.api.resource.v1.DataResourceStore$Key<T>, T);
+}
+Compiled from "DataResourceStore.java"
+public interface net.fabricmc.fabric.api.resource.v1.DataResourceStore {
+  public abstract <T> T getOrThrow(net.fabricmc.fabric.api.resource.v1.DataResourceStore$Key<T>);
+}
+Compiled from "FabricResource.java"
+public interface net.fabricmc.fabric.api.resource.v1.FabricResource {
+  public default net.minecraft.server.packs.repository.PackSource getFabricPackSource();
+}
+Compiled from "ResourceLoader.java"
+public interface net.fabricmc.fabric.api.resource.v1.ResourceLoader {
+  public static final net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<net.minecraft.core.HolderLookup$Provider> REGISTRY_LOOKUP_KEY;
+  public static final net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<net.minecraft.world.flag.FeatureFlagSet> FEATURE_FLAG_SET_KEY;
+  public static net.fabricmc.fabric.api.resource.v1.ResourceLoader get(net.minecraft.server.packs.PackType);
+  public abstract void registerReloadListener(net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.PreparableReloadListener);
+  public abstract void addListenerOrdering(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public static boolean registerBuiltinPack(net.minecraft.resources.Identifier, net.fabricmc.loader.api.ModContainer, net.fabricmc.fabric.api.resource.v1.pack.PackActivationType);
+  public static boolean registerBuiltinPack(net.minecraft.resources.Identifier, net.fabricmc.loader.api.ModContainer, net.minecraft.network.chat.Component, net.fabricmc.fabric.api.resource.v1.pack.PackActivationType);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.resource.v1.package-info {
+}
+Compiled from "ModPackResources.java"
+public interface net.fabricmc.fabric.api.resource.v1.pack.ModPackResources extends net.minecraft.server.packs.PackResources {
+  public abstract net.fabricmc.loader.api.metadata.ModMetadata getFabricModMetadata();
+  public abstract net.fabricmc.fabric.api.resource.v1.pack.ModPackResources createOverlay(java.lang.String);
+}
+Compiled from "PackActivationType.java"
+public final class net.fabricmc.fabric.api.resource.v1.pack.PackActivationType extends java.lang.Enum<net.fabricmc.fabric.api.resource.v1.pack.PackActivationType> {
+  public static final net.fabricmc.fabric.api.resource.v1.pack.PackActivationType NORMAL;
+  public static final net.fabricmc.fabric.api.resource.v1.pack.PackActivationType DEFAULT_ENABLED;
+  public static final net.fabricmc.fabric.api.resource.v1.pack.PackActivationType ALWAYS_ENABLED;
+  public static net.fabricmc.fabric.api.resource.v1.pack.PackActivationType[] values();
+  public static net.fabricmc.fabric.api.resource.v1.pack.PackActivationType valueOf(java.lang.String);
+  public boolean isEnabledByDefault();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.resource.v1.pack.package-info {
+}
+Compiled from "ResourceReloaderKeys.java"
+public final class net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys$Client {
+  public static final net.minecraft.resources.Identifier BLOCK_ENTITY_RENDER_DISPATCHER;
+  public static final net.minecraft.resources.Identifier CLOUD_RENDERER;
+  public static final net.minecraft.resources.Identifier EQUIPMENT_ASSETS;
+  public static final net.minecraft.resources.Identifier ENTITY_RENDER_DISPATCHER;
+  public static final net.minecraft.resources.Identifier DRY_FOLIAGE_COLOR;
+  public static final net.minecraft.resources.Identifier FOLIAGE_COLOR;
+  public static final net.minecraft.resources.Identifier FONTS;
+  public static final net.minecraft.resources.Identifier GRASS_COLOR;
+  public static final net.minecraft.resources.Identifier ATLAS;
+  public static final net.minecraft.resources.Identifier LANGUAGES;
+  public static final net.minecraft.resources.Identifier MODELS;
+  public static final net.minecraft.resources.Identifier PARTICLES;
+  public static final net.minecraft.resources.Identifier SHADERS;
+  public static final net.minecraft.resources.Identifier SOUNDS;
+  public static final net.minecraft.resources.Identifier SPLASH_TEXTS;
+  public static final net.minecraft.resources.Identifier TEXTURES;
+  public static final net.minecraft.resources.Identifier WAYPOINT_STYLE;
+}
+Compiled from "ResourceReloaderKeys.java"
+public final class net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys$Server {
+  public static final net.minecraft.resources.Identifier ADVANCEMENTS;
+  public static final net.minecraft.resources.Identifier FUNCTIONS;
+  public static final net.minecraft.resources.Identifier RECIPES;
+}
+Compiled from "ResourceReloaderKeys.java"
+public final class net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys {
+  public static final net.minecraft.resources.Identifier BEFORE_VANILLA;
+  public static final net.minecraft.resources.Identifier AFTER_VANILLA;
+}
+Compiled from "SimpleReloadListener.java"
+public abstract class net.fabricmc.fabric.api.resource.v1.reloader.SimpleReloadListener<T> implements net.minecraft.server.packs.resources.PreparableReloadListener {
+  public net.fabricmc.fabric.api.resource.v1.reloader.SimpleReloadListener();
+  public final java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.resource.v1.reloader.package-info {
+}
