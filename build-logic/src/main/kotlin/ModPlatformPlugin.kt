@@ -170,6 +170,12 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 				manifest.attributes(ctx.loader.mixinConfigAttribute to "${ctx.modId}.mixins.json")
 			}
 		}
+
+		// The sources jar takes the raw resources, so with the mod manifest in it a loader would load it as a
+		// mod and fail on the unexpanded "${java}" in the mixin config. Without the manifest it is not a mod.
+		tasks.withType<Jar>()
+			.matching { it.name == "sourcesJar" || it.name == ctx.extension.sourcesJarTask.get() }
+			.configureEach { exclude(ctx.loader.modManifestPath, "*.mixins.json") }
 	}
 
 	private fun Project.configureIdea() {
