@@ -25,6 +25,21 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew buildAndCollect --no-daemon --stacktrace --console=plain
 
+      # Only the mod jar may carry a mod manifest, and its mixin config must be expanded.
+      - name: Check jars
+        run: |
+          status=0
+          for jar in build/libs/*/*.jar; do
+            manifests=$(unzip -Z1 "$jar" | grep -cE '^(fabric\.mod\.json|META-INF/(neoforge\.)?mods\.toml)$' || true)
+            case "$jar" in
+              *-sources.jar|*-javadoc.jar)
+                if [ "$manifests" -ne 0 ]; then echo "::error::$jar has a mod manifest"; status=1; fi ;;
+              *)
+                if unzip -p "$jar" '*.mixins.json' | grep -q '\${'; then echo "::error::$jar has an unexpanded mixin config"; status=1; fi ;;
+            esac
+          done
+          exit $status
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
